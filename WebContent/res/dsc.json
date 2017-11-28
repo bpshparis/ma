@@ -1,0 +1,147 @@
+{
+  "matching_results": 1,
+  "results": [
+    {
+      "id": "aaf9dfb7-8345-47a1-ac73-587bb2025bbe",
+      "result_metadata": {
+        "score": 0.0
+      },
+      "extracted_metadata": {
+        "publicationdate": "2017-10-14",
+        "sha1": "b1335bf5e9568241b61263485c88af13186c45b6",
+        "filename": "filename",
+        "file_type": "word",
+        "title": "bar.doc"
+      },
+      "html": "<?xml version='1.0' encoding='UTF-8' standalone='yes'?><html>\n<head>\n    <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\"/>\n\n<style type=\"text/css\">/**/\n.b1{white-space-collapsing:preserve;}\n.b2{margin: 0.7875in 0.7875in 0.7875in 0.7875in;}\n.s1{color:#333333;}\n.s2{font-family:georgia;color:#333333;}\n.s3{font-family:georgia;color:#326891;text-decoration:underline;}\n.p1{margin-bottom:0.097222224in;text-align:start;hyphenate:auto;font-family:georgia;font-size:12pt;}\n.p2{margin-left:0.75in;text-align:start;hyphenate:auto;font-family:Liberation Serif;font-size:12pt;}\n.p3{text-align:start;hyphenate:none;font-family:georgia;font-size:12pt;}\n/**/</style>\n<title>bar.doc</title>\n<meta content=\"2017-10-14\" name=\"publicationdate\"/>\n\n</head>\n<body class=\"b1 b2\">\n\n<p class=\"p1\" dir=\"ltr\">\nBut last week, on a wide industrial avenue in Bushwick, Brooklyn, a new bar opened catering to patrons who prefer to take their cocktails in extreme seclusion. About as wide as the average human arm span, it sits inside the supply closet of a shuttered Italian restaurant. Capacity is limited to three: the bartender, you and your date.\n</p>\n<p class=\"p2\" dir=\"ltr\">\n“You own the space,” said <a href=\"https://www.nytimes.com/2014/12/28/nyregion/they-say-art-is-dead-in-new-york-theyre-wrong.html\">the artist N.D. Austin</a> who opened the tiny tavern, the Threesome Tollbooth, on Friday night after a shakedown run of several months. “It changes every time according to who comes and what they bring,” he said, referring to the guests’ sense of adventure. “After all, you’re the only one there.”\n</p>\n\n</body></html>",
+      "text": "bar.doc\n\nBut last week, on a wide industrial avenue in Bushwick, Brooklyn, a new bar opened catering to patrons who prefer to take their cocktails in extreme seclusion. About as wide as the average human arm span, it sits inside the supply closet of a shuttered Italian restaurant. Capacity is limited to three: the bartender, you and your date.\n\n“You own the space,” said the artist N.D. Austin who opened the tiny tavern, the Threesome Tollbooth, on Friday night after a shakedown run of several months. “It changes every time according to who comes and what they bring,” he said, referring to the guests’ sense of adventure. “After all, you’re the only one there.”",
+      "enriched_text": {
+        "sentiment": {
+          "document": {
+            "score": 0.91262,
+            "label": "positive"
+          }
+        },
+        "entities": [
+          {
+            "count": 1.0,
+            "sentiment": {
+              "score": 0.0,
+              "label": "neutral"
+            },
+            "text": "Threesome Tollbooth",
+            "relevance": 0.825048,
+            "type": "Facility"
+          },
+          {
+            "count": 1.0,
+            "sentiment": {
+              "score": 0.0,
+              "label": "neutral"
+            },
+            "text": "Bushwick",
+            "relevance": 0.689587,
+            "type": "Location",
+            "disambiguation": {
+              "subtype": [
+                "City"
+              ]
+            }
+          },
+          {
+            "count": 1.0,
+            "sentiment": {
+              "score": 0.0,
+              "label": "neutral"
+            },
+            "text": "Brooklyn",
+            "relevance": 0.564589,
+            "type": "Location",
+            "disambiguation": {
+              "subtype": [
+                "GovernmentalJurisdiction",
+                "PlaceWithNeighborhoods",
+                "City"
+              ],
+              "name": "Brooklyn",
+              "dbpedia_resource": "http://dbpedia.org/resource/Brooklyn"
+            }
+          },
+          {
+            "count": 2.0,
+            "sentiment": {
+              "score": 0.21129,
+              "label": "positive"
+            },
+            "text": "Austin",
+            "relevance": 0.511339,
+            "type": "Person"
+          }
+        ],
+        "concepts": [
+          {
+            "text": "Bar",
+            "relevance": 0.937247,
+            "dbpedia_resource": "http://dbpedia.org/resource/Bar_(establishment)"
+          },
+          {
+            "text": "Restaurant",
+            "relevance": 0.784024,
+            "dbpedia_resource": "http://dbpedia.org/resource/Restaurant"
+          },
+          {
+            "text": "Bartender",
+            "relevance": 0.773377,
+            "dbpedia_resource": "http://dbpedia.org/resource/Bartender"
+          },
+          {
+            "text": "Tavern",
+            "relevance": 0.724904,
+            "dbpedia_resource": "http://dbpedia.org/resource/Tavern"
+          },
+          {
+            "text": "Inn",
+            "relevance": 0.723412,
+            "dbpedia_resource": "http://dbpedia.org/resource/Inn"
+          },
+          {
+            "text": "Renaissance",
+            "relevance": 0.695713,
+            "dbpedia_resource": "http://dbpedia.org/resource/Renaissance"
+          },
+          {
+            "text": "Arm",
+            "relevance": 0.67537,
+            "dbpedia_resource": "http://dbpedia.org/resource/Arm"
+          },
+          {
+            "text": "Cocktail",
+            "relevance": 0.663,
+            "dbpedia_resource": "http://dbpedia.org/resource/Cocktail"
+          }
+        ],
+        "categories": [
+          {
+            "score": 0.565056,
+            "label": "/food and drink"
+          },
+          {
+            "score": 0.359898,
+            "label": "/food and drink/beverages/alcoholic beverages/cocktails and beer"
+          },
+          {
+            "score": 0.164064,
+            "label": "/art and entertainment/humor"
+          }
+        ]
+      }
+    }
+  ],
+  "aggregations": [
+    {
+      "results": [],
+      "type": "term",
+      "field": "enriched_text"
+    }
+  ]
+}

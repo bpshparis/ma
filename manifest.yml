@@ -1,0 +1,14 @@
+applications:
+- host: ${host}
+  disk: 256M
+  name: ${name}
+  path: ./WebContent
+  domain: ${domain}
+  mem: 256M
+  instances: 1
+  services:
+    - nlu0
+    - ta0
+    - dsc0
+    - wvc0
+    

@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+.gibtn {
+  padding: 1px 1px 1px 1px;
+}
+
+.testok {
+  color: green;
+}
+
+.testko {
+  color: red;
+}
+
+.bootstrap-select .btn-default{
+    /*font-size: 16px;*/
+    /*height: 35px;*/
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+
+.myButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.rcorners1 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+
+.glyphicons {
+    font-size: 18px;
+}
+
+/*.btn {
+    height: 30px;
+    width: 30px;
+}*/
+
+.flyover {
+   left: 150%;
+   overflow: hidden;
+   position: fixed;
+   width: 50%;
+   opacity: 0.9;
+   z-index: 1050;
+   -webkit-transition: left 0.6s ease-out 0s;
+   transition: left 0.6s ease-out 0s;
+}
+
+.flyover-centered {
+   top: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+}
+
+.flyover-bottom {
+   bottom: 10px;
+}
+
+.flyover-top {
+   top: 130px;
+}
+
+.flyover.in {
+   left: 50%;
+}
+
+.navbar {
+    height: 100px;
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+#Loading {
+  display : none;
+}
+#Loading.show {
+  display : block;
+  position : fixed;
+  z-index: 100;
+  /*background-image : url("spinner.gif");*/
+  background-image : url(../img/spinner0.gif);
+  background-color:black;
+  opacity : 0.4;
+  background-repeat : no-repeat;
+  background-position : center;
+  left : 0;
+  bottom : 0;
+  right : 0;
+  top : 0;
+}
+
+.background-iic
+{
+	background: url(../img/iic_389x100.jpg);
+/* 	width:748px;  */
+	height:90px;
+}

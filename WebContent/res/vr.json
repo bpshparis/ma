@@ -1,0 +1,88 @@
+{
+  "images": [
+    {
+      "classifiers": [
+        {
+          "classes": [
+            {
+              "class": "bar",
+              "score": 0.711,
+              "type_hierarchy": "/furniture/table/bar"
+            },
+            {
+              "class": "table",
+              "score": 0.711
+            },
+            {
+              "class": "furniture",
+              "score": 0.711
+            },
+            {
+              "class": "beer hall",
+              "score": 0.527,
+              "type_hierarchy": "/room/hall/beer hall"
+            },
+            {
+              "class": "hall",
+              "score": 0.527
+            },
+            {
+              "class": "room",
+              "score": 0.527
+            },
+            {
+              "class": "light beer",
+              "score": 0.508,
+              "type_hierarchy": "/food/beverage/alcoholic beverage/brew/beer/lager beer/light beer"
+            },
+            {
+              "class": "lager beer",
+              "score": 0.524
+            },
+            {
+              "class": "beer",
+              "score": 0.594
+            },
+            {
+              "class": "brew",
+              "score": 0.618
+            },
+            {
+              "class": "alcoholic beverage",
+              "score": 0.629
+            },
+            {
+              "class": "beverage",
+              "score": 0.681
+            },
+            {
+              "class": "food",
+              "score": 0.681
+            },
+            {
+              "class": "root beer",
+              "score": 0.5,
+              "type_hierarchy": "/food/beverage/soft drink/root beer"
+            },
+            {
+              "class": "soft drink",
+              "score": 0.503
+            },
+            {
+              "class": "bottle green color",
+              "score": 0.767
+            },
+            {
+              "class": "claret red color",
+              "score": 0.659
+            }
+          ],
+          "classifier_id": "default",
+          "name": "default"
+        }
+      ],
+      "image": "bar.jpg"
+    }
+  ],
+  "images_processed": 1
+}

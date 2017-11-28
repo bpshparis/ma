@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mailbox Analyzer</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/bootstrap-editable.css">
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="css/glyphicons.css">
+	<link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+	<link rel="stylesheet" href="css/bootstrap-table-sticky-header.css">
+	<link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+
+	<div class="container-fluid" style="margin-top: 10px;">
+
+		<!-- navbar -->
+
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="https://www.ibm.com/cloud-computing/">
+		        <img alt="IBM Cloud" src="img/ic1.png">
+		      </a>
+				</div>
+
+				<form class="navbar-form navbar-left">
+					<a href="https://github.com/bpshparis/ma">
+						<h4><strong>Mailbox Analyzer</strong></h4>
+					</a>
+					<ul class="list-inline">
+						<li>
+							<a href="https://github.com/watson-developer-cloud/java-sdk/tree/develop/tone-analyzer">
+								<img alt="ta" src="img/ta40x.png">
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/watson-developer-cloud/java-sdk/tree/develop/natural-language-understanding">
+								<img alt="ta" src="img/nlu40x.png">
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/watson-developer-cloud/java-sdk/tree/develop/discovery">
+								<img alt="ta" src="img/dsc40x.png">
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/watson-developer-cloud/java-sdk/tree/develop/visual-recognition">
+								<img alt="ta" src="img/wvc40x.png">
+							</a>
+						</li>
+					</ul>
+				</form>
+
+				<div id="Loading"></div>
+	      <div id="Alert"></div>
+
+				<form class="navbar-form navbar-right">
+					<a class="navbar-brand" href="https://www-304.ibm.com/partnerworld/wps/servlet/ContentHandler/isv_inv_tsp_iic_paris_overview">
+						<img alt="PARIS IBM BPSH" src="img/bpsh0.jpg">
+					</a>
+					<a class="navbar-brand" href="http://www.ibm.com/connect/ibm/access/msphub/fr/fr/scale_zone.html">
+						<img alt="IBM Scale Zone" src="img/sz0.png">
+					</a>
+				</form>
+
+		  </div>
+		</nav>
+
+		<!-- navbar -->
+
+		<!-- <nav class="navbar navbar-default navbar-fixed-bottom">
+  		<div class="container">
+  		</div>
+		</nav> -->
+
+		<!-- modelList modal -->
+		<div class="modal fade" id="modPicture" tabindex="-1" role="dialog" aria-labelledby="modPictureLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Modal Title</h4>
+		      </div>
+		      <div class="modal-body">
+
+		      </div>
+		      <div class="modal-footer">
+		        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button> -->
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- modelList modal -->
+
+		<div>
+
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist" id="navTab">
+		    <li role="presentation" class="active"><a href="#Mails" aria-controls="mails" role="tab" data-toggle="tab">Mails</a></li>
+		    <li role="presentation"><a href="#TA" aria-controls="ta" role="tab" data-toggle="tab">Tone Analyzer</a></li>
+				<li role="presentation" class="dropdown">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href="#NLU" role="button" aria-haspopup="true" aria-expanded="false">
+			      Natural Language Understanding <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+						<li role="presentation"><a href="#NLUE" aria-controls="nluE" role="tab" data-toggle="tab">Entities</a></li>
+						<li role="presentation"><a href="#NLUC" aria-controls="nluC" role="tab" data-toggle="tab">Categories</a></li>
+						<li role="presentation"><a href="#NLUK" aria-controls="nluK" role="tab" data-toggle="tab">Keywords</a></li>
+			    </ul>
+  			</li>
+				<li role="presentation" class="dropdown">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href="#DSC" role="button" aria-haspopup="true" aria-expanded="false">
+			      Discovery <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+						<li role="presentation"><a href="#DSCE" aria-controls="dscE" role="tab" data-toggle="tab">Entities</a></li>
+						<li role="presentation"><a href="#DSCC" aria-controls="dscC" role="tab" data-toggle="tab">Concepts</a></li>
+						<li role="presentation"><a href="#DSCCA" aria-controls="dscCA" role="tab" data-toggle="tab">Categories</a></li>
+			    </ul>
+  			</li>
+				<li role="presentation" class="dropdown">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href="#WVC" role="button" aria-haspopup="true" aria-expanded="false">
+			      Watson Vision Combined <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+						<li role="presentation"><a href="#VR" aria-controls="vr" role="tab" data-toggle="tab">Visual Recognition</a></li>
+						<li role="presentation"><a href="#FR" aria-controls="fr" role="tab" data-toggle="tab">Face Recognition</a></li>
+						<li role="presentation"><a href="#TR" aria-controls="tr" role="tab" data-toggle="tab">Text Recognition</a></li>
+			    </ul>
+  			</li>
+
+				<li role="presentation"><a href="#BPSH" aria-controls="tr" role="tab" data-toggle="tab">Delivered by Paris BPSH</a></li>
+		  </ul>
+
+		</div>
+
+		<p></p>
+
+		<div class="toolbar form-inline" id="Toolbar">
+			<!-- <form id="fileinfo" name="fileinfo"> -->
+			<!-- </form> -->
+			<button type="button" onclick="GetMails()" class="btn btn-default gibtn" data-toggle="tooltip" data-placement="top" title="Get Mails."><span class="glyphicons glyphicons-envelope" aria-hidden="true"></span></button>
+
+			<button type="button" class="btn btn-default btn-file gibtn" >
+				<span class="glyphicons glyphicons-compressed" aria-hidden="true"></span><input type="file" accept=".zip" id="mailsFile" name="mailsFile">
+			</button>
+
+			<button type="button" id="AnalyzeMails" onclick="AnalyzeMails()" class="btn btn-default gibtn" data-toggle="tooltip" data-placement="top" title="Send to Watson for analysis."><span class="glyphicons glyphicons-cogwheels" aria-hidden="true"></span></button>
+			<button type="button" onclick="RemoveAll()" class="btn btn-default gibtn" data-toggle="tooltip" data-placement="top" title="Remove all."><span class="glyphicons glyphicons-bin" aria-hidden="true"></span></button>
+			<button type="button" class="btn btn-danger gibtn" data-toggle="tooltip" data-placement="top" title="Release server session" onClick="Reset()"><span class="glyphicons glyphicons-restart aria-hidden="true"></span></button>
+		</div>
+
+		<table class="table table-striped fontsize" id="DatasTable" data-toolbar="toolbar">
+
+		</table>
+
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+			<div class="panel">
+				<blockquote>
+					<p>L’IBM Business Partner Solution Hub</p>
+					<footer><cite>Distinguez-vous de la concurrence par l’innovation technologique que vous offre IBM !</cite></footer>
+			</blockquote>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Nous accompagnons les éditeurs, les intégrateurs et les partenaires commerciaux d’IBM, afin de réaliser:
+						</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						<p>
+							<ul>
+								<li>des tests de performance, d’intégration et des validations d’architecture de montée en charge</li>
+								<li>des migrations de plateforme</li>
+								<li>des ateliers techniques</li>
+								<li>des transferts de compétence individualisés</li>
+								<li>des passages des certifications IBM à la demande</li>
+								<li>des évaluations de portage</li>
+							<ul>
+						</p>
+						<a href="https://www-304.ibm.com/partnerworld/wps/servlet/ContentHandler/isv_inv_tsp_iic_paris_overview">
+								<img src="img/bpsh10.jpg" height="150" width="250"/>
+								<img src="img/bpsh11.jpg" height="150" width="250"/>
+								<img src="img/bpsh12.jpg" height="150" width="250"/>
+						</a>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingTwo">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							L'IBM Business Partner Solution Hub, (Ex IBM Innovation Center) c’est :
+						</a>
+					</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div class="panel-body">
+						<p>
+							<ul>
+								<li>L'accompagnement de 80 ISVs/BPs/intégrateurs/grossistes</li>
+								<li>140+ validations techniques</li>
+								<li>Des passages de Certifications</li>
+								<li>Des ateliers techniques avec 630+ participants</li>
+								<li>Accéder à un réseau de 43 centres d’innovation dans le monde pour développer votre business !</li>
+							<ul>
+						</p>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingThree">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							IBM Business Partner Solution Hub: EN RESUME :
+						</a>
+					</h4>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					<div class="panel-body">
+						<p>
+							<ul>
+  							<li>GRATUIT pour les BP's</li>
+								<li>200+ Serveurs à votre disposition</li>
+								<li>5 Consultants Spécialistes pour vous aider</li>
+								<li>Facile d'Accès ( RER A ou VPN )</li>
+								<li>Process ULTRASIMPLE !! : <a href="mailto:iic_paris@fr.ibm.com">contactez-nous</a></li>
+								<li>Toutes les <a href="http://ibm.biz/iic_paris">Infos.</li>
+							</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingFour">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							Subscribe to the events iCalendar feed
+						</a>
+					</h4>
+				</div>
+				<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+					<div class="panel-body">
+						<p>
+							When you add this URL to your calendar as an iCalendar feed, you will receive regular event updates to your calendar based on the search and filters you selected.<br />
+							Click <a href="webcal://www-304.ibm.com/events/idr/idrevents/calendarfeed.action?sel_city=C%7CSITE0030%7CParis+Innovation+Center">webcal</a> to launch your calendar application or copy link address to your calendar:<br />
+							If the webcal link does not work for your calendar application, copy this <a href="http://www-304.ibm.com/events/idr/idrevents/calendarfeed.action?sel_city=C%7CSITE0030%7CParis+Innovation+Center">alternative</a> link address to your calendar:<br />
+
+						</p>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingFive">
+					<h4 class="panel-title">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							Center information
+						</a>
+					</h4>
+				</div>
+				<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+					<div class="panel-body">
+						<p>
+							<address>
+							  <strong>IBM Business Partner Solution Hub</strong><br>
+								IBM Marne La Vallèe<br>
+							  1, place Jean-Baptiste Clément<br>
+							  93160 Noisy-le-Grand Cedex<br>
+								France<br />
+							</address>
+
+							<p>
+								<blockquote>
+									<footer>
+									<a href="mailto:iic_paris@fr.ibm.com">iic_paris@fr.ibm.com</a><br />
+								</footer>
+								<footer>
+									<a href="https://www-356.ibm.com/partnerworld/wps/servlet/mem/ContentHandler/isv_inv_tsp_iic_paris_overview?lnk=left-nav">Sign in PartnerWorld</a><br />
+								</footer>
+								<footer>
+									<a href="https://www.ibm.com/partnerworld/page/pw_com_jnw_index">Join PartnerWorld</a><br />
+								</footer>
+								</blockquote>
+							</p>
+						</p>
+				</div>
+			</div>
+
+		</div>
+	<!-- Container -->
+	</div>
+
+	</div> <!-- container -->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-editable.js"></script>
+	<script src="js/bootstrap-editable.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap-list-filter.min.js"></script>
+	<script src="js/bootstrap-tagsinput.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<script src="js/bootstrap-table-sticky-header.js"></script>
+	<script src="js/index.js"></script>
+
+</body>
+</html>

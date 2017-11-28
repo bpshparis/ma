@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test0</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/bootstrap-editable.css">
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="css/glyphicons.css">
+	<link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+	<!-- <link rel="stylesheet" href="css/index.css"> -->
+
+</head>
+<body>
+
+	<div class="container-fluid" style="margin-top: 10px;">
+
+		<table class="table table-striped fontsize" id="DatasTable" data-toolbar="toolbar">
+
+		</table>
+
+
+	</div> <!-- container -->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-editable.js"></script>
+	<script src="js/bootstrap-editable.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap-list-filter.min.js"></script>
+	<script src="js/bootstrap-tagsinput.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<!-- <script src="js/index.js"></script> -->
+
+	<script>
+
+	var columns = {
+	  "index": {field:"index", title: "index", valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "indexFormatter", sortable: false},
+	  "subject": {field:"content", title: "Subject", valign:"middle", align: "center", rowspan: 2, colspan: 1, footerFormatter: "", sortable: false},
+	  "content": {field:"content", title: "Content", valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "", sortable: false},
+	  "attached": {field:"content", title: '<i class="glyphicons glyphicons-paperclip"></i>', valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "", sortable: false},
+	  "picture": {field:"content", title: '<i class="glyphicons glyphicons-picture"></i>', valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "picFormatter", sortable: false},
+	  "face": {field:"content", title: '<i class="glyphicons glyphicons-user"></i>', valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "picFormatter", sortable: false},
+	  "tip": {field:"content", title: '<i class="glyphicons glyphicons-text-background"></i>', valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "picFormatter", sortable: false},
+	  "language": {field:"language", title: "Language", valign:"middle", align: "center", rowspan: 2, colspan: 1, formatter: "", sortable: false},
+	  "entities": {field:"entities", title: "Entities", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	  "entitiesR1C4": {field:"entities", title: "Entities", valign:"middle", align: "center", rowspan: 1, colspan: 4, formatter: "", sortable: false},
+	  "emotions": {field:"emotions", title: "Emotions", valign:"middle", align: "center", rowspan: 1, colspan: 5, formatter: "", sortable: false},
+	  "languages": {field:"languages", title: "Languages", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	  "socials": {field:"socials", title: "Socials", valign:"middle", align: "center", rowspan: 1, colspan: 5, formatter: "", sortable: false},
+	  "categories": {field:"categories", title: "Categories", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	  "keywords": {field:"keywords", title: "Keywords", valign:"middle", align: "center", rowspan: 1, colspan: 2, formatter: "", sortable: false},
+	  "concepts": {field:"concepts", title: "Concepts", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	  "classes": {field:"classes", title: "Classes", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	  "words": {field:"words", title: "Words", valign:"middle", align: "center", rowspan: 1, colspan: 7, formatter: "", sortable: false},
+
+	    "age": {field:"age", title: "Age", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	    "genderR1C3": {field:"gender", title: "Gender", valign:"middle", align: "center", rowspan: 1, colspan: 2, formatter: "", sortable: false},
+	    "identity": {field:"identity", title: "Identity", valign:"middle", align: "center", rowspan: 1, colspan: 3, formatter: "", sortable: false},
+	    "location": {field:"location", title: "Location", valign:"middle", align: "center", rowspan: 1, colspan: 4, formatter: "", sortable: false},
+
+
+	  "text": {field:"text", title: "Text", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "type": {field:"type", title: "Type", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "relevance": {field:"relevance", title: "Relevance", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "dbpedia_resource": {field:"dbpedia_resource", title: "Resource", valign:"middle", align: "left", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "count": {field:"count", title: "Count", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "anger": {value:"anger", field:"anger", title: "Anger", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "AngerScoreFormatter", sortable: false},
+	  "disgust": {field:"disgust", title: "Disgust", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "DisgustScoreFormatter", sortable: false},
+	  "fear": {field:"fear", title: "Fear", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "FearScoreFormatter", sortable: false},
+	  "joy": {field:"joy", title: "Joy", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "JoyScoreFormatter", sortable: false},
+	  "sadness": {field:"sadness", title: "Sadness", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "SadnessScoreFormatter", sortable: false},
+	  "analytical": {field:"analytical", title: "Analytical", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "AnalyticalScoreFormatter", sortable: false},
+	  "confident": {field:"confident", title: "Confident", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "ConfidentScoreFormatter", sortable: false},
+	  "tentative": {field:"tentative", title: "Tentative", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "TentativeScoreFormatter", sortable: false},
+	  "conscientiousness": {field:"conscientiousness_big5", title: "Conscientiousness", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "ConscientiousnessScoreFormatter", sortable: false},
+	  "openness": {field:"openness_big5", title: "Openness", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "OpennessScoreFormatter", sortable: false},
+	  "extraversion": {field:"extraversion_big5", title: "Extraversion", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "ExtraversionScoreFormatter", sortable: false},
+	  "emotionalRange": {field:"emotional_range_big5", title: "Emotional Range", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "EmotionalRangeScoreFormatter", sortable: false},
+	  "agreeableness": {field:"agreeableness_big5", title: "Agreeableness", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "AgreeablenessScoreFormatter", sortable: false},
+	  "label": {field:"label", title: "Label", valign:"middle", align: "left", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "score": {field:"score", title: "Score", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "class": {field:"class", title: "Class", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "type_hierarchy": {field:"type_hierarchy", title: "Type Hierarchy", valign:"middle", align: "center", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "document": {field:"document", title: "Document", valign:"middle", align: "center", rowspan: 1, colspan: 2, footerFormatter: "", sortable: false},
+	  "line_number": {field:"line_number", title: "Line Number", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	  "word": {field:"word", title: "Word", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+
+	    "ageMax": {field:"ageMax", title: "Max", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "ageMin": {field:"ageMin", title: "Min", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "ageScore": {field:"ageScore", title: "Score", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "gender": {field:"gender", title: "Gender", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "genderScore": {field:"genderScore", title: "Score", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "identityName": {field:"identityName", title: "Name", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "identityScore": {field:"identityScore", title: "Score", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "identityTypeHierarchy": {field:"identityTypeHierarchy", title: "Type Hierarchy", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "name": {field:"name", title: "Name", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "locationHeight": {field:"locationHeight", title: "Height", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "locationLeft": {field:"locationLeft", title: "Left", valign:"middle", align: "middle", rowspan: 1, colspan: 1, formatter: "", sortable: false},
+	    "locationTop": {field:"locationTop", title: "Top", valign:"middle", align: "center", rowspan: 1, colspan: 1, footerFormatter: "", sortable: false},
+	    "locationWidth": {field:"locationWidth", title: "Width", valign:"middle", align: "center", rowspan: 1, colspan: 1, footerFormatter: "", sortable: false},
+
+	  "docLabel": {field:"docLabel", title: "Label", valign:"middle", align: "center", rowspan: 1, colspan: 1, footerFormatter: "", sortable: false},
+	  "docScore": {field:"docScore", title: "Score", valign:"middle", align: "center", rowspan: 1, colspan: 1, footerFormatter: "", sortable: false}
+
+	};
+
+	function indexFormatter(value, row, index) {
+		row.index = index;
+		return index;
+	}
+
+	function AngerScoreFormatter(value, row, index) {
+		return row.emotion.anger;
+	}
+
+	function DisgustScoreFormatter(value, row, index) {
+		return row.emotion.disgust;
+	}
+
+	function FearScoreFormatter(value, row, index) {
+		return row.emotion.fear;
+	}
+
+	function JoyScoreFormatter(value, row, index) {
+		return row.emotion.joy;
+	}
+
+	function SadnessScoreFormatter(value, row, index) {
+		return row.emotion.sadness;
+	}
+
+	var json = [{"subject":"Trump Won’t Certify Nuclear Deal, but Won’t Unravel It","content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","url":null,"attached":null,"picture":null,"face":"trump.jpg","tip":null,"dId":null,"analysis":{"nlu":{"language":"en","entities":[{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","docLabel":null,"docScore":null,"language":"en","type":"Person","relevance":0.33,"text":"President Trump","count":1,"emotion":{"anger":0,"disgust":0,"fear":0,"joy":0,"sadness":0},"sentiment":{"score":-0.317686},"disambiguation":{}},{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","docLabel":null,"docScore":null,"language":"en","type":"Location","relevance":0.33,"text":"Iran","count":1,"emotion":{"anger":0.165374,"disgust":0.189778,"fear":0.052086,"joy":0.164298,"sadness":0.243076},"sentiment":{"score":-0.317686},"disambiguation":{"subtype":["Country"]}}],"keywords":[{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","language":"en","relevance":0.900184,"text":"President Barack Obama","emotion":{"anger":0.165374,"disgust":0.189778,"fear":0.052086,"joy":0.164298,"sadness":0.243076}},{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","language":"en","relevance":0.79126,"text":"President Trump","emotion":{}}],"categories":[{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics/legal issues/legislation","score":0.328516},{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics","score":0.18317},{"content":"President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics/government/legislative","score":0.12297}]},"ta":{"content":"Trump Won’t Certify Nuclear Deal, but Won’t Unravel It","emotion":{"joy":0.575675,"sadness":0.059838,"disgust":0.063311,"anger":0.251269,"fear":0.111811},"language":{"analytical":0.094752,"confident":0,"tentative":0},"social":{"openness_big5":0.104088,"conscientiousness_big5":0.389248,"agreeableness_big5":0.516645,"extraversion_big5":0.546286,"emotional_range_big5":0.648165}},"dsc":null,"vr":null,"fr":[{"age":{"content":"trump.jpg","max":44,"min":35,"score":0.403753},"gender":{"content":"trump.jpg","gender":"MALE","score":0.993307},"identity":{"content":"trump.jpg","name":"Barack Obama","score":0.731059,"type_hierarchy":"/people/politicians/democrats/barack obama"},"face_location":{"content":"trump.jpg","height":321,"left":189,"top":152,"width":264}}],"tr":null}},{"subject":"Wolf Puppies Are Adorable. Then Comes the Call of the Wild.","content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","url":null,"attached":"wolf.pdf","picture":null,"face":null,"tip":null,"dId":"c993b46b-5572-49b1-96fc-806c2973578b","analysis":{"nlu":{"language":"en","entities":[{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","docLabel":null,"docScore":null,"language":"en","type":"Quantity","relevance":0.01,"text":"100 pounds","count":1,"emotion":{},"sentiment":{"score":0},"disambiguation":{}}],"keywords":[{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","language":"en","relevance":0.982858,"text":"moose bones","emotion":{"anger":0.049057,"disgust":0.083063,"fear":0.102372,"joy":0.533402,"sadness":0.297117}},{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","language":"en","relevance":0.78837,"text":"veterinary exams","emotion":{"anger":0.255479,"disgust":0.036373,"fear":0.793112,"joy":0.06191,"sadness":0.043959}}],"categories":[{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","docLabel":null,"docScore":null,"language":"en","label":"/pets/large animals","score":0.35967},{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","docLabel":null,"docScore":null,"language":"en","label":"/science/medicine/veterinary medicine","score":0.11838},{"content":"When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.","docLabel":null,"docScore":null,"language":"en","label":"/pets/dogs","score":0.116229}]},"ta":{"content":"Wolf Puppies Are Adorable. Then Comes the Call of the Wild.","emotion":{"joy":0.831739,"sadness":0.106986,"disgust":0.013563,"anger":0.007124,"fear":0.049793},"language":{"analytical":0.670694,"confident":0,"tentative":0},"social":{"openness_big5":0.886115,"conscientiousness_big5":0.110292,"agreeableness_big5":0.518718,"extraversion_big5":0.465995,"emotional_range_big5":0.051616}},"dsc":{"sentiment":{"document":{"score":0.122377,"label":"positive"}},"entities":[],"concepts":[{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Dog","relevance":0.971248,"dbpedia_resource":"http://dbpedia.org/resource/Dog"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Gray Wolf","relevance":0.787659,"dbpedia_resource":"http://dbpedia.org/resource/Gray_Wolf"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Predation","relevance":0.755315,"dbpedia_resource":"http://dbpedia.org/resource/Predation"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Canidae","relevance":0.692654,"dbpedia_resource":"http://dbpedia.org/resource/Canidae"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Canis","relevance":0.659129,"dbpedia_resource":"http://dbpedia.org/resource/Canis"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Coyote","relevance":0.642775,"dbpedia_resource":"http://dbpedia.org/resource/Coyote"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Fox","relevance":0.572021,"dbpedia_resource":"http://dbpedia.org/resource/Fox"},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"text":"Apex predator","relevance":0.569959,"dbpedia_resource":"http://dbpedia.org/resource/Apex_predator"}],"categories":[{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"language":null,"label":"/science/biology/zoology/endangered species","score":0.571015},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"language":null,"label":"/pets/dogs","score":0.441534},{"content":"wolf.pdf","docLabel":"positive","docScore":0.122377,"language":null,"label":"/health and fitness/disease/cold and flu","score":0.189858}]},"vr":null,"fr":null,"tr":null}},{"subject":"In California, Fires So Fast Hesitation Proved Lethal","content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","url":"https://www.nytimes.com/2017/10/13/us/california-wildfires-victims.html?ribbon-ad-idx=5&src=trending&module=Ribbon&version=context&region=Header&action=click&contentCollection=Trending&pgtype=article","attached":null,"picture":null,"face":null,"tip":null,"dId":null,"analysis":{"nlu":{"language":"en","entities":[{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","docLabel":null,"docScore":null,"language":"en","type":"Person","relevance":0.904256,"text":"THOMAS FULLER","count":1,"emotion":{"anger":0.102835,"disgust":0.059433,"fear":0.029589,"joy":0.287,"sadness":0.141697},"sentiment":{"score":0},"disambiguation":{}},{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","docLabel":null,"docScore":null,"language":"en","type":"Location","relevance":0.647856,"text":"Northern California","count":1,"emotion":{"anger":0.200343,"disgust":0.18193,"fear":0.125142,"joy":0.099882,"sadness":0.627585},"sentiment":{"score":-0.541377},"disambiguation":{"subtype":["Region"]}}],"keywords":[{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","language":"en","relevance":0.911214,"text":"THOMAS FULLER","emotion":{"anger":0.102835,"disgust":0.059433,"fear":0.029589,"joy":0.287,"sadness":0.141697}},{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","language":"en","relevance":0.850632,"text":"wind-driven fires","emotion":{"anger":0.200343,"disgust":0.18193,"fear":0.125142,"joy":0.099882,"sadness":0.627585}}],"categories":[{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics/government/parliament","score":0.707047},{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics/law enforcement/highway patrol","score":0.297908},{"content":"By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.","docLabel":null,"docScore":null,"language":"en","label":"/society/welfare/healthcare/hospital","score":0.130992}]},"ta":{"content":"In California, Fires So Fast Hesitation Proved Lethal","emotion":{"joy":0.036532,"sadness":0.083061,"disgust":0.100318,"anger":0.09369,"fear":0.28371},"language":{"analytical":0,"confident":0,"tentative":0.615352},"social":{"openness_big5":0.323501,"conscientiousness_big5":0.30986,"agreeableness_big5":0.512508,"extraversion_big5":0.607032,"emotional_range_big5":0.317796}},"dsc":null,"vr":null,"fr":null,"tr":null}},{"subject":"At This Brooklyn Bar, It’s Just You, Your Date and the Barman","content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","url":null,"attached":"bar.doc","picture":"bar.jpg","face":null,"tip":null,"dId":"a09a3964-c821-422d-b8e6-6ecb85cf8af1","analysis":{"nlu":{"language":"en","entities":[{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","docLabel":null,"docScore":null,"language":"en","type":"Crime","relevance":0.808429,"text":"stalking","count":1,"emotion":{"anger":0.01804,"disgust":0.064416,"fear":0.019034,"joy":0.863684,"sadness":0.023285},"sentiment":{"score":0},"disambiguation":{}},{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","docLabel":null,"docScore":null,"language":"en","type":"Location","relevance":0.738696,"text":"New York","count":1,"emotion":{"anger":0.202624,"disgust":0.226789,"fear":0.108638,"joy":0.166408,"sadness":0.21426},"sentiment":{"score":-0.582477},"disambiguation":{"name":"New York City","dbpedia_resource":"http://dbpedia.org/resource/New_York_City","subtype":["PoliticalDistrict","GovernmentalJurisdiction","PlaceWithNeighborhoods","WineRegion","FilmScreeningVenue","City"]}}],"keywords":[{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","language":"en","relevance":0.962158,"text":"rush-hour subway","emotion":{"anger":0.192891,"disgust":0.134182,"fear":0.12137,"joy":0.296012,"sadness":0.347175}},{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","language":"en","relevance":0.800283,"text":"Public drinking","emotion":{"anger":0.202624,"disgust":0.226789,"fear":0.108638,"joy":0.166408,"sadness":0.21426}}],"categories":[{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","docLabel":null,"docScore":null,"language":"en","label":"/society/crime","score":0.522809},{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","docLabel":null,"docScore":null,"language":"en","label":"/home and garden/laundry","score":0.497163},{"content":"Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.","docLabel":null,"docScore":null,"language":"en","label":"/food and drink/food/fast food","score":0.353642}]},"ta":{"content":"At This Brooklyn Bar, It’s Just You, Your Date and the Barman","emotion":{"joy":0.202165,"sadness":0.239961,"disgust":0.209101,"anger":0.065602,"fear":0.013642},"language":{"analytical":0,"confident":0,"tentative":0.75152},"social":{"openness_big5":0.714171,"conscientiousness_big5":0.987086,"agreeableness_big5":0.828136,"extraversion_big5":0.996635,"emotional_range_big5":0.956374}},"dsc":{"sentiment":{"document":{"score":0.91262,"label":"positive"}},"entities":[{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"type":"Facility","relevance":0.825048,"text":"Threesome Tollbooth","count":1,"emotion":{},"sentiment":{"score":0,"label":"neutral"},"disambiguation":{}},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"type":"Location","relevance":0.689587,"text":"Bushwick","count":1,"emotion":{},"sentiment":{"score":0,"label":"neutral"},"disambiguation":{"subtype":["City"]}},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"type":"Location","relevance":0.564589,"text":"Brooklyn","count":1,"emotion":{},"sentiment":{"score":0,"label":"neutral"},"disambiguation":{"subtype":["GovernmentalJurisdiction","PlaceWithNeighborhoods","City"],"name":"Brooklyn","dbpedia_resource":"http://dbpedia.org/resource/Brooklyn"}},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"type":"Person","relevance":0.511339,"text":"Austin","count":2,"emotion":{},"sentiment":{"score":0.21129,"label":"positive"},"disambiguation":{}}],"concepts":[{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Bar","relevance":0.937247,"dbpedia_resource":"http://dbpedia.org/resource/Bar_(establishment)"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Restaurant","relevance":0.784024,"dbpedia_resource":"http://dbpedia.org/resource/Restaurant"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Bartender","relevance":0.773377,"dbpedia_resource":"http://dbpedia.org/resource/Bartender"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Tavern","relevance":0.724904,"dbpedia_resource":"http://dbpedia.org/resource/Tavern"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Inn","relevance":0.723412,"dbpedia_resource":"http://dbpedia.org/resource/Inn"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Renaissance","relevance":0.695713,"dbpedia_resource":"http://dbpedia.org/resource/Renaissance"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Arm","relevance":0.67537,"dbpedia_resource":"http://dbpedia.org/resource/Arm"},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"text":"Cocktail","relevance":0.663,"dbpedia_resource":"http://dbpedia.org/resource/Cocktail"}],"categories":[{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"label":"/food and drink","score":0.565056},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"label":"/food and drink/beverages/alcoholic beverages/cocktails and beer","score":0.359898},{"content":"bar.doc","docLabel":"positive","docScore":0.91262,"language":null,"label":"/art and entertainment/humor","score":0.164064}]},"vr":{"classes":[{"content":"bar.jpg","score":0.711,"type_hierarchy":"/furniture/table/bar","class":"bar"},{"content":"bar.jpg","score":0.711,"type_hierarchy":null,"class":"table"},{"content":"bar.jpg","score":0.711,"type_hierarchy":null,"class":"furniture"},{"content":"bar.jpg","score":0.527,"type_hierarchy":"/room/hall/beer hall","class":"beer hall"},{"content":"bar.jpg","score":0.527,"type_hierarchy":null,"class":"hall"},{"content":"bar.jpg","score":0.527,"type_hierarchy":null,"class":"room"},{"content":"bar.jpg","score":0.508,"type_hierarchy":"/food/beverage/alcoholic beverage/brew/beer/lager beer/light beer","class":"light beer"},{"content":"bar.jpg","score":0.524,"type_hierarchy":null,"class":"lager beer"},{"content":"bar.jpg","score":0.594,"type_hierarchy":null,"class":"beer"},{"content":"bar.jpg","score":0.618,"type_hierarchy":null,"class":"brew"},{"content":"bar.jpg","score":0.629,"type_hierarchy":null,"class":"alcoholic beverage"},{"content":"bar.jpg","score":0.681,"type_hierarchy":null,"class":"beverage"},{"content":"bar.jpg","score":0.681,"type_hierarchy":null,"class":"food"},{"content":"bar.jpg","score":0.5,"type_hierarchy":"/food/beverage/soft drink/root beer","class":"root beer"},{"content":"bar.jpg","score":0.503,"type_hierarchy":null,"class":"soft drink"},{"content":"bar.jpg","score":0.767,"type_hierarchy":null,"class":"bottle green color"},{"content":"bar.jpg","score":0.659,"type_hierarchy":null,"class":"claret red color"}]},"fr":null,"tr":null}},{"subject":"Trump Alienates America’s Allies and Hands Iran a Victory","content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","url":null,"attached":null,"picture":null,"face":null,"tip":"iran.jpg","dId":null,"analysis":{"nlu":{"language":"en","entities":[{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","docLabel":null,"docScore":null,"language":"en","type":"Person","relevance":0.827927,"text":"President Trump","count":5,"emotion":{"anger":0.206966,"disgust":0.083103,"fear":0.057985,"joy":0.385278,"sadness":0.380718},"sentiment":{"score":-0.437924},"disambiguation":{}},{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","docLabel":null,"docScore":null,"language":"en","type":"Location","relevance":0.380248,"text":"Iran","count":3,"emotion":{"anger":0.278751,"disgust":0.14423,"fear":0.109007,"joy":0.40092,"sadness":0.17977},"sentiment":{"score":-0.274991},"disambiguation":{"subtype":["Country"]}}],"keywords":[{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","language":"en","relevance":0.988048,"text":"Mr. Trump","emotion":{"anger":0.136935,"disgust":0.206452,"fear":0.083276,"joy":0.228971,"sadness":0.294237}},{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","language":"en","relevance":0.838444,"text":"President Trump","emotion":{"anger":0.194539,"disgust":0.039078,"fear":0.056719,"joy":0.475014,"sadness":0.323697}}],"categories":[{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics","score":0.527315},{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","docLabel":null,"docScore":null,"language":"en","label":"/law, govt and politics/government","score":0.465657},{"content":"For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.","docLabel":null,"docScore":null,"language":"en","label":"/society/unrest and war","score":0.205453}]},"ta":{"content":"Trump Alienates America’s Allies and Hands Iran a Victory","emotion":{"joy":0.427076,"sadness":0.114269,"disgust":0.428295,"anger":0.045371,"fear":0.051593},"language":{"analytical":0,"confident":0,"tentative":0},"social":{"openness_big5":0.38223,"conscientiousness_big5":0.744908,"agreeableness_big5":0.528585,"extraversion_big5":0.789585,"emotional_range_big5":0.889102}},"dsc":null,"vr":null,"fr":null,"tr":{"text":"[eis]\nyou pay\nvalue value is what\nyou get","words":[{"content":"iran.jpg","line_number":0,"location":{"content":"iran.jpg","height":58,"left":223,"top":37,"width":127},"score":0.4138,"word":"eis"},{"content":"iran.jpg","line_number":1,"location":{"content":"iran.jpg","height":58,"left":42,"top":191,"width":153},"score":0.6492,"word":"you"},{"content":"iran.jpg","line_number":1,"location":{"content":"iran.jpg","height":58,"left":217,"top":191,"width":127},"score":0.5678,"word":"pay"},{"content":"iran.jpg","line_number":2,"location":{"content":"iran.jpg","height":37,"left":40,"top":261,"width":135},"score":0.5682,"word":"value"},{"content":"iran.jpg","line_number":2,"location":{"content":"iran.jpg","height":29,"left":45,"top":265,"width":125},"score":0.6026,"word":"value"},{"content":"iran.jpg","line_number":2,"location":{"content":"iran.jpg","height":29,"left":182,"top":265,"width":35},"score":0.9517,"word":"is"},{"content":"iran.jpg","line_number":2,"location":{"content":"iran.jpg","height":29,"left":229,"top":265,"width":123},"score":0.7624,"word":"what"},{"content":"iran.jpg","line_number":3,"location":{"content":"iran.jpg","height":53,"left":45,"top":306,"width":145},"score":0.9111,"word":"you"},{"content":"iran.jpg","line_number":3,"location":{"content":"iran.jpg","height":53,"left":210,"top":306,"width":142},"score":0.9602,"word":"get"}]}}}]
+;
+
+
+
+
+	// jsons.push(json);
+	// jsons.push(json);
+	// jsons.push(json);
+
+	var vrCols = [];
+	var vrRow0 = [];
+	vrRow0.push(columns.index);
+	vrRow0.push(columns.picture);
+	vrRow0.push(columns.classes);
+	var vrRow1 = [];
+	vrRow1.push(columns.class);
+	vrRow1.push(columns.score);
+	vrRow1.push(columns.type_hierarchy);
+	vrCols.push(vrRow0);
+	vrCols.push(vrRow1);
+
+	var id = "classes";
+	var $table = $('#DatasTable');
+	var fields = ["index", "content"];
+
+	$(function () {
+		console.log(json);
+		buildTable($table, vrCols);
+		// $.each(json, function(i, mails){
+		// 	if(mails.analysis.vr){
+		// 			console.log(mails.analysis.vr);
+		// 			// loadTable($table, mails.analysis.vr);
+		// 			loadTable($table, mails.analysis.vr, id, fields);
+		// 	}
+		// });
+
+		// loadTable($table, json.analysis.vr, id, fields);
+		// loadTable($table, jsons);
+	});
+
+	function mergeCells($table, fields, rowspan){
+		var size = $table.find('tbody').children().length;;
+		console.log("rowspan=" + rowspan);
+		console.log("size=" + size);
+		for(index = 0; index <= size; index = index + rowspan){
+			console.log("index=" + index);
+			$.each(fields, function(i, field){
+				$table.bootstrapTable('mergeCells', {index: index, field: field, rowspan: rowspan});
+			});
+		}
+	}
+
+	function loadTable($table, datas, id, fields){
+		$table.bootstrapTable('removeAll');
+		if(id == undefined){
+			$table.bootstrapTable('append', datas);
+			return;
+		}
+		var rowspan;
+		$.each(datas, function(i, data){
+			console.log(data[id]);
+			rowspan = data[id].length;
+			$table.bootstrapTable('append', data[id]);
+		})
+		mergeCells($table, fields, rowspan);
+	}
+
+	function buildTable($table, cols){
+
+	  $table.bootstrapTable({
+	      columns: cols,
+	      // url: url,
+	      // data: rows,
+	      showToggle: false,
+	      search: false,
+	      checkboxHeader: false,
+	      idField: "index",
+	      onEditableInit: function(){
+	        //Fired when all columns was initialized by $().editable() method.
+	      },
+	      onEditableShown: function(editable, field, row, $el){
+	        //Fired when an editable cell is opened for edits.
+	      },
+	      onEditableHidden: function(field, row, $el, reason){
+	        //Fired when an editable cell is hidden / closed.
+	      },
+	      onEditableSave: function (field, row, oldValue, editable) {
+	        //Fired when an editable cell is saved.
+	      },
+	      onClickCell: function (field, value, row, $element){
+
+	      }
+	  });
+
+	}
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"images":[{"faces":[{"age":{"max":44,"min":35,"score":0.403753},"gender":{"gender":"MALE","score":0.993307},"identity":{"name":"Barack Obama","score":0.731059,"type_hierarchy":"/people/politicians/democrats/barack obama"},"face_location":{"height":321,"left":189,"top":152,"width":264}}],"image":"trump.jpg"}],"images_processed":1}

@@ -1,0 +1,110 @@
+{
+    "language": "en",
+    "usage": {
+      "features": 3
+    },
+    "entities": [
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "type": "Crime",
+        "relevance": 0.808429,
+        "count": 1,
+        "text": "stalking",
+        "emotion": {
+          "anger": 0.01804,
+          "disgust": 0.064416,
+          "fear": 0.019034,
+          "joy": 0.863684,
+          "sadness": 0.023285
+        },
+        "sentiment": {
+          "score": 0
+        }
+      },
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "type": "Location",
+        "relevance": 0.738696,
+        "count": 1,
+        "text": "New York",
+        "emotion": {
+          "anger": 0.202624,
+          "disgust": 0.226789,
+          "fear": 0.108638,
+          "joy": 0.166408,
+          "sadness": 0.21426
+        },
+        "sentiment": {
+          "score": -0.582477
+        },
+        "disambiguation": {
+          "name": "New York City",
+          "dbpedia_resource": "http://dbpedia.org/resource/New_York_City",
+          "subtype": [
+            "PoliticalDistrict",
+            "GovernmentalJurisdiction",
+            "PlaceWithNeighborhoods",
+            "WineRegion",
+            "FilmScreeningVenue",
+            "City"
+          ]
+        }
+      }
+    ],
+    "keywords": [
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "relevance": 0.962158,
+        "text": "rush-hour subway",
+        "emotion": {
+          "anger": 0.192891,
+          "disgust": 0.134182,
+          "fear": 0.12137,
+          "joy": 0.296012,
+          "sadness": 0.347175
+        },
+        "sentiment": {
+          "score": -0.864914
+        }
+      },
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "relevance": 0.800283,
+        "text": "Public drinking",
+        "emotion": {
+          "anger": 0.202624,
+          "disgust": 0.226789,
+          "fear": 0.108638,
+          "joy": 0.166408,
+          "sadness": 0.21426
+        },
+        "sentiment": {
+          "score": -0.582477
+        }
+      }
+    ],
+    "categories": [
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "label": "/society/crime",
+        "score": 0.522809
+      },
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "label": "/home and garden/laundry",
+        "score": 0.497163
+      },
+      {
+      	"content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+      	"language": "en",
+        "label": "/food and drink/food/fast food",
+        "score": 0.353642
+      }
+    ]
+}
