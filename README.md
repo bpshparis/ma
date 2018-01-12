@@ -120,7 +120,7 @@ A sample demo of the application with a mailbox analysis *may be* available [her
   
 ### GUI environment setup
 
-Open [instructions](https://github.com/baudelaine/MailboxAnalyzer/blob/master/mailbox.analyzer.gui.environment.setup.pdf)
+Open [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf)
 
 If everything worked you are now ready to [setup the application](#setup-application)
 
