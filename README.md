@@ -109,6 +109,7 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 ![Flow](mailbox.analyzer.flow.jpg)
 
 ### Setup Environment
+
 **!!! WARNING !!!**
 
 Before being able to work with IBM Cloud you should be aware of **2** things:
