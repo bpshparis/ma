@@ -113,6 +113,17 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 ### Setup Environment
 
+**!!! WARNING !!!**
+
+Before being able to work with IBM Cloud you should be aware of **2** things:
+  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom and US South).
+  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom or US South) in your organization.
+
+> At least one organization has been created automatically, but no space is created for you.
+If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
+
+Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
+
 **3** choices here:
   1. [GUI environment setup](#gui-environment-setup)
   2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line.
@@ -144,17 +155,6 @@ Check jq command is available:
 ```
 jq
 ```
-
-**!!! WARNING !!!**
-
-Before being able to log to IBM Cloud with cf command you should be aware of **2** things:
-  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom and US South).
-  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom or US South) in your organization.
-
-> At least one organization has been created automatically, but no space is created for you.
-If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
-
-Now you should know both your organization and your space in one Region and your are ready to connect to Bluemix in command line.
 
 Browse your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry), edit envmgt.bat and set it accordingly:
 ```
@@ -218,17 +218,6 @@ Check jq command is available:
 ```
 jq
 ```
-
-**!!! WARNING !!!**
-
-Before being able to log to IBM Cloud with cf command you should be aware of **2** things:
-  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom and US South).
-  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom or US South) in your organization.
-
-> At least one organization has been created automatically, but no space is created for you.
-If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
-
-Now you should know both your organization and your space in one Region and your are ready to connect to Bluemix in command line.
 
 **!!! WARNING !!!**
 
