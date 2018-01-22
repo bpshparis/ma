@@ -197,6 +197,12 @@ Create all services and Discovery service Collection:
 envmgt.bat /ca
 ```
 
+> You are done with environment setup. Now at least for Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
+Check it with:
+
+```
+cf s
+```
 If everything work you are now ready to [setup the application](#setup-application)
 
 ### Login to IBM Cloud
