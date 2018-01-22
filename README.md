@@ -8,10 +8,7 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 * [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 * [Overview of the application](#overview-of-the-application)
 * [Application Flow](#application-flow)
-* Setup environment
-  * [GUI environment setup](#gui-environment-setup)
-  * [Windows automatic environment setup](#windows-automatic-environment-setup)
-  * [Command line environment setup](#login-to-ibm-cloud)
+* [Setup environment](#setup_environment)
 * [Setup application](#setup-application)
 * [Deploy application](#deploy-application)
 * [Run application](#run-application)
