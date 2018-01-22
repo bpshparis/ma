@@ -138,8 +138,6 @@ Download and install the [cf](https://docs.cloudfoundry.org/cf-cli/install-go-cl
 
 Download both [curl and jq](wintools.zip) commands and unzip them in your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry).
 
-Download [environment management tool](envmgt.bat) in your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry).
-
 Open a Windows command prompt as Administrator.
 
 Check cf command is available:
