@@ -179,10 +179,16 @@ envmgt.bat /h
 
 ![](envmgt.bat.usage.jpg)
 
-Login a IBM Cloud region:
+Login to IBM Cloud US South Region:
 
 ```
-envmgt.bat /lgb
+envmgt.bat /lus
+```
+
+or login to IBM Cloud United Kingdom Region:
+
+```
+envmgt.bat /luk
 ```
 
 Create all services and Discovery service Collection:
