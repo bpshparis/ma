@@ -197,7 +197,7 @@ Create all services and Discovery service Collection:
 envmgt.bat /ca
 ```
 
-> You are done with environment setup. Now at least for Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
+> You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
 Check it with:
 
 ```
@@ -367,7 +367,7 @@ Check that service key has been created
 cf sk wvc0
 ```
 
-> You are done with environment setup. Now at least for Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
+> You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
 Check it with:
 ```
 cf s
