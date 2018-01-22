@@ -443,7 +443,7 @@ If you choosed GUI environment setup option, your Discovery service enrironment 
 
 ```
 ...
-DSC_ENV_NAME=env0
+DSC_ENV_NAME=byod
 DSC_COLL_NAME=coll0
 ...
 ```
