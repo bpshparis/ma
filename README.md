@@ -258,7 +258,7 @@ cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${spa
 ```
 > Paste one time code when prompt
 ```
-One Time Code (Get one at https://login.eu-de.bluemix.net/UAALoginServerWAR/passcode)>
+One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
 ```
 > and hit enter.
 
@@ -410,6 +410,24 @@ or connect to IBM Cloud United Kingdom Region:
 ```
 cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
 ```
+
+> If **login failed** then get a one time code for target Region:
+ * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
+ * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
+> and login with **--sso**
+> to IBM Cloud US South Region
+```
+cf l -a https://api.ng.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
+```
+> or IBM Cloud United Kingdom Region:
+```
+cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
+```
+> Paste one time code when prompt
+```
+One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
+```
+> and hit enter.
 
 Download [code](https://github.com/bpshparis/ma/archive/master.zip) unzip and change to this newly created directory (e.g.: ma-master).
 
