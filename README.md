@@ -344,8 +344,13 @@ curl -X POST -u ${username}:${password} -H 'Content-Type: application/json' -d '
 ```
 
 Get **environment_id** for Discovery service
+> Windows
 ```
 curl -u ${username}:${password} "${url}/v1/environments?version=${version}" | jq -r --arg ENV env0 ".environments[] | select(.name == $ENV) | .environment_id"
+```
+> Mac OS X / Linux
+```
+curl -u ${username}:${password} '${url}/v1/environments?version=${version}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
 ```
 
 Create **configuration** for Discovery service with **environment_id** from above
@@ -354,20 +359,35 @@ curl -u ${username}:${password} ${url}/v1/environments/${environment_id}/configu
 ```
 
 Get **configuration_id** for Discovery service
+> Windows
 ```
 curl -u ${username}:${password} "${url}/v1/environments/${environment_id}/configurations?version=${version}" | jq -r ".configurations[] | .configuration_id"
+```
+> Mac OS X / Linux
+```
+curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/configurations?version=${version}' | jq -r '.configurations[] | .configuration_id'
 ```
 
 Now, you should be ready to create the collection.
 
 Create collection **coll0** for Discovery service
+> Windows
 ```
 curl -X POST -H "Content-Type: application/json" -u ${username}:${password} -d "{\"name\": \"coll0\", \"configuration_id\":\"${configuration_id}\" , \"language\": \"en_us\"}" ${url}/v1/environments/${environment_id}/collections?version=${version}
 ```
+> Mac OS X / Linux
+```
+curl -X POST -H 'Content-Type: application/json' -u ${username}:${password} -d '{"name": "coll0", "configuration_id":"${configuration_id}" , "language": "en_us"}' ${url}/v1/environments/${environment_id}/collections?version=${version}
+```
 
 Get collection_id for Discovery service
+> Windows
 ```
 curl -u ${username}:${password} "${url}/v1/environments/${environment_id}/collections?version=${version}" | jq -r ".collections[] | .collection_id"
+```
+> Mac OS X / Linux
+```
+curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/collections?version=${version}' | jq -r '.collections[] | .collection_id'
 ```
 
 > You won't need your configuration_id nor environment_id, neither  configuration_id for further use but keep **env0** and **coll0** in mind.
