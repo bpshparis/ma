@@ -334,8 +334,13 @@ Before being able to create a collection **2** steps have to be completed:
 Latest version of Discovery service is 2017-11-07. So subsitute all followings **${version}** with **2017-11-07**.
 
 Create **env0** environment for Discovery service:
+> Windows
 ```
 curl -X POST -u ${username}:${password} -H "Content-Type: application/json" -d "{\"name\": \"env0\"}" "${url}/v1/environments?version=${version}"
+```
+> Mac OS X / Linux
+```
+curl -X POST -u ${username}:${password} -H 'Content-Type: application/json' -d '{"name": "env0"}' '${url}/v1/environments?version=${version}'
 ```
 
 Get **environment_id** for Discovery service
