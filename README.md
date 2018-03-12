@@ -103,7 +103,7 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 ### Overview of the application
 
-A sample demo of the application with a mailbox analysis *may be* available [here](http://mailboxanalyzer.bpshparis.eu-gb.mybluemix.net).
+A sample demo of the application with a mailbox analysis *may be* available [here](http://mailbox-analyzer.bpshparis.eu-gb.mybluemix.net).
 
 ### Application Flow
 ![Flow](mailbox.analyzer.flow.jpg)
