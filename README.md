@@ -265,7 +265,7 @@ One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/pass
 ### Create Tone Analyzer service
 > Syntax: cf cs ${service} ${plan} ${service_instance}
 ```
-cf cs tone_analyzer standard ta0
+cf cs tone_analyzer lite ta0
 ```
 
 Create service key (credential) to grant access to service:
