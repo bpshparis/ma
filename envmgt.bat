@@ -10,7 +10,7 @@ set space=
 set org=
 :: End custom settings
 set svcKeyName=user0
-set svc[0]=tone_analyzer standard ta0
+set svc[0]=tone_analyzer lite ta0
 set svc[1]=natural-language-understanding free nlu0
 set svc[2]=discovery lite dsc0
 set svc[3]=watson_vision_combined free wvc0
