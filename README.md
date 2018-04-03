@@ -592,7 +592,7 @@ The command should display pretty json without error.
 
 Now **zip mails.json with all files set in attached, picture, face and tip fields from mails.json**.
 
-Test you archive (e.g.: mails0.zip):
+Test you archive (e.g.: unzip -t mails0.zip):
 
 ```
 Archive:  mails0.zip
