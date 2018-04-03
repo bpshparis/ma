@@ -1,9 +1,10 @@
 applications:
-- host: ${host}
+# Change ? below to a number
+- host: retis-ibm?-ma
   disk: 256M
-  name: ${name}
+  name: app0
   path: ./WebContent
-  domain: ${domain}
+  domain: eu-gb.mybluemix.net
   mem: 256M
   instances: 1
   services:
