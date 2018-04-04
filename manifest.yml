@@ -1,5 +1,6 @@
 applications:
 # Change ? below to a number
+# WARNING: Only hyphen are supported in hostname. Don't add any dot.
 - host: retis-ibm?-ma
   disk: 256M
   name: app0
