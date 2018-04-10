@@ -5,7 +5,7 @@ applications:
   disk: 256M
   name: app0
   path: ./WebContent
-  domain: ng.bluemix.net
+  domain: mybluemix.net
   mem: 256M
   instances: 1
   services:
