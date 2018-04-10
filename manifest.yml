@@ -1,11 +1,11 @@
 applications:
 # Change ? in hostname below to a number
 # WARNING: Only hyphen are supported in hostname. Don't add any dot.
-- host: retis-ibm?-ma
+- host: bpshparis-ma
   disk: 256M
   name: app0
   path: ./WebContent
-  domain: eu-gb.mybluemix.net
+  domain: ng.mybluemix.net
   mem: 256M
   instances: 1
   services:
