@@ -41,7 +41,7 @@ Now you should know both your organization and your space in one Region and your
   
 ### GUI environment setup
 
-Open [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf)
+Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
 
 If everything worked you are now ready to [setup the application](#setup-application)
 
