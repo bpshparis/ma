@@ -4,8 +4,6 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 ## Table of Contents
 
-* [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
-* [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 * [Overview of the application](#overview-of-the-application)
 * [Application Flow](#application-flow)
 * [Setup environment](#setup-environment)
@@ -13,93 +11,8 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 * [Deploy application](#deploy-application)
 * [Run application](#run-application)
 * [Send your own datas for analysis](#send-your-own-datas-for-analysis)
-
-### About Watson Developer Cloud services being used in the application
-![](res/ta50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/tone-analyzer/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/tone-analyzer-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
-
-![](res/nlu50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/natural-language-understanding/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/natural-language-understanding-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Natural Language Understanding** analyze text to extract meta-data from content such as concepts, entities, emotion, relations, sentiment and more.
-
-![](res/dsc50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/discovery/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/discovery-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-[Tool](https://watson-discovery.bluemix.net)
-
-> **Discovery** add a cognitive search and content analytics engine to applications.
-
-![](res/wvc50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/visual-recognition/getting-started.html)
-[Dashboard](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dashboard/en/visual-recognition-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-[Tool](https://watson-visual-recognition.ng.bluemix.net/)
-
-> **Visual Recognition** find meaning in visual content! Analyze images for scenes, objects, faces, and other content. Choose a default model off the shelf, or create your own custom classifier. Develop smart applications that analyze the visual content of images or video frames to understand what is happening in a scene.
-
-### About other Watson Developer Cloud services
-
-![](res/s2t50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/speech-to-text/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/speech-to-text-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Speech to Text** Low-latency, streaming transcription.
-
-![](res/t2s50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/text-to-speech/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/text-to-speech-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Text to Speech** Synthesizes natural-sounding speech from text.
-
-![](res/lt50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/language-translator/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/language-translator-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Language Translator** Translate text from one language to another for specific domains.
-
-![](res/pi50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/personality-insights/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/personality-insights-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-
-> **Personality Insights** The Watson Personality Insights derives insights from transactional and social media data to identify psychological traits
-
-![](res/cvt50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/conversation/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/conversation-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-[Tool](https://watson-conversation.ng.bluemix.net)
-
-> **Conversation** Add a natural language interface to your application to automate interactions with your end users. Common applications include virtual agents and chat bots that can integrate and communicate on any channel or device.
-
-![](res/nlc50x.png)
-
-[Documentation](https://console.bluemix.net/docs/services/natural-language-classifier/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/natural-language-classifier-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
-[Tool](https://natural-language-classifier-toolkit.eu-gb.bluemix.net)
-
-> **Natural Language Classifier** performs natural language classification on question texts. A user would be able to train their data and the predict the appropriate class for a input question.
+* [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
+* [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 
 ### Overview of the application
 
@@ -610,3 +523,90 @@ Now go back to your application and click ![](res/compressed.png) to upload your
 Once your datas have been upload, click on ![](res/envelope.png) to upload your attached documents in Discovery Collection and get your mails.
 
 Once your mails are displayed, click ![](res/cogwheels.png) to send your mails for analysis.
+
+### About Watson Developer Cloud services being used in the application
+![](res/ta50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/tone-analyzer/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/tone-analyzer-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
+
+![](res/nlu50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/natural-language-understanding/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/natural-language-understanding-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Natural Language Understanding** analyze text to extract meta-data from content such as concepts, entities, emotion, relations, sentiment and more.
+
+![](res/dsc50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/discovery/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/discovery-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+[Tool](https://watson-discovery.bluemix.net)
+
+> **Discovery** add a cognitive search and content analytics engine to applications.
+
+![](res/wvc50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/visual-recognition/getting-started.html)
+[Dashboard](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dashboard/en/visual-recognition-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+[Tool](https://watson-visual-recognition.ng.bluemix.net/)
+
+> **Visual Recognition** find meaning in visual content! Analyze images for scenes, objects, faces, and other content. Choose a default model off the shelf, or create your own custom classifier. Develop smart applications that analyze the visual content of images or video frames to understand what is happening in a scene.
+
+### About other Watson Developer Cloud services
+
+![](res/s2t50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/speech-to-text/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/speech-to-text-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Speech to Text** Low-latency, streaming transcription.
+
+![](res/t2s50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/text-to-speech/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/text-to-speech-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Text to Speech** Synthesizes natural-sounding speech from text.
+
+![](res/lt50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/language-translator/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/language-translator-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Language Translator** Translate text from one language to another for specific domains.
+
+![](res/pi50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/personality-insights/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/personality-insights-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+
+> **Personality Insights** The Watson Personality Insights derives insights from transactional and social media data to identify psychological traits
+
+![](res/cvt50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/conversation/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/conversation-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+[Tool](https://watson-conversation.ng.bluemix.net)
+
+> **Conversation** Add a natural language interface to your application to automate interactions with your end users. Common applications include virtual agents and chat bots that can integrate and communicate on any channel or device.
+
+![](res/nlc50x.png)
+
+[Documentation](https://console.bluemix.net/docs/services/natural-language-classifier/getting-started.html)
+[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/natural-language-classifier-dashboard.html)
+[Github](https://github.com/watson-developer-cloud)
+[Tool](https://natural-language-classifier-toolkit.eu-gb.bluemix.net)
+
+> **Natural Language Classifier** performs natural language classification on question texts. A user would be able to train their data and the predict the appropriate class for a input question.
