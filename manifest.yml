@@ -1,16 +1,16 @@
 applications:
 # Change ? in hostname below to a number
 # WARNING: Only hyphen are supported in hostname. Don't add any dot.
-- host: bpshparis-ma
+- host: app0
   disk: 256M
   name: app0
   path: ./WebContent
-  domain: mybluemix.net
+  domain: bpshparis.eu-gb.mybluemix.net
   mem: 256M
   instances: 1
   services:
     - nlu0
     - ta0
     - dsc0
-    - wvc0
-    
+    - rc2206ccef-b0af-4521-866e-a675f714706e
+

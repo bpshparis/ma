@@ -1,42 +1,92 @@
 [
   {
-    "subject": "Can a Wild Daisy Rejuvenate Croatia’s Farming Economy?",
-    "content": "ZADAR, Croatia — For generations, residents of Zadar, an idyllic town on the Adriatic coast of Croatia, used the dry, stringy stems and yellow blossoms of a common variety of a wild daisy as kindling, mostly to singe the hair off pigs destined for the spit. But about five years ago, cosmetics manufacturers and the essential oils industry started using a rare extract from the flower — known as the curry plant for its spicy aroma — as a critical ingredient in high-end creams, ointments and tinctures, sold for their purported rejuvenating powers.",
-    "attached": "0.pdf",
-    "picture": "pic0.jpg",
-    "face": null,
-    "tip": null
-  },
-  {
-    "subject": "Rival Factions Battle for Control in Eastern Ukraine",
-    "content": "MOSCOW — Dozens of armed men occupied the center of the city of Luhansk in eastern Ukraine on Wednesday, blocking the entrances to several government buildings during a standoff between two top officials in the Russian-backed separatist enclave. Armored vehicles appeared on the streets and the city’s inhabitants were fleeing the area en masse, according to local news media reports.",
-    "attached": "1.doc",
-    "picture": "pic1.jpg",
-    "face": null,
-    "tip": null
-  },
-  {
-    "subject": "Russia, Turkey and Iran Propose Conference on Postwar Syria’s Future",
-    "content": "MOSCOW — Leaders of Russia, Turkey and Iran announced an agreement on Wednesday to sponsor a conference aimed at achieving a peaceful settlement of the Syria war. The announcement by the three leaders, who were meeting in the Russian Black Sea resort of Sochi, underscored Russia’s increasingly influential role in determining the outcome of the war, which appears to be winding down after nearly seven years.",
+    "subject": "Trump Won’t Certify Nuclear Deal, but Won’t Unravel It",
+    "content": "President Trump’s decision not to certify that Iran was complying with all terms of the 2015 agreement reached by President Barack Obama came after a fierce debate inside the administration.",
+    "url": null,
     "attached": null,
-    "picture": "pic2.jpg",
-    "face": "face2.jpg",
-    "tip": null
-  },
-  {
-    "subject": "At UEFA, Mounting Concern About A.C. Milan’s Murky Finances",
-    "content": "A.C. Milan is European soccer royalty, its global popularity driven not just by its 18 Italian league championships but also by its seven European titles. Those glories seem long ago these days — the last of Milan’s European Cups was won in 2007 — and now a financial crisis threatens to delay the club’s return to the top even longer. European soccer’s governing body, UEFA, is concerned about Milan’s financial viability under its Chinese owner, and without a resolution Milan could face sanctions that include a ban from the continental competition it once ruled. Facing mounting concern over its violations of so-called financial fair play rules, created to keep clubs from spending more than they bring in, Milan’s management is trying to persuade regulators that its new Chinese owner, Li Yonghong, is capable of stopping the team’s bleeding millions of euros a year.",
-    "attached": "3.pdf",
-    "picture": "pic3.jpg",
-    "face": null,
-    "tip": null
-  },
-  {
-    "subject": "A Photo of Billy the Kid Bought for $10 at a Flea Market May Be Worth Millions",
-    "content": "At a flea market six years ago, a North Carolina lawyer named Frank Abrams unknowingly bought a rare photograph that experts say shows Billy the Kid relaxing with the man who would eventually kill him. Billy the Kid, one of the best-known outlaws in American history, is thought to be there in the back, second from the left. The man all the way to the right is Pat Garrett, who would soon become the sheriff of Lincoln County, N.M., and — the story goes — shoot the outlaw dead in a darkened room.",
-    "attached": "4.doc",
     "picture": null,
-    "face": "face4.jpg",
-    "tip": "tip4.jpg"
+    "face": "trump.jpg",
+    "tip": null,
+    "dId": null,
+    "analysis": {
+      "nlu": null,
+      "ta": null,
+      "d": null,
+      "vr": null,
+      "fr": null,
+      "tr": null
+    }
+  },
+  {
+    "subject": "Wolf Puppies Are Adorable. Then Comes the Call of the Wild.",
+    "content": "When they are full-grown at around 100 pounds, their jaws will be strong enough to crack moose bones. But because these wolves have been around humans since they were blind, deaf and unable to stand, they will still allow people to be near them, to do veterinary exams, to scratch them behind the ears — if all goes well.",
+    "url": null,
+    "attached": "wolf.pdf",
+    "picture": null,
+    "face": null,
+    "tip": null,
+    "dId": null,
+    "analysis": {
+      "nlu": null,
+      "ta": null,
+      "d": null,
+      "vr": null,
+      "fr": null,
+      "tr": null
+    }
+  },
+  {
+    "subject": "In California, Fires So Fast Hesitation Proved Lethal",
+    "content": "By THOMAS FULLER and RICHARD PÉREZ-PEÑA 12:00 AM ET. As stories emerged of how people died in the wind-driven fires that have ravaged Northern California, the element common to each tragedy was how quickly it happened.",
+    "url": "https://www.nytimes.com/2017/10/13/us/california-wildfires-victims.html?ribbon-ad-idx=5&src=trending&module=Ribbon&version=context&region=Header&action=click&contentCollection=Trending&pgtype=article",
+    "attached": null,
+    "picture": null,
+    "face": null,
+    "tip": null,
+    "dId": null,
+    "analysis": {
+      "nlu": null,
+      "ta": null,
+      "d": null,
+      "vr": null,
+      "fr": null,
+      "tr": null
+    }
+  },
+  {
+    "subject": "At This Brooklyn Bar, It’s Just You, Your Date and the Barman",
+    "content": "Public drinking in New York can be a chore. Many of the city’s bars are about as intimate as a rush-hour subway. Others serve as the stalking grounds for happy-hour predators. When the suits and ties arrive, it can be hard to find a stool or to get your glass refilled.",
+    "url": null,
+    "attached": "bar.doc",
+    "picture": "bar.jpg",
+    "face": null,
+    "tip": null,
+    "dId": null,
+    "analysis": {
+      "nlu": null,
+      "ta": null,
+      "d": null,
+      "vr": null,
+      "fr": null,
+      "tr": null
+    }
+  },
+  {
+    "subject": "Trump Alienates America’s Allies and Hands Iran a Victory",
+    "content": "For months, President Trump has made no secret of his desire to tear up one of the Obama administration’s top national security achievements: the nuclear accord with Iran, formally known as the Joint Comprehensive Plan of Action, or J.C.P.O.A. Mr. Trump repeatedly bashed the agreement during last year’s campaign. Once in the White House, American law required the president to certify to Congress every 90 days that Iran was complying. Even Mr. Trump’s adversarial relationship with the truth could not dodge the fact that Iran is in compliance — as determined repeatedly by the International Atomic Energy Agency, the American intelligence community and our closest European allies. Mr. Trump has found it galling to certify — not once, but twice — that a deal he described as “the worst ever” and “an embarrassment” is working.",
+    "url": null,
+    "attached": null,
+    "picture": null,
+    "face": null,
+    "tip": "iran.jpg",
+    "dId": null,
+    "analysis": {
+      "nlu": null,
+      "ta": null,
+      "d": null,
+      "vr": null,
+      "fr": null,
+      "tr": null
+    }
   }
 ]

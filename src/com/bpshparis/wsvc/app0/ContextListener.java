@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,17 +25,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.watson.developer_cloud.discovery.v1.Discovery;
-import com.ibm.watson.developer_cloud.discovery.v1.model.collection.GetCollectionsRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.collection.GetCollectionsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.document.DeleteDocumentRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.document.DeleteDocumentResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.environment.GetEnvironmentsRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.environment.GetEnvironmentsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.query.QueryRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.query.QueryResponse;
+import com.ibm.watson.developer_cloud.discovery.v1.model.DeleteDocumentOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsResponse;
+import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsResponse;
+import com.ibm.watson.developer_cloud.discovery.v1.model.QueryOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.QueryResponse;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Application Lifecycle Listener implementation class ContextListener
@@ -51,7 +53,7 @@ public class ContextListener implements ServletContextListener {
 	Discovery dsc;
 	String dscEnvId;
 	String dscCollId;
-	VisualRecognition wvc;
+	OkHttpClient wvc;
 	
     /**
      * Default constructor. 
@@ -104,6 +106,10 @@ public class ContextListener implements ServletContextListener {
 					initWVC();
 	    			System.out.println("WVC has been initialized...");
 					arg0.getServletContext().setAttribute("wvc", wvc);
+					arg0.getServletContext().setAttribute("wvcUrl", props.getProperty("WVC_URL"));
+					arg0.getServletContext().setAttribute("wvcClassify", props.getProperty("WVC_CLASSIFY"));
+					arg0.getServletContext().setAttribute("wvcDetect_faces", props.getProperty("WVC_DETECT_FACES"));
+					
     			}
     			
     		} catch (Exception e) {
@@ -246,8 +252,8 @@ public class ContextListener implements ServletContextListener {
 		dsc.setUsernameAndPassword(username, password);
 		dsc.setEndPoint(url);
 		
-		GetEnvironmentsRequest envRequest = new GetEnvironmentsRequest.Builder().build();
-		GetEnvironmentsResponse envResponse = dsc.getEnvironments(envRequest).execute();
+		ListEnvironmentsOptions envOptions = new ListEnvironmentsOptions.Builder().build();
+		ListEnvironmentsResponse envResponse = dsc.listEnvironments(envOptions).execute();
 		
 		Map<String, Object> envMap = mapper.readValue(envResponse.toString(), new TypeReference<Map<String, Object>>(){});
 
@@ -259,8 +265,8 @@ public class ContextListener implements ServletContextListener {
 			}
 		}
 
-		GetCollectionsRequest collRequest = new GetCollectionsRequest.Builder(dscEnvId).build();
-		GetCollectionsResponse collResponse = dsc.getCollections(collRequest).execute();		
+		ListCollectionsOptions collOptions = new ListCollectionsOptions.Builder(dscEnvId).build();
+		ListCollectionsResponse collResponse = dsc.listCollections(collOptions).execute();
 
 		Map<String, Object> collMap = mapper.readValue(collResponse.toString(), new TypeReference<Map<String, Object>>(){});
 
@@ -278,7 +284,7 @@ public class ContextListener implements ServletContextListener {
     }
 
     @SuppressWarnings("unchecked")
-	public void initWVC() throws JsonParseException, JsonMappingException, IOException{
+	public void initWVC() throws JsonParseException, JsonMappingException, IOException, KeyManagementException, NoSuchAlgorithmException{
     	
     	
     	String serviceName = props.getProperty("WVC_NAME");
@@ -287,7 +293,7 @@ public class ContextListener implements ServletContextListener {
 		
 		String url = "";
 		String api_key = "";
-//		String version = props.getProperty("WVC_VERSION").split("=")[1];
+		String version = props.getProperty("WVC_CLASSIFY").split("=")[1];
 		
 		Map<String, Object> input = mapper.readValue(vcap_services, new TypeReference<Map<String, Object>>(){});
 		
@@ -299,32 +305,40 @@ public class ContextListener implements ServletContextListener {
 					System.out.println(e.getKey() + "=" + e.getValue());
 					Map<String, Object> credential = (Map<String, Object>) e.getValue();
 					url = (String) credential.get("url");
-					api_key = (String) credential.get("api_key");
+					api_key = (String) credential.get("apikey");
 				}
 			}
 		}
 		
-    	wvc = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20);
-		wvc.setEndPoint(url);
-		wvc.setApiKey(api_key);
-
-		System.out.println(wvc.getName() + " " + wvc.getEndPoint());
+	    wvc = new UnsafeOkHttpClient().getUnsafeOkHttpClient();
+	    
+	    wvc = wvc.newBuilder()
+	    	.addInterceptor(new BasicAuthInterceptor("apikey", api_key))
+	    	.build();		
+		
+		
+		System.out.println(serviceName + " " + url);
 		
 		return;    	
 
     }
     
-    @SuppressWarnings({ "unchecked", "unused" })
+    @SuppressWarnings({ "unchecked" })
     public void cleanDColl() throws JsonParseException, JsonMappingException, IOException{
     
 		List<String> fields = new ArrayList<String>();
 		fields.add("extracted_metadata");
     	
-    	QueryRequest.Builder queryBuilder = new QueryRequest.Builder(dscEnvId, dscCollId)
+//    	QueryRequest.Builder queryBuilder = new QueryRequest.Builder(dscEnvId, dscCollId)
+//    			.count(100)
+//    			.returnFields(fields);
+//    	
+//    	QueryResponse queryResponse = dsc.query(queryBuilder.build()).execute();
+    	
+    	QueryOptions.Builder queryOptions = new QueryOptions.Builder(dscEnvId, dscCollId)
     			.count(100)
     			.returnFields(fields);
-    	
-    	QueryResponse queryResponse = dsc.query(queryBuilder.build()).execute();
+    	QueryResponse queryResponse = dsc.query(queryOptions.build()).execute();    	
     	
     	System.out.println("queryResponse=" + queryResponse);
     	
@@ -343,8 +357,8 @@ public class ContextListener implements ServletContextListener {
     	System.out.println("docIds=" + docIds);
     	
     	for(String docId: docIds){
-	    	DeleteDocumentRequest deleteRequest = new DeleteDocumentRequest.Builder(dscEnvId, dscCollId, docId).build();
-	    	DeleteDocumentResponse deleteResponse = dsc.deleteDocument(deleteRequest).execute();
+	    	DeleteDocumentOptions deleteOptions = new DeleteDocumentOptions.Builder(dscEnvId, dscCollId, docId).build();
+	    	dsc.deleteDocument(deleteOptions).execute();
     	}
     	
     }

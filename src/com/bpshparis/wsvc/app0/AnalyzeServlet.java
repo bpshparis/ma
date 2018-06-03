@@ -40,12 +40,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.GsonBuilder;
 import com.ibm.watson.developer_cloud.discovery.v1.Discovery;
-import com.ibm.watson.developer_cloud.discovery.v1.model.document.CreateDocumentRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.document.CreateDocumentResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.query.QueryRequest;
-import com.ibm.watson.developer_cloud.discovery.v1.model.query.QueryResponse;
+import com.ibm.watson.developer_cloud.discovery.v1.model.AddDocumentOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.DocumentAccepted;
+import com.ibm.watson.developer_cloud.discovery.v1.model.QueryOptions;
+import com.ibm.watson.developer_cloud.discovery.v1.model.QueryResponse;
 import com.ibm.watson.developer_cloud.http.HttpMediaType;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
@@ -57,12 +56,13 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.Ke
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.DetectedFaces;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.RecognizedText;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualRecognitionOptions;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Servlet implementation class AppendSelectionsServlet
@@ -74,7 +74,10 @@ public class AnalyzeServlet extends HttpServlet {
 	NaturalLanguageUnderstanding nlu;
 	ToneAnalyzer ta;
 	Discovery dsc;
-	VisualRecognition wvc;
+	OkHttpClient wvc;
+	String wvcUrl;
+	String wvcClassify;
+	String wvcDetect_faces;
 	String dscEnvId;
 	String dscCollId;
 	String mailsPath;
@@ -107,7 +110,11 @@ public class AnalyzeServlet extends HttpServlet {
 			dsc = (Discovery) request.getServletContext().getAttribute("dsc");
 			dscEnvId = (String) request.getServletContext().getAttribute("dscEnvId");
 			dscCollId = (String) request.getServletContext().getAttribute("dscCollId");
-
+			wvcUrl = (String) request.getServletContext().getAttribute("wvcUrl");
+			wvcClassify = (String) request.getServletContext().getAttribute("wvcClassify");
+			wvcDetect_faces = (String) request.getServletContext().getAttribute("wvcDetect_faces");
+			
+			
 			if(ServletFileUpload.isMultipartContent(request)){
 
 				List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -204,7 +211,7 @@ public class AnalyzeServlet extends HttpServlet {
 							callNLU(mail);
 						}
 	
-						wvc = (VisualRecognition) request.getServletContext().getAttribute("wvc");
+						wvc = (OkHttpClient) request.getServletContext().getAttribute("wvc");
 
 						if(mail.getPicture() != null && wvc != null){
 							if(Files.exists(Paths.get(mailsPath + "/" + mail.getPicture()))){
@@ -215,12 +222,6 @@ public class AnalyzeServlet extends HttpServlet {
 						if(mail.getFace() != null && wvc != null){
 							if(Files.exists(Paths.get(mailsPath + "/" + mail.getFace()))){
 								callFR(mail);
-							}
-						}
-	
-						if(mail.getTip() != null && wvc != null){
-							if(Files.exists(Paths.get(mailsPath + "/" + mail.getTip()))){
-								callTR(mail);
 							}
 						}
 	
@@ -266,7 +267,7 @@ public class AnalyzeServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	protected CreateDocumentResponse uploadAttached(Mail mail) throws ArrayIndexOutOfBoundsException, JsonParseException, JsonMappingException, IOException{
+	protected DocumentAccepted uploadAttached(Mail mail) throws ArrayIndexOutOfBoundsException, JsonParseException, JsonMappingException, IOException{
 
 		String file = mailsPath + "/" + mail.getAttached();
 		InputStream in = new BufferedInputStream(new FileInputStream(file));
@@ -296,9 +297,16 @@ public class AnalyzeServlet extends HttpServlet {
 
 		}
 
-		CreateDocumentRequest.Builder builder = new CreateDocumentRequest.Builder(dscEnvId, dscCollId)
-				.file(in, mt);
-		CreateDocumentResponse result = dsc.createDocument(builder.build()).execute();
+		
+//		CreateDocumentRequest.Builder builder = new CreateDocumentOptions.Builder(dscEnvId, dscCollId)
+//				.file(in, mt);
+//		CreateDocumentResponse result = dsc.createDocument(builder.build()).execute();
+		
+		AddDocumentOptions.Builder builder = new AddDocumentOptions.Builder(dscEnvId, dscCollId)
+				.file(in)
+				.filename(mail.getAttached())
+				.fileContentType(mt);
+		DocumentAccepted result = dsc.addDocument(builder.build()).execute();
 
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -316,7 +324,7 @@ public class AnalyzeServlet extends HttpServlet {
 		List<String> fields = new ArrayList<String>();
 		fields.add("extracted_metadata");
 
-    	QueryRequest.Builder queryBuilder = new QueryRequest.Builder(dscEnvId, dscCollId)
+    	QueryOptions.Builder queryBuilder = new QueryOptions.Builder(dscEnvId, dscCollId)
     			.count(100)
     			.returnFields(fields);
 
@@ -341,23 +349,35 @@ public class AnalyzeServlet extends HttpServlet {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected VisualClassification callVR(Mail mail) throws IOException{
+	protected void callVR(Mail mail) throws IOException{
 
 		Path path = Paths.get(mailsPath + "/" + mail.getPicture());
 		if(!Files.exists(path)){
-			return null;
+			return;
 		}
 		
-		byte[] data = Files.readAllBytes(path);
+//		ClassifyOptions classifyImagesOptions = new ClassifyOptions.Builder()
+//				.imagesFile(Files.newInputStream(path))
+//				.imagesFilename(mail.getPicture())
+//				.build();
+//		
+//		ClassifiedImages visualClassification = wvc.classify(classifyImagesOptions).execute();
+//		
+//		String result = visualClassification.toString();
+		
+		RequestBody body = new MultipartBody.Builder()
+				.setType(MultipartBody.FORM)
+	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
+	            .build();
 
-		ClassifyImagesOptions classifyImagesOptions = new ClassifyImagesOptions.Builder()
-				.images(data, mail.getPicture())
-				.build();
-		
-		VisualClassification visualClassification = wvc.classify(classifyImagesOptions).execute();
-		
-		String result = visualClassification.toString();
-		
+	    Request request = new Request.Builder()
+	    		.url(wvcUrl + wvcClassify)
+	    		.post(body)
+	    		.build();
+	    
+	    Response response = wvc.newCall(request).execute();
+	    String result = response.body().string();
+	    
 		InputStream is = new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8.name()));
 		
 		InputStreamReader isr = new InputStreamReader(is);
@@ -392,28 +412,42 @@ public class AnalyzeServlet extends HttpServlet {
 			
 		}
 		
-		return visualClassification;
+		return;
 	}
 
 	@SuppressWarnings("unchecked")
-	protected DetectedFaces callFR(Mail mail) throws IOException{
+	protected void callFR(Mail mail) throws IOException{
 
 		Path path = Paths.get(mailsPath + "/" + mail.getFace());
 		if(!Files.exists(path)){
-			return null;
+			return;
 		}
 
-		byte[] data = Files.readAllBytes(path);
+//		byte[] data = Files.readAllBytes(path);
+//
+//		new GsonBuilder().setPrettyPrinting().create();
+//
+//		DetectFacesOptions options = new DetectFacesOptions.Builder()
+//				.imagesFile(Files.newInputStream(path))
+//				.imagesFilename(mail.getFace())
+//				.build();
+//
+//		DetectedFaces detectedFaces = wvc.detectFaces(options).execute();
+//		
+//		String result = detectedFaces.toString();
 
-		new GsonBuilder().setPrettyPrinting().create();
+		RequestBody body = new MultipartBody.Builder()
+				.setType(MultipartBody.FORM)
+	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
+	            .build();
 
-		VisualRecognitionOptions options = new VisualRecognitionOptions.Builder()
-				.images(data, mail.getFace())
-				.build();
-
-		DetectedFaces detectedFaces = wvc.detectFaces(options).execute();
-		
-		String result = detectedFaces.toString();
+	    Request request = new Request.Builder()
+	    		.url(wvcUrl + wvcDetect_faces)
+	    		.post(body)
+	    		.build();
+	    
+	    Response response = wvc.newCall(request).execute();
+	    String result = response.body().string();
 		
 		InputStream is = new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8.name()));
 		
@@ -462,71 +496,8 @@ public class AnalyzeServlet extends HttpServlet {
 
 		mail.getAnalysis().setFr(fr);
 
-		return detectedFaces;
+		return;
 	}
-
-	@SuppressWarnings("unchecked")
-	protected RecognizedText callTR(Mail mail) throws IOException{
-
-		Path path = Paths.get(mailsPath + "/" + mail.getTip());
-		if(!Files.exists(path)){
-			return null;
-		}
-
-		byte[] data = Files.readAllBytes(path);
-
-//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-		VisualRecognitionOptions options = new VisualRecognitionOptions.Builder()
-				.images(data, mail.getTip())
-				.build();
-
-		RecognizedText recognizedText = wvc.recognizeText(options).execute();
-
-		String result = recognizedText.toString();
-		
-		InputStream is = new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8.name()));
-		
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader br = new BufferedReader(isr);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        Map<String, Object> svc = mapper.readValue(br, new TypeReference<Map<String, Object>>(){});
-		
-		
-		List<Map<String, Object>> images = ((List<Map<String, Object>>) svc.get("images")); 
-		
-		List<Word> words = new ArrayList<Word>();
-		
-		for(Map<String, Object> image: images){
-			String text = ((String) image.get("text"));
-			List<Map<String, Object>> ws = (List<Map<String, Object>>) image.get("words");
-			for(Map<String, Object> w: ws){
-				Word word = new Word();
-				word.setText(text);
-				word.setLine_number((Integer) w.get("line_number"));
-				word.setWord((String) w.get("word"));
-				word.setScore((Double) w.get("score"));
-				Map<String, Integer> location = (Map<String, Integer>) w.get("location");
-				word.setLocationHeight(location.get("height"));
-				word.setLocationLeft(location.get("left"));
-				word.setLocationTop(location.get("top"));
-				word.setLocationWidth(location.get("width"));
-
-				word.setTip(mail.getTip());
-				words.add(word);
-			}
-		}
-		
-		TR tr = new TR();
-		tr.setWords(words);
-		
-		mail.getAnalysis().setTr(tr);
-
-		return recognizedText;
-	}
-
 
 	@SuppressWarnings("unchecked")
 	protected QueryResponse callDSC(Mail mail) throws IOException{
@@ -534,7 +505,7 @@ public class AnalyzeServlet extends HttpServlet {
 		List<String> fields = new ArrayList<String>();
 		fields.add("extracted_metadata");
 
-    	QueryRequest.Builder queryBuilder = new QueryRequest.Builder(dscEnvId, dscCollId)
+    	QueryOptions.Builder queryBuilder = new QueryOptions.Builder(dscEnvId, dscCollId)
     			.aggregation("term(enriched_text)")
     			.filter("_id:" + mail.getdId());
 
@@ -621,12 +592,13 @@ public class AnalyzeServlet extends HttpServlet {
 		}
 
 		ToneOptions options = new ToneOptions.Builder()
-			.addTone(com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone.EMOTION)
-			.addTone(com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone.LANGUAGE)
-			.addTone(com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone.SOCIAL)
-			.build();
+				.text(mail.getSubject())
+				.tones(Arrays.asList("emotion", "language", "social"))
+				.contentLanguage("en")
+				.acceptLanguage("en")
+				.build();
 
-		ToneAnalysis toneAnalysis = ta.getTone(mail.getSubject(), options).execute();
+		ToneAnalysis toneAnalysis = ta.tone(options).execute();
 		
 		String result = toneAnalysis.toString();
 		
