@@ -56,13 +56,11 @@ import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.Ke
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImages;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOptions;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.DetectFacesOptions;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.DetectedFaces;
 
 /**
  * Servlet implementation class AppendSelectionsServlet
@@ -72,9 +70,11 @@ public class AnalyzeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	NaturalLanguageUnderstanding nlu;
+	String nlul;
 	ToneAnalyzer ta;
+	String tacl;
 	Discovery dsc;
-	OkHttpClient wvc;
+	VisualRecognition wvc;
 	String wvcUrl;
 	String wvcClassify;
 	String wvcDetect_faces;
@@ -202,16 +202,18 @@ public class AnalyzeServlet extends HttpServlet {
 					for(Mail mail: mails){
 
 						ta = (ToneAnalyzer) request.getServletContext().getAttribute("ta");
+						tacl = (String) request.getServletContext().getAttribute("tacl");
 						if(mail.getSubject() != null && ta != null){
 							callTA(mail);
 						}
 						
 						nlu = (NaturalLanguageUnderstanding) request.getServletContext().getAttribute("nlu");
+						nlul = (String) request.getServletContext().getAttribute("nlul");
 						if(mail.getContent() != null && nlu != null){
 							callNLU(mail);
 						}
 	
-						wvc = (OkHttpClient) request.getServletContext().getAttribute("wvc");
+						wvc = (VisualRecognition) request.getServletContext().getAttribute("wvc");
 
 						if(mail.getPicture() != null && wvc != null){
 							if(Files.exists(Paths.get(mailsPath + "/" + mail.getPicture()))){
@@ -269,8 +271,13 @@ public class AnalyzeServlet extends HttpServlet {
 
 	protected DocumentAccepted uploadAttached(Mail mail) throws ArrayIndexOutOfBoundsException, JsonParseException, JsonMappingException, IOException{
 
-		String file = mailsPath + "/" + mail.getAttached();
-		InputStream in = new BufferedInputStream(new FileInputStream(file));
+		Path path = Paths.get(mailsPath + "/" + mail.getAttached());
+		
+		if(!Files.exists(path)){
+			return null;
+		}
+		
+		InputStream in = new BufferedInputStream(new FileInputStream(path.toFile()));
 		new HashMap<String, String>();
 
 		String mt = "";
@@ -356,27 +363,27 @@ public class AnalyzeServlet extends HttpServlet {
 			return;
 		}
 		
-//		ClassifyOptions classifyImagesOptions = new ClassifyOptions.Builder()
-//				.imagesFile(Files.newInputStream(path))
-//				.imagesFilename(mail.getPicture())
-//				.build();
-//		
-//		ClassifiedImages visualClassification = wvc.classify(classifyImagesOptions).execute();
-//		
-//		String result = visualClassification.toString();
+		ClassifyOptions classifyImagesOptions = new ClassifyOptions.Builder()
+				.imagesFile(Files.newInputStream(path))
+				.imagesFilename(mail.getPicture())
+				.build();
 		
-		RequestBody body = new MultipartBody.Builder()
-				.setType(MultipartBody.FORM)
-	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
-	            .build();
-
-	    Request request = new Request.Builder()
-	    		.url(wvcUrl + wvcClassify)
-	    		.post(body)
-	    		.build();
-	    
-	    Response response = wvc.newCall(request).execute();
-	    String result = response.body().string();
+		ClassifiedImages visualClassification = wvc.classify(classifyImagesOptions).execute();
+		
+		String result = visualClassification.toString();
+		
+//		RequestBody body = new MultipartBody.Builder()
+//				.setType(MultipartBody.FORM)
+//	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
+//	            .build();
+//
+//	    Request request = new Request.Builder()
+//	    		.url(wvcUrl + wvcClassify)
+//	    		.post(body)
+//	    		.build();
+//	    
+//	    Response response = wvc.newCall(request).execute();
+//	    String result = response.body().string();
 	    
 		InputStream is = new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8.name()));
 		
@@ -423,31 +430,27 @@ public class AnalyzeServlet extends HttpServlet {
 			return;
 		}
 
-//		byte[] data = Files.readAllBytes(path);
-//
-//		new GsonBuilder().setPrettyPrinting().create();
-//
-//		DetectFacesOptions options = new DetectFacesOptions.Builder()
-//				.imagesFile(Files.newInputStream(path))
-//				.imagesFilename(mail.getFace())
-//				.build();
-//
-//		DetectedFaces detectedFaces = wvc.detectFaces(options).execute();
-//		
-//		String result = detectedFaces.toString();
+		DetectFacesOptions options = new DetectFacesOptions.Builder()
+				.imagesFile(Files.newInputStream(path))
+				.imagesFilename(mail.getFace())
+				.build();
 
-		RequestBody body = new MultipartBody.Builder()
-				.setType(MultipartBody.FORM)
-	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
-	            .build();
+		DetectedFaces detectedFaces = wvc.detectFaces(options).execute();
+		
+		String result = detectedFaces.toString();
 
-	    Request request = new Request.Builder()
-	    		.url(wvcUrl + wvcDetect_faces)
-	    		.post(body)
-	    		.build();
-	    
-	    Response response = wvc.newCall(request).execute();
-	    String result = response.body().string();
+//		RequestBody body = new MultipartBody.Builder()
+//				.setType(MultipartBody.FORM)
+//	            .addFormDataPart("File", "images_file", RequestBody.create(MediaType.parse("image/jpeg"), path.toFile()))
+//	            .build();
+//
+//	    Request request = new Request.Builder()
+//	    		.url(wvcUrl + wvcDetect_faces)
+//	    		.post(body)
+//	    		.build();
+//	    
+//	    Response response = wvc.newCall(request).execute();
+//	    String result = response.body().string();
 		
 		InputStream is = new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8.name()));
 		
@@ -482,10 +485,10 @@ public class AnalyzeServlet extends HttpServlet {
 				face.setIdentityTypeHierarchy((String) identity.get("type_hierarchy"));
 			}
 			Map<String, Object> location = (Map<String, Object>) f.get("face_location");
-			face.setLocationHeight((Integer) location.get("height"));
-			face.setLocationLeft((Integer) location.get("left"));
-			face.setLocationTop((Integer) location.get("top"));
-			face.setLocationWidth((Integer) location.get("width"));
+			face.setLocationHeight((Double) location.get("height"));
+			face.setLocationLeft((Double) location.get("left"));
+			face.setLocationTop((Double) location.get("top"));
+			face.setLocationWidth((Double) location.get("width"));
 			
 			face.setFace(mail.getFace());
 			faces.add(face);
@@ -593,8 +596,7 @@ public class AnalyzeServlet extends HttpServlet {
 
 		ToneOptions options = new ToneOptions.Builder()
 				.text(mail.getSubject())
-				.tones(Arrays.asList("emotion", "language", "social"))
-				.contentLanguage("en")
+				.contentLanguage(tacl)
 				.acceptLanguage("en")
 				.build();
 
@@ -609,59 +611,76 @@ public class AnalyzeServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        Map<String, Object> svc = mapper.readValue(br, new TypeReference<Map<String, Object>>(){});
+        Map<String, Object> json = mapper.readValue(br, new TypeReference<Map<String, Object>>(){});
+
+		Map<String, Object> document_tone = (Map<String, Object>) json.get("document_tone");
 		
-		Map<String, Object> doc = (Map<String, Object>) svc.get("document_tone");
-		List<Map<String, Object>> cats = (List<Map<String, Object>>) doc.get("tone_categories");
+		List<Tone> documentTones = new ArrayList<Tone>();
+
+		Map<String, Double> emotion = new HashMap<String, Double>();
+		Map<String, Double> language = new HashMap<String, Double>();
 		
-		TA ta = new TA();
-		
-		for(Map<String, Object> cat: cats){
-			String category_id = (String) cat.get("category_id");
-			List<Map<String, Object>> allTones = (List<Map<String, Object>>) cat.get("tones");
-			String tone_id = "";
-			Float score = 0F;
-			switch(category_id){
+		if(document_tone != null){
+			List<Map<String, Object>> tonesForDocument = (List<Map<String, Object>>) document_tone.get("tones");
 			
-				case "emotion_tone":
-					Map<String, Float> emotion = new HashMap<String, Float>();
-					for(Map<String, Object> emotionTones: allTones){
-						tone_id = ((String) emotionTones.get("tone_id")).toLowerCase();
-						score = ((Double) emotionTones.get("score")).floatValue();
-						emotion.put(tone_id, score);
-						
-					}
-					ta.setEmotion(emotion);
-					break;
+			if(tonesForDocument != null){
+				
+				documentTones = Arrays.asList(mapper.readValue(Tools.toJSON(tonesForDocument), Tone[].class));
+				
+				
+				for(Tone documentTone: documentTones){
+					switch(documentTone.getTone_id().toLowerCase()){
 					
-				case "language_tone":
-					Map<String, Float> language = new HashMap<String, Float>();
-					for(Map<String, Object> languageTones: allTones){
-						tone_id = ((String) languageTones.get("tone_id")).toLowerCase();
-						score = ((Double) languageTones.get("score")).floatValue();
-						language.put(tone_id, score);
-						
+					case "joy": case"sadness": case "disgust": case "anger":  case "fear":
+						emotion.put(documentTone.getTone_id(), documentTone.getScore());
+						break;
+					case  "analytical": case "confident": case "tentative":
+						language.put(documentTone.getTone_id(), documentTone.getScore());
+						break;
 					}
-					ta.setLanguage(language);
-					break;
-					
-				case "social_tone":
-					Map<String, Float> social = new HashMap<String, Float>();
-					for(Map<String, Object> socialTones: allTones){
-						tone_id = ((String) socialTones.get("tone_id")).toLowerCase();
-						score = ((Double) socialTones.get("score")).floatValue();
-						social.put(tone_id, score);
-						
-					}
-					ta.setSocial(social);
-					break;
-			
+				}
+				
 			}
 		}
 		
-		ta.setContent(mail.getSubject());
+		TAV1 tav1 = new TAV1();
+		tav1.setContent(mail.getSubject());
+		tav1.setEmotion(emotion);
+		tav1.setLanguage(language);
+
+		mail.getAnalysis().setTav1(tav1);
+
 		
-		mail.getAnalysis().setTa(ta);
+//		List<Map<String, Object>> sentences_tone = (List<Map<String, Object>>) json.get("sentences_tone");
+//
+//		List<Tone> sentencesTones = new ArrayList<Tone>();
+//		
+//		if(sentences_tone != null){
+//		
+//			for(Map<String, Object> sentence: sentences_tone){
+//				String sentenceText = (String) sentence.get("text");
+//				
+//				List<Map<String, Object>> tonesForOneSentence = (List<Map<String, Object>>) sentence.get("tones");
+//				
+//				if(tonesForOneSentence != null){
+//					List<Tone> sentenceTones = Arrays.asList(mapper.readValue(Tools.toJSON(tonesForOneSentence), Tone[].class));
+//				
+//					System.out.println("++++++ sentenceTones = " + sentenceTones);
+//					
+//					for(Tone sentenceTone: sentenceTones){
+//						sentenceTone.setText(sentenceText);
+//						sentencesTones.add(sentenceTone);
+//					}
+//				}
+//			}
+//		}
+		
+//		TAV3 tav3 = new TAV3();
+//		tav3.setContent(mail.getSubject());
+//		tav3.setDocument(documentTones);
+//		tav3.setSentences(sentencesTones);
+		
+//		mail.getAnalysis().setTav3(tav3);
 		
 		return toneAnalysis;
 	}
@@ -695,6 +714,7 @@ public class AnalyzeServlet extends HttpServlet {
 
 		AnalyzeOptions parameters = new AnalyzeOptions.Builder()
 			.features(features)
+			.language(nlul)
 			.text(mail.getContent())
 			.build();
 

@@ -327,7 +327,7 @@ var taRow0 = [];
 taRow0.push(columns.subject);
 taRow0.push(columns.emotions);
 taRow0.push(columns.languages);
-taRow0.push(columns.socials);
+// taRow0.push(columns.socials);
 var taRow1 = [];
 taRow1.push(columns.anger);
 taRow1.push(columns.disgust);
@@ -337,11 +337,11 @@ taRow1.push(columns.sadness);
 taRow1.push(columns.analytical);
 taRow1.push(columns.confident);
 taRow1.push(columns.tentative);
-taRow1.push(columns.conscientiousness);
-taRow1.push(columns.openness);
-taRow1.push(columns.extraversion);
-taRow1.push(columns.emotionalRange);
-taRow1.push(columns.agreeableness);
+// taRow1.push(columns.conscientiousness);
+// taRow1.push(columns.openness);
+// taRow1.push(columns.extraversion);
+// taRow1.push(columns.emotionalRange);
+// taRow1.push(columns.agreeableness);
 taCols.push(taRow0);
 taCols.push(taRow1);
 
@@ -582,8 +582,8 @@ $TATab.on('shown.bs.tab', function(e) {
   buildTable($datasTable, taCols, false, false);
   var rows = [];
   $.each(datas, function(i, mails){
-    if(mails.analysis.ta){
-      rows.push(mails.analysis.ta);
+    if(mails.analysis.tav1){
+      rows.push(mails.analysis.tav1);
     }
   });
   loadTable($datasTable, rows);

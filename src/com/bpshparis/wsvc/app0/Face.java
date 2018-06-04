@@ -12,10 +12,10 @@ public class Face {
 	String identityName;
 	Double identityScore;
 	String identityTypeHierarchy;
-	Integer locationHeight;
-	Integer locationLeft;
-	Integer locationTop;
-	Integer locationWidth;
+	double locationHeight;
+	double locationLeft;
+	double locationTop;
+	double locationWidth;
 
 	public String getFace() {
 		return face;
@@ -71,29 +71,29 @@ public class Face {
 	public void setIdentityTypeHierarchy(String identityTypeHierarchy) {
 		this.identityTypeHierarchy = identityTypeHierarchy;
 	}
-	public Integer getLocationHeight() {
+	public double getLocationHeight() {
 		return locationHeight;
 	}
-	public void setLocationHeight(Integer locationHeight) {
+	public void setLocationHeight(double locationHeight) {
 		this.locationHeight = locationHeight;
 	}
-	public Integer getLocationLeft() {
+	public double getLocationLeft() {
 		return locationLeft;
 	}
-	public void setLocationLeft(Integer locationLeft) {
+	public void setLocationLeft(double locationLeft) {
 		this.locationLeft = locationLeft;
 	}
-	public Integer getLocationTop() {
+	public double getLocationTop() {
 		return locationTop;
 	}
-	public void setLocationTop(Integer locationTop) {
+	public void setLocationTop(double locationTop) {
 		this.locationTop = locationTop;
 	}
-	public Integer getLocationWidth() {
+	public double getLocationWidth() {
 		return locationWidth;
 	}
-	public void setLocationWidth(Integer locationWidth) {
+	public void setLocationWidth(double locationWidth) {
 		this.locationWidth = locationWidth;
 	}
-	
+
 }

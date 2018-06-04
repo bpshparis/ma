@@ -8,8 +8,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +31,9 @@ import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsRespons
 import com.ibm.watson.developer_cloud.discovery.v1.model.QueryOptions;
 import com.ibm.watson.developer_cloud.discovery.v1.model.QueryResponse;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
+import com.ibm.watson.developer_cloud.service.security.IamOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
-
-import okhttp3.OkHttpClient;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 
 /**
  * Application Lifecycle Listener implementation class ContextListener
@@ -53,7 +51,7 @@ public class ContextListener implements ServletContextListener {
 	Discovery dsc;
 	String dscEnvId;
 	String dscCollId;
-	OkHttpClient wvc;
+	VisualRecognition wvc;
 	
     /**
      * Default constructor. 
@@ -87,10 +85,19 @@ public class ContextListener implements ServletContextListener {
 	   				initNLU();
 	    			System.out.println("NLU has been initialized...");
 					arg0.getServletContext().setAttribute("nlu", nlu);
+					String nlul = props.getProperty("NLU_LANGUAGE");
+			    	if(nlul != null && !nlul.trim().isEmpty()){
+						arg0.getServletContext().setAttribute("nlul", nlul);
+			    	}
 	
 	    			initTA();
 	    			System.out.println("TA has been initialized...");
 					arg0.getServletContext().setAttribute("ta", ta);
+					String tacl = props.getProperty("TA_CONTENT_LANGUAGE");
+			    	if(tacl != null && !tacl.trim().isEmpty()){
+						arg0.getServletContext().setAttribute("tacl", tacl);
+			    	}
+					
 	    				
 					initDSC();
 	    			System.out.println("DSC has been initialized...");
@@ -283,41 +290,16 @@ public class ContextListener implements ServletContextListener {
 		return;
     }
 
-    @SuppressWarnings("unchecked")
-	public void initWVC() throws JsonParseException, JsonMappingException, IOException, KeyManagementException, NoSuchAlgorithmException{
+    public void initWVC(){
     	
+    	String apiKey = System.getenv("WVC_APIKEY");    	
+    	String version = props.getProperty("WVC_VERSION").split("=")[1];
     	
-    	String serviceName = props.getProperty("WVC_NAME");
-    	
-		ObjectMapper mapper = new ObjectMapper();
+		IamOptions options = new IamOptions.Builder().apiKey(apiKey).build();
+
+		wvc = new VisualRecognition(version, options);
 		
-		String url = "";
-		String api_key = "";
-		String version = props.getProperty("WVC_CLASSIFY").split("=")[1];
-		
-		Map<String, Object> input = mapper.readValue(vcap_services, new TypeReference<Map<String, Object>>(){});
-		
-		List<Map<String, Object>> l0s = (List<Map<String, Object>>) input.get(serviceName);
-		
-		for(Map<String, Object> l0: l0s){
-			for(Map.Entry<String, Object> e: l0.entrySet()){
-				if(e.getKey().equalsIgnoreCase("credentials")){
-					System.out.println(e.getKey() + "=" + e.getValue());
-					Map<String, Object> credential = (Map<String, Object>) e.getValue();
-					url = (String) credential.get("url");
-					api_key = (String) credential.get("apikey");
-				}
-			}
-		}
-		
-	    wvc = new UnsafeOkHttpClient().getUnsafeOkHttpClient();
-	    
-	    wvc = wvc.newBuilder()
-	    	.addInterceptor(new BasicAuthInterceptor("apikey", api_key))
-	    	.build();		
-		
-		
-		System.out.println(serviceName + " " + url);
+		System.out.println(wvc.getName() + " " + wvc.getEndPoint());
 		
 		return;    	
 

@@ -2,10 +2,17 @@ package com.bpshparis.wsvc.app0;
 
 public class Tone {
 
+	String text;
 	String tone_id;
 	String tone_name;
-	Float score;
-
+	double score;
+	
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
 	public String getTone_id() {
 		return tone_id;
 	}
@@ -18,10 +25,10 @@ public class Tone {
 	public void setTone_name(String tone_name) {
 		this.tone_name = tone_name;
 	}
-	public Float getScore() {
+	public Double getScore() {
 		return score;
 	}
-	public void setScore(Float score) {
+	public void setScore(Double score) {
 		this.score = score;
 	}
 	
