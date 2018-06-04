@@ -1,16 +1,13 @@
 applications:
 # WARNING: Only hyphen are supported in hostname. Don't add any dot.
-- host: ${unique-name-in-domain}
+- host: app0
   disk: 256M
   name: app0
   path: ./WebContent
-  domain: eu-gb.mybluemix.net
+  domain: bpshparis.eu-gb.mybluemix.net
   mem: 256M
   instances: 1
   services:
     - nlu0
     - ta0
     - dsc0
-    - wvc0
-  env:
-    WVC_APIKEY: "HAXeVbe3AIzU_00jErKRLES_gutynbrrbm0uMZfi"

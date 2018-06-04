@@ -290,10 +290,33 @@ public class ContextListener implements ServletContextListener {
 		return;
     }
 
-    public void initWVC(){
+    @SuppressWarnings({ "unchecked", "unused" })
+	public void initWVC() throws JsonParseException, JsonMappingException, IOException{
     	
-    	String apiKey = System.getenv("WVC_APIKEY");    	
-    	String version = props.getProperty("WVC_VERSION").split("=")[1];
+    	String apiKey = System.getenv("WVC_APIKEY");    
+        String serviceName = props.getProperty("WVC_NAME");
+        String url = "";
+        String version = props.getProperty("WVC_VERSION").split("=")[1];
+    	
+    	if(apiKey == null){
+	        
+	        ObjectMapper mapper = new ObjectMapper();
+	
+	        Map<String, Object> input = mapper.readValue(vcap_services, new TypeReference<Map<String, Object>>(){});
+	
+	        List<Map<String, Object>> l0s = (List<Map<String, Object>>) input.get(serviceName);
+	
+	        for(Map<String, Object> l0: l0s){
+	                for(Map.Entry<String, Object> e: l0.entrySet()){
+	                        if(e.getKey().equalsIgnoreCase("credentials")){
+	                                System.out.println(e.getKey() + "=" + e.getValue());
+	                                Map<String, Object> credential = (Map<String, Object>) e.getValue();
+	                                url = (String) credential.get("url");
+	                                apiKey = (String) credential.get("apikey");
+	                        }
+	                }
+	        }
+    	}
     	
 		IamOptions options = new IamOptions.Builder().apiKey(apiKey).build();
 
