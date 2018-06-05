@@ -308,7 +308,7 @@ curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/collec
 ### Create Visual Recognition service
 > Syntax: cf cs ${service} ${plan} ${service_instance}
 ```
-cf cs watson_vision_combined free wvc0
+cf cs watson_vision_combined lite wvc0
 ```
 
 Create service key (credential) to grant access to service
