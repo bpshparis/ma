@@ -1,7 +1,7 @@
 applications:
 # WARNING: Only hyphen (e.g. -) are supported in hostname. Don't add any dot.
 # Change ? below to a number
-- host: retis-ibm?-ma
+- host: retis-ibm0-ma
   disk: 256M
   name: app0
   path: ./WebContent
