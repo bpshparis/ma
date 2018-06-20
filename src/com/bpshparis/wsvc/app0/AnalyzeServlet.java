@@ -303,25 +303,31 @@ public class AnalyzeServlet extends HttpServlet {
 				break;
 
 		}
-
 		
 //		CreateDocumentRequest.Builder builder = new CreateDocumentOptions.Builder(dscEnvId, dscCollId)
 //				.file(in, mt);
 //		CreateDocumentResponse result = dsc.createDocument(builder.build()).execute();
 		
-		AddDocumentOptions.Builder builder = new AddDocumentOptions.Builder(dscEnvId, dscCollId)
-				.file(in)
-				.filename(mail.getAttached())
-				.fileContentType(mt);
-		DocumentAccepted result = dsc.addDocument(builder.build()).execute();
-
-		ObjectMapper mapper = new ObjectMapper();
-
-    	Map<String, String> resultMap = mapper.readValue(result.toString(), new TypeReference<Map<String, String>>(){});
-
-    	mail.setdId(resultMap.get("document_id"));
-
-    	return result;
+		try{
+			AddDocumentOptions.Builder builder = new AddDocumentOptions.Builder(dscEnvId, dscCollId)
+					.file(in)
+					.filename(mail.getAttached())
+					.fileContentType(mt);
+			DocumentAccepted result = dsc.addDocument(builder.build()).execute();
+	
+			ObjectMapper mapper = new ObjectMapper();
+	
+	    	Map<String, String> resultMap = mapper.readValue(result.toString(), new TypeReference<Map<String, String>>(){});
+	
+	    	mail.setdId(resultMap.get("document_id"));
+	
+	    	return result;
+		}
+		catch(IllegalArgumentException | NullPointerException e){
+    		System.out.println(dsc.getName() + " " + dsc.getEndPoint() + " !!! WARNING: no collection found !!!");
+		}
+		
+		return null;
 
 	}
 

@@ -270,22 +270,29 @@ public class ContextListener implements ServletContextListener {
 			if(e.get("name").equalsIgnoreCase(props.getProperty("DSC_ENV_NAME"))){
 				dscEnvId = (e.get("environment_id"));
 			}
-		}
-
-		ListCollectionsOptions collOptions = new ListCollectionsOptions.Builder(dscEnvId).build();
-		ListCollectionsResponse collResponse = dsc.listCollections(collOptions).execute();
-
-		Map<String, Object> collMap = mapper.readValue(collResponse.toString(), new TypeReference<Map<String, Object>>(){});
-
-		List<Map<String, String>> colls = (List<Map<String, String>>) collMap.get("collections");
-
-		for(Map<String, String> e: colls){
-			if(e.get("name").equalsIgnoreCase(props.getProperty("DSC_COLL_NAME"))){
-				dscCollId = (e.get("collection_id"));
+			if(e.get("name").equalsIgnoreCase("byod")){
+				dscEnvId = (e.get("environment_id"));
 			}
 		}
-		
-		System.out.println(dsc.getName() + " " + dsc.getEndPoint() + " " + dscEnvId + " " + dscCollId);
+
+		try {
+			ListCollectionsOptions collOptions = new ListCollectionsOptions.Builder(dscEnvId).build();
+			ListCollectionsResponse collResponse = dsc.listCollections(collOptions).execute();
+	
+			Map<String, Object> collMap = mapper.readValue(collResponse.toString(), new TypeReference<Map<String, Object>>(){});
+	
+			List<Map<String, String>> colls = (List<Map<String, String>>) collMap.get("collections");
+	
+			for(Map<String, String> e: colls){
+				if(e.get("name").equalsIgnoreCase(props.getProperty("DSC_COLL_NAME"))){
+					dscCollId = (e.get("collection_id"));
+				}
+			}
+			System.out.println(dsc.getName() + " " + dsc.getEndPoint() + " " + dscEnvId + " " + dscCollId);
+		}
+		catch(IllegalArgumentException | NullPointerException e){
+			System.out.println(dsc.getName() + " " + dsc.getEndPoint() + " !!! WARNING: no collection found !!!");
+		}
 		
 		return;
     }
@@ -309,7 +316,6 @@ public class ContextListener implements ServletContextListener {
 	        for(Map<String, Object> l0: l0s){
 	                for(Map.Entry<String, Object> e: l0.entrySet()){
 	                        if(e.getKey().equalsIgnoreCase("credentials")){
-	                                System.out.println(e.getKey() + "=" + e.getValue());
 	                                Map<String, Object> credential = (Map<String, Object>) e.getValue();
 	                                url = (String) credential.get("url");
 	                                apiKey = (String) credential.get("apikey");
@@ -339,31 +345,35 @@ public class ContextListener implements ServletContextListener {
 //    			.returnFields(fields);
 //    	
 //    	QueryResponse queryResponse = dsc.query(queryBuilder.build()).execute();
-    	
-    	QueryOptions.Builder queryOptions = new QueryOptions.Builder(dscEnvId, dscCollId)
-    			.count(100)
-    			.returnFields(fields);
-    	QueryResponse queryResponse = dsc.query(queryOptions.build()).execute();    	
-    	
-    	System.out.println("queryResponse=" + queryResponse);
-    	
-    	ObjectMapper mapper = new ObjectMapper();
-    	
-    	Map<String, Object> docMap = mapper.readValue(queryResponse.toString(), new TypeReference<Map<String, Object>>(){});
-
-		List<Map<String, String>> docs = (List<Map<String, String>>) docMap.get("results");
-		
-		List<String> docIds = new ArrayList<String>();
-
-		for(Map<String, String> doc: docs){
-			docIds.add(doc.get("id"));
-		}
-		
-    	System.out.println("docIds=" + docIds);
-    	
-    	for(String docId: docIds){
-	    	DeleteDocumentOptions deleteOptions = new DeleteDocumentOptions.Builder(dscEnvId, dscCollId, docId).build();
-	    	dsc.deleteDocument(deleteOptions).execute();
+    	try{
+	    	QueryOptions.Builder queryOptions = new QueryOptions.Builder(dscEnvId, dscCollId)
+	    			.count(100)
+	    			.returnFields(fields);
+	    	QueryResponse queryResponse = dsc.query(queryOptions.build()).execute();    	
+	    	
+	    	System.out.println("queryResponse=" + queryResponse);
+	    	
+	    	ObjectMapper mapper = new ObjectMapper();
+	    	
+	    	Map<String, Object> docMap = mapper.readValue(queryResponse.toString(), new TypeReference<Map<String, Object>>(){});
+	
+			List<Map<String, String>> docs = (List<Map<String, String>>) docMap.get("results");
+			
+			List<String> docIds = new ArrayList<String>();
+	
+			for(Map<String, String> doc: docs){
+				docIds.add(doc.get("id"));
+			}
+			
+	    	System.out.println("docIds=" + docIds);
+	    	
+	    	for(String docId: docIds){
+		    	DeleteDocumentOptions deleteOptions = new DeleteDocumentOptions.Builder(dscEnvId, dscCollId, docId).build();
+		    	dsc.deleteDocument(deleteOptions).execute();
+	    	}
+    	}
+    	catch(IllegalArgumentException | NullPointerException e){
+    		System.out.println(dsc.getName() + " " + dsc.getEndPoint() + " !!! WARNING: no collection found !!!");
     	}
     	
     }
