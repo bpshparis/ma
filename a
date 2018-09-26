@@ -1,0 +1,2 @@
+curl -X POST -u ${username}:${password} -H "Content-Type: application/json" -d "{\"name\": \"env0\"}" "${url}/v1/environments?version=${version}"
+

@@ -19,31 +19,37 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 A sample demo of the application with a mailbox analysis *may be* available [here](http://ma.bpshparis.eu-de.mybluemix.net).
 
 ### Application Flow
-![Flow](mailbox.analyzer.flow.jpg)
+![Flow](images/mailbox.analyzer.flow.jpg)
 
 ### Setup Environment
 
 **!!! WARNING !!!**
 
 Before being able to work with IBM Cloud you should be aware of **2** things:
-  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom and US South).
-  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom or US South) in your organization.
+  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
+  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom, US South and US East) in your organization.
 
-> At least one organization has been created automatically, but no space is created for you.
+> At least one organization has been created automatically, and one space called **dev** is created for you.
 If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
 
 Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
 
-**3** choices here:
+**2** choices here:
   1. [GUI environment setup](#gui-environment-setup)
-  2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line.
-  3. [Command line environment setup](#login-to-ibm-cloud)
+  2. [Command line environment setup](#login-to-ibm-cloud)
+  
+<!--    
+  2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line. 
+-->
+
   
 ### GUI environment setup
 
 Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
 
 If everything worked you are now ready to [setup the application](#setup-application)
+
+<!--
 
 ### Windows automatic environment setup
 
@@ -117,6 +123,8 @@ Check it with:
 cf s
 ```
 If everything work you are now ready to [setup the application](#setup-application)
+
+-->
 
 ### Login to IBM Cloud
 
