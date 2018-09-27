@@ -34,20 +34,23 @@ If not sure about organization name and if a space is available then log in [IBM
 
 Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
 
+<!--
 **2** choices here:
   1. [GUI environment setup](#gui-environment-setup)
   2. [Command line environment setup](#login-to-ibm-cloud)
+-->
   
 <!--    
   2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line. 
 -->
 
-  
+ <!--
 ### GUI environment setup
 
 Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
 
 If everything worked you are now ready to [setup the application](#setup-application)
+-->
 
 <!--
 
@@ -138,7 +141,7 @@ Open a Windows command prompt as administrator or a terminal on other platform.
 
 Check cf command is available:
 ```
-cf -v
+ibmcloud -v
 ```
 Check curl command is available:
 ```
