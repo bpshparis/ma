@@ -128,7 +128,7 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ### Login to IBM Cloud
 
-Download and install the [cf](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) command from Cloud Foundry.
+Download and install the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) command from IBM Cloud.
 
 If testing with Windows, download both [curl and jq](wintools.zip) commands and unzip them in your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry).
 
