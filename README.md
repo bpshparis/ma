@@ -44,7 +44,7 @@ Now you should know both your organization and your space in one Region and your
   2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line. 
 -->
 
- <!--
+ <!-- 
 ### GUI environment setup
 
 Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
@@ -161,11 +161,11 @@ Every further variables - **including ${}** - like ${something} have to be subst
 
 Connect to IBM Cloud US South Region:
 ```
-cf l -a https://api.ng.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
+ibmcloud login -a https://api.ng.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
 ```
 or connect to IBM Cloud United Kingdom Region:
 ```
-cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
+ibmcloud login -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
 ```
 
 > If **login failed** then get a one time code for target Region:
@@ -174,11 +174,11 @@ cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-val
 > and login with **--sso**
 > to IBM Cloud US South Region
 ```
-cf l -a https://api.ng.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
+ibmcloud login -a https://api.ng.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
 ```
 > or IBM Cloud United Kingdom Region:
 ```
-cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
+ibmcloud login -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
 ```
 > Paste one time code when prompt
 ```
@@ -186,65 +186,47 @@ One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/pass
 ```
 > and hit enter.
 
-### Create Tone Analyzer service
-> Syntax: cf cs ${service} ${plan} ${service_instance}
-```
-cf cs tone_analyzer lite ta0
-```
+<br>
 
-Create service key (credential) to grant access to service:
-> Syntax: cf csk ${service_instance} ${service_key}
-```
-cf csk ta0 user0
-```
+### Dump marketplace to get service name, plan and description
+> It may take a minute to display
 
-Check that service key has been created:
-> Syntax: cf sk ${service_instance}
-```
-cf sk ta0
-```
+	ibmcloud service offerings | tee marketplace
 
-### Create Natural Language Understanding service
-> Syntax: cf cs ${service} ${plan} ${service_instance}
-```
-cf cs natural-language-understanding free nlu0
-```
+<br>
 
-Create service key (credential) to grant access to service:
-> Syntax: cf csk ${service_instance} ${service_key}
-```
-cf csk nlu0 user0
-```
+#### Get name and plan for Tone Analyzer service
+	grep -i tone marketplace
 
-Check that service key has been created:
-> Syntax: cf sk ${service_instance}
-```
-cf sk nlu0
-```
+#### Create Tone Analyzer service
+	ibmcloud service create tone_analyzer lite ta0
 
-### Create Discovery service
-> Syntax: cf cs ${service} ${plan} ${service_instance}
-```
-cf cs discovery lite dsc0
-```
+#### Create service key (credential) for Tone Analyzer service
+	ibmcloud service key-create ta0 user0
 
-Create service key (credential) to grant access to service:
-> Syntax: cf csk ${service_instance} ${service_key}
-```
-cf csk dsc0 user0
-```
 
-Check that service key has been created:
-> Syntax: cf sk ${service_instance}
-```
-cf sk dsc0
-```
+<br>
 
-At any time you should be able to get your credential (url, port, username, password...) for one of your service instance.
-> Syntax: cf service-key ${service_instance} ${service_key}
-```
-cf service-key dsc0 user0
-```
+#### Get name and plan for Natural Language Understanding service
+	grep -i language marketplace
+
+#### Create Natural Language Understanding service
+	ibmcloud service create natural-language-understanding free nlu0
+
+#### Create service key (credential) for Natural Language Understanding service
+	ibmcloud service key-create nlu0 user0
+
+<br>
+
+#### Get name and plan for Natural Language Understanding service
+	grep -i discovery marketplace
+
+#### Create Discovery service
+	ibmcloud service create discovery lite dsc0
+
+#### Create service key (credential) for Natural Language Understanding service
+	ibmcloud service key-create dsc0 user0
+
 
 ### Create **coll0** Collection for Discovery service
 
@@ -253,93 +235,64 @@ Before being able to create a collection **2** steps have to be completed:
    1. Create a environment.
    2. Create a configuration in this environment.
 
-**!!! WARNING !!!**
+#### Store Discovery url in URL environment variable
+	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
 
-Latest version of Discovery service is 2017-11-07. So subsitute all followings **${version}** with **2017-11-07**.
+#### Store Discovery credential in CRED environment variable
+	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.username + ":" + .password')
 
-Create **env0** environment for Discovery service:
-> Windows
+#### Store Discovery version in VERSION environment variable
+	VERSION=2018-03-05
+
+#### Create **env0** environment for Discovery service and store its id in ENVID
 ```
-curl -X POST -u ${username}:${password} -H "Content-Type: application/json" -d "{\"name\": \"env0\"}" "${url}/v1/environments?version=${version}"
-```
-> Mac OS X / Linux
-```
-curl -X POST -u ${username}:${password} -H 'Content-Type: application/json' -d '{"name": "env0"}' '${url}/v1/environments?version=${version}'
+ENVID=$(curl  -X POST -u ${CRED} -H 'Content-Type: application/json' -d '{"name": "env0"}' ${URL}'/v1/environments?version='${VERSION} | jq -r '.environment_id')
 ```
 
+<!--
 Get **environment_id** for Discovery service
-> Windows
 ```
-curl -u ${username}:${password} "${url}/v1/environments?version=${version}" | jq -r --arg ENV env0 ".environments[] | select(.name == $ENV) | .environment_id"
+curl -u ${CRED} '${url}/v1/environments?version=${VERSION}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
 ```
-> Mac OS X / Linux
-```
-curl -u ${username}:${password} '${url}/v1/environments?version=${version}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
-```
+	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/${ENVID}?version='${VERSION}
+-->
 
-Create **configuration** for Discovery service with **environment_id** from above
-```
-curl -u ${username}:${password} ${url}/v1/environments/${environment_id}/configurations?version=${version}
-```
+#### Create **configuration** for Discovery service and store its id in CONFID
+	CONFID=$(curl -u ${CRED} ${URL}/v1/environments/${ENVID}/configurations?version=${VERSION} | jq -r '.configurations[].configuration_id')
 
+<!--
 Get **configuration_id** for Discovery service
-> Windows
-```
-curl -u ${username}:${password} "${url}/v1/environments/${environment_id}/configurations?version=${version}" | jq -r ".configurations[] | .configuration_id"
-```
-> Mac OS X / Linux
-```
-curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/configurations?version=${version}' | jq -r '.configurations[] | .configuration_id'
-```
+	curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/configurations?version=${version}' | jq -r '.configurations[] | .configuration_id'
+-->
 
 Now, you should be ready to create the collection.
 
-Create collection **coll0** for Discovery service
-> Windows
-```
-curl -X POST -H "Content-Type: application/json" -u ${username}:${password} -d "{\"name\": \"coll0\", \"configuration_id\":\"${configuration_id}\" , \"language\": \"en_us\"}" ${url}/v1/environments/${environment_id}/collections?version=${version}
-```
-> Mac OS X / Linux
-```
-curl -X POST -H 'Content-Type: application/json' -u ${username}:${password} -d '{"name": "coll0", "configuration_id":"${configuration_id}" , "language": "en_us"}' ${url}/v1/environments/${environment_id}/collections?version=${version}
-```
+#### Create collection **coll0** for Discovery service and and store its id in COLLID
 
-Get collection_id for Discovery service
-> Windows
-```
-curl -u ${username}:${password} "${url}/v1/environments/${environment_id}/collections?version=${version}" | jq -r ".collections[] | .collection_id"
-```
-> Mac OS X / Linux
-```
-curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/collections?version=${version}' | jq -r '.collections[] | .collection_id'
-```
+	COLLID=$(curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "en_us"}' ${URL}/v1/environments/${ENVID}/collections?version=${VERSION} | jq -r '.collection_id')
 
 > You won't need your configuration_id nor environment_id, neither  configuration_id for further use but keep **env0** and **coll0** in mind.
 
+<br>
+
 ### Create Visual Recognition service
-> Syntax: cf cs ${service} ${plan} ${service_instance}
-```
-cf cs watson_vision_combined lite wvc0
-```
 
-Create service key (credential) to grant access to service
-> Syntax: cf csk ${service_instance} ${service_key}
-```
-cf csk wvc0 user0
-```
+#### Get name and plan for Visual Recognition service
+	grep -i visual marketplace
 
-Check that service key has been created
-> Syntax: cf sk ${service_instance}
-```
-cf sk wvc0
-```
+#### Create Visual Recognition service
+	ibmcloud resource service-instance-create wvc0 watson-vision-combined lite us-south	
+	ibmcloud  resource service-alias-create wvc0 --instance-name wvc0
+
+#### Create service key (credential) for Visual Recognition service
+	ibmcloud service key-create wvc0 user0
+
+<br>
 
 > You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
 Check it with:
-```
-cf s
-```
-
+	ibmcloud service list
+	
 ### Setup application
 
 If not already done, download and install the [cf](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) command from Cloud Foundry.
