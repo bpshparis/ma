@@ -11,6 +11,7 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 * [Prerequisite](#prerequisite)
 * [Login to IBM Cloud](#login-to-ibm-cloud)
 * [Setup environment](#setup-environment)
+* [Check environment is setup correctly](#check-environment-is-setup-correctly)
 * [Setup application](#setup-application)
 * [Deploy application](#deploy-application)
 * [Run application](#run-application)
@@ -315,6 +316,8 @@ Get **configuration_id** for Discovery service
 
 #### Create Visual Recognition service
 
+![](res/wvc50x.png) **Visual Recognition** find meaning in visual content! Analyze images for scenes, objects, faces, and other content. Choose a default model off the shelf, or create your own custom classifier. Develop smart applications that analyze the visual content of images or video frames to understand what is happening in a scene.
+
 ##### Get name and plan for Visual Recognition service
 
 ![](res/mac.png) ![](res/tux.png)
@@ -333,6 +336,8 @@ Get **configuration_id** for Discovery service
 
 <br>
 
+#### Check environment is setup correctly
+
 > :thumbsup: You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
 
 >Check it with
@@ -343,98 +348,48 @@ Get **configuration_id** for Discovery service
 	
 ### Setup application
 
-If not already done, download and install the [cf](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) command from Cloud Foundry.
+#### Get application code
 
-**!!! WARNING !!!**
+Download code
 
-Every further variables - **including ${}** - like ${something} have to be substituted with your own environment variables:
+	curl -LO  https://github.com/bpshparis/ma/archive/master.zip
 
-* e.g.
-  * ${userid} will become yourUserid
+Unzip it
 
-Connect to IBM Cloud US South Region:
-```
-cf l -a https://api.ng.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
-```
-or connect to IBM Cloud United Kingdom Region:
-```
-cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
-```
+	unzip master.zip
 
-> If **login failed** then get a one time code for target Region:
- * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
- * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
-> and login with **--sso**
-> to IBM Cloud US South Region
-```
-cf l -a https://api.ng.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
-```
-> or IBM Cloud United Kingdom Region:
-```
-cf l -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
-```
-> Paste one time code when prompt
-```
-One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
-```
-> and hit enter.
+#### Prepare for application deployment
 
-Download [code](https://github.com/bpshparis/ma/archive/master.zip) unzip and change to this newly created directory (e.g.: ma-master).
+Change to code directory
+
+	cd ma-master
 
 > Now if you stand in the correct directory, you should be able to list directory such as **WebContent** and file such as **manifest.yml**.
 
-Before deploying the application you need to choose **3** things:
-  > **!!! WARNING !!! Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
-  1. A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
-  2. A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
-  3. A **domain** among those available (e.g.: **eu-gb.mybluemix.net** or **mybluemix.net**)
+>Before deploying the application you need to choose **3** things:
 
-> It's optional but you may find usefull to create a sudomain under an IBM Cloud domain (e.g.: mycompagny.eu-gb.mybluemix.net) to group all your apps.
+> :skull: **Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
+  * A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
+  * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
+  * A **domain** available thanks to the following command
+	
+	ic app domains | awk 'NR==5{print $1}'
 
-> Syntax: cf create-domain ${org} ${domain}
-```
-cf create-domain myorg mycompany.eu-gb.mybluemix.net
-```
+Edit the manifest.yml and update it accordingly by substituting **${host}**, **${name}** and **${domain}**:
 
-Edit the manifest.yml and update it accordingly by substituting both **${host}**, **${name}** and **${domain}**:
-```
-applications:
-- host: ${host}
-  disk: 256M
-  name: ${name}
-  path: ./WebContent
-  domain: ${domain}
-  mem: 256M
-  instances: 1
-  services:
-  - dsc0  
-  - ta0
-  - nlu0
-  - wvc0
-```
-
-**!!! WARNING !!!**
-
-If you changed Discovery Environment name and/or Discovery Collection name then update WebContent/res/conf.properties accordingly.
-
-
-```
-...
-DSC_ENV_NAME=${Discovery Environment name}
-DSC_COLL_NAME=${Discovery Collection name}
-...
-```
-**!!! WARNING !!!**
-
-If you choosed GUI environment setup option, your Discovery service enrironment name has been set to **byod**. So edit **WebContent/res/conf.properties** and substitue **env0** with **byod**.
-
-```
-...
-DSC_ENV_NAME=byod
-DSC_COLL_NAME=coll0
-...
-```
-Otherwise leave WebContent/res/conf.properties unchanged and jump to [Deploy Section](#deploy-application).
+	applications:
+	- host: ${host}
+	  disk: 256M
+	  name: ${name}
+	  path: ./WebContent
+	  domain: ${domain}
+	  mem: 256M
+	  instances: 1
+	  services:
+	  - dsc0  
+	  - ta0
+	  - nlu0
+	  - wvc0
 
 ### Deploy application
 
