@@ -220,6 +220,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 #### Setup Discovery service
 
 ![](res/dsc50x.png) **Discovery** add a cognitive search and content analytics engine to applications.
+
 ##### Get name and plan for Discovery service
 
 ![](res/mac.png) ![](res/tux.png)
@@ -240,13 +241,19 @@ To make life easier for further steps we will set some Discovery service variabl
 
 ##### Store Discovery url in URL environment variable
 
+![](res/mac.png) ![](res/tux.png)
+
 	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
 
 ##### Store Discovery credential in CRED environment variable
 
+![](res/mac.png) ![](res/tux.png)
+
 	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.username + ":" + .password')
 
 ##### Store Discovery version in VERSION environment variable
+
+![](res/mac.png) ![](res/tux.png)
 
 	DSC_VERSION=2018-03-05
 
@@ -265,11 +272,15 @@ To make life easier for further steps we will set some Discovery service variabl
 > * pt
 > * nl
 
+![](res/mac.png) ![](res/tux.png)
+
 	DSC_LANG=fr
 
 Before being able to create a collection **2** steps have to be completed:
 
 ##### Create **env0** environment for Discovery service and store its id in ENVID
+
+![](res/mac.png) ![](res/tux.png)
 
 	ENVID=$(curl  -X POST -u ${CRED} -H 'Content-Type: application/json' -d '{"name": "env0"}' ${URL}'/v1/environments?version='${DSC_VERSION} | jq -r '.environment_id')
 
@@ -280,6 +291,8 @@ Get **environment_id** for Discovery service
 -->
 
 ##### Create **configuration** for Discovery service and store its id in CONFID
+
+![](res/mac.png) ![](res/tux.png)
 
 	CONFID=$(curl -u ${CRED} ${URL}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION} | jq -r '.configurations[].configuration_id')
 
@@ -292,29 +305,41 @@ Get **configuration_id** for Discovery service
 
 ##### Create collection **coll0** for Discovery service and and store its id in COLLID
 
+![](res/mac.png) ![](res/tux.png)
+
 	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
 
-> :bulb: You won't need your configuration_id nor environment_id, neither  configuration_id for further use but keep **env0** and **coll0** in mind.
+> :bulb: You won't need neither environment_id nor configuration_id for further use but keep **env0** and **coll0** in mind.
 
 <br>
 
-### Create Visual Recognition service
+#### Create Visual Recognition service
 
-#### Get name and plan for Visual Recognition service
+##### Get name and plan for Visual Recognition service
+
+![](res/mac.png) ![](res/tux.png)
+
 	grep -i visual marketplace
 
-#### Create Visual Recognition service
+##### Create Visual Recognition service
+
 	ibmcloud resource service-instance-create wvc0 watson-vision-combined lite us-south	
+	
 	ibmcloud  resource service-alias-create wvc0 --instance-name wvc0
 
-#### Create service key (credential) for Visual Recognition service
+##### Create service key (credential) for Visual Recognition service
+
 	ibmcloud service key-create wvc0 user0
 
 <br>
 
-> You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
-Check it with:
+> :thumbsup: You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
+
+>Check it with
+
 	ibmcloud service list
+
+<br>
 	
 ### Setup application
 
