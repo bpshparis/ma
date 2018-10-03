@@ -186,6 +186,9 @@ Inside a terminal &nbsp; ![](res/term.png)
 ![](res/ta50x.png) **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
 
 ##### Get name and plan for Tone Analyzer service
+
+![](res/mac.png) ![](res/tux.png)
+
 	grep -i tone marketplace
 
 ##### Create Tone Analyzer service
@@ -201,6 +204,9 @@ Inside a terminal &nbsp; ![](res/term.png)
 ![](res/nlu50x.png) **Natural Language Understanding** analyze text to extract meta-data from content such as concepts, entities, emotion, relations, sentiment and more.
 
 ##### Get name and plan for Natural Language Understanding service
+
+![](res/mac.png) ![](res/tux.png)
+
 	grep -i language marketplace
 
 ##### Create Natural Language Understanding service
@@ -215,59 +221,80 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 ![](res/dsc50x.png) **Discovery** add a cognitive search and content analytics engine to applications.
 ##### Get name and plan for Discovery service
+
+![](res/mac.png) ![](res/tux.png)
+
 	grep -i discovery marketplace
 
 ##### Create Discovery service
+
 	ibmcloud service create discovery lite dsc0
 
 ##### Create service key (credential) for Discovery service
+
 	ibmcloud service key-create dsc0 user0
 
+#### Create Discovery Collection
 
-### Create **coll0** Collection for Discovery service
+To make life easier for further steps we will set some Discovery service variable
+
+##### Store Discovery url in URL environment variable
+
+	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
+
+##### Store Discovery credential in CRED environment variable
+
+	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.username + ":" + .password')
+
+##### Store Discovery version in VERSION environment variable
+
+	DSC_VERSION=2018-03-05
+
+##### Store Discovery language in LANG environment variable
+
+> Choose a language model among this list:
+
+> * en
+> * es
+> * de
+> * ar
+> * **fr**
+> * it
+> * ja
+> * ko
+> * pt
+> * nl
+
+	DSC_LANG=fr
 
 Before being able to create a collection **2** steps have to be completed:
 
-   1. Create a environment.
-   2. Create a configuration in this environment.
+##### Create **env0** environment for Discovery service and store its id in ENVID
 
-#### Store Discovery url in URL environment variable
-	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
-
-#### Store Discovery credential in CRED environment variable
-	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.username + ":" + .password')
-
-#### Store Discovery version in VERSION environment variable
-	VERSION=2018-03-05
-
-#### Create **env0** environment for Discovery service and store its id in ENVID
-```
-ENVID=$(curl  -X POST -u ${CRED} -H 'Content-Type: application/json' -d '{"name": "env0"}' ${URL}'/v1/environments?version='${VERSION} | jq -r '.environment_id')
-```
+	ENVID=$(curl  -X POST -u ${CRED} -H 'Content-Type: application/json' -d '{"name": "env0"}' ${URL}'/v1/environments?version='${DSC_VERSION} | jq -r '.environment_id')
 
 <!--
 Get **environment_id** for Discovery service
-```
-curl -u ${CRED} '${url}/v1/environments?version=${VERSION}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
-```
-	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/${ENVID}?version='${VERSION}
+	curl -u ${CRED} '${url}/v1/environments?version=${DSC_VERSION}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
+	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/${ENVID}?version='${DSC_VERSION}
 -->
 
-#### Create **configuration** for Discovery service and store its id in CONFID
-	CONFID=$(curl -u ${CRED} ${URL}/v1/environments/${ENVID}/configurations?version=${VERSION} | jq -r '.configurations[].configuration_id')
+##### Create **configuration** for Discovery service and store its id in CONFID
+
+	CONFID=$(curl -u ${CRED} ${URL}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION} | jq -r '.configurations[].configuration_id')
 
 <!--
 Get **configuration_id** for Discovery service
-	curl -u ${username}:${password} '${url}/v1/environments/${environment_id}/configurations?version=${version}' | jq -r '.configurations[] | .configuration_id'
+	curl -u ${username}:${password} '${url}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION}' | jq -r '.configurations[] | .configuration_id'
 -->
 
-Now, you should be ready to create the collection.
+:checkered_flag: Now, you should be ready to create the collection.
 
-#### Create collection **coll0** for Discovery service and and store its id in COLLID
+##### Create collection **coll0** for Discovery service and and store its id in COLLID
 
-	COLLID=$(curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "en_us"}' ${URL}/v1/environments/${ENVID}/collections?version=${VERSION} | jq -r '.collection_id')
+	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
 
-> You won't need your configuration_id nor environment_id, neither  configuration_id for further use but keep **env0** and **coll0** in mind.
+> :bulb: You won't need your configuration_id nor environment_id, neither  configuration_id for further use but keep **env0** and **coll0** in mind.
 
 <br>
 
