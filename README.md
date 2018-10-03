@@ -375,7 +375,7 @@ Change to code directory
 
 	ic app domains | awk 'NR==5{print $1}'
 
-Edit the manifest.yml and update it accordingly by substituting **${host}**, **${name}** and **${domain}**:
+Edit the **manifest.yml** and update it accordingly by substituting **${host}**, **${name}** and **${domain}**:
 
 	applications:
 	- host: ${host}
@@ -391,27 +391,28 @@ Edit the manifest.yml and update it accordingly by substituting **${host}**, **$
 	  - nlu0
 	  - wvc0
 
+<br>
+
 ### Deploy application
 
-**!!! WARNING !!!**
+> :skull: For deployment to work you need to push your code from the same directory as **manifest.yml**.
 
-For deployment to work you need to push your code from the same directory as **manifest.yml**.
+:checkered_flag: Now you are ready to deploy the application :
 
-Now you are ready to deploy the application :
-```
-cf p
-```
+	ic app push
 
 Once staging has completed you should be able to run the application *on your own IBM Cloud environment*.
+
+<br>
 
 ### Run application
 
 Display your application state :
-```
-cf a
-```
 
+	ic app list
+	
 Copy urls columns content. It should be **${host}.${domain}** (e.g.:**mylastname-mycompagny.eu-gb.mybluemix.net**).
+
 Paste it in a web browser and check application is running :
 
 Click on ![](res/envelope.png) to upload sample attached documents in Discovery Collection and get sample mails.
@@ -460,13 +461,9 @@ An example for 2 mails with documents and pictures attached :
 ]
 ```
 
-**!!! WARNING !!!**
+:bulb: Save this file as **mails.json** and test it with jq :
 
-Save this file as **mails.json** and test it with jq :
-
-```
-jq . mails.json
-```
+	jq . mails.json
 
 The command should display pretty json without error.
 
@@ -491,14 +488,15 @@ Once your datas have been upload, click on ![](res/envelope.png) to upload your 
 
 Once your mails are displayed, click ![](res/cogwheels.png) to send your mails for analysis.
 
+<br>
+
 ### About Watson Developer Cloud services being used in the application
-![](res/ta50x.png)
+![](res/ta50x.png) **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
 
 [Documentation](https://console.bluemix.net/docs/services/tone-analyzer/getting-started.html)
 [Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/tone-analyzer-dashboard.html)
 [Github](https://github.com/watson-developer-cloud)
 
-> **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
 
 ![](res/nlu50x.png)
 
