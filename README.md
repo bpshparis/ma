@@ -141,9 +141,9 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 > :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
 
-Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html">IBM Cloud CLI</a>
-
-![](res/win.png) Download [curl and jq](wintools.zip) commands and unzip them in C:\windows\system32.
+![](res/win.png)
+- 1. - Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
+- 2. - Download [curl and jq](wintools.zip) commands and unzip them in C:\windows\system32.
 
 ![](res/mac.png)
 
