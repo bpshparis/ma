@@ -240,22 +240,17 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 	iclde	
 
-> If **login failed** because of logging in with a federated ID, then get a one-time passcode:
+> :no_entry: If **login failed** because of logging in with a federated ID, then browse ![](res/browse.png) one a the following url
  * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
  * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
-> and login with **--sso**
-> to IBM Cloud US South Region
-```
-ibmcloud login -a https://api.ng.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
-```
-> or IBM Cloud United Kingdom Region:
-```
-ibmcloud login -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --sso -s ${space} -o ${organization}
-```
-> Paste one time code when prompt
-```
-One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
-```
+ * https://login.eu-de.bluemix.net/UAALoginServerWAR/passcode
+> and get a one-time passcode.
+> Then back to your terminal &nbsp; ![](res/term.png), login with **--sso**,
+
+	iclsso
+	
+> paste the one-time passcode when prompt
+	One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
 > and hit enter.
 
 <br>
