@@ -139,23 +139,12 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ### Install needed software
 
-<pre><code>(function() {
-  var links = document.links;
-  for (var i = 0, linksLength = links.length; i &lt; linksLength; i++) {
-    if (links[i].hostname != window.location.hostname) {
-      links[i].target = &quot;_blank&quot;;
-      links[i].setAttribute(&quot;rel&quot;, &quot;noopener noreferrer&quot;);
-      links[i].className += &quot; externalLink&quot;;
-    } else {
-      links[i].className += &quot; localLink&quot;;    
-    }
-  }
-})();
-</code></pre>
-
 Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html">IBM Cloud CLI</a>
 
 [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use" target="_blank) 
+
+[IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use") [newtab]
+
 
 <br>
 
