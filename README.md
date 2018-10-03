@@ -38,7 +38,7 @@ Before being able to work with IBM Cloud you should be aware of **2** things:
 > At least one organization has been created automatically, and one space called **dev** is created for you.
 If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
 
-Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
+:checkered_flag: Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
 
 <!--
 **2** choices here:
