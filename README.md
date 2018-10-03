@@ -150,7 +150,7 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ![](res/mac.png)
 
-* Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
+* Download and install ![IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
 * Download and install [curl](https://curl.haxx.se/dlwiz/?type=bin&os=Mac+OS+X&flav=-&ver=-&cpu=i386)
 * Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64)
 
@@ -166,46 +166,24 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ![](res/mac.png) ![](res/tux.png)
 
-Open a terminal ![](res/term.png)
+Open a terminal &nbsp; ![](res/term.png) 
 
-Check cf command is available:
-```
-ibmcloud -v
-```
+Check ibmcloud command is available:
+
+	ibmcloud -v
+
 Check curl command is available:
-```
-curl -V
-```
+
+	curl -V
+
 Check jq command is available:
-```
-jq
-```
+
+	jq
+
 <br>
 
 ### Login to IBM Cloud
 
-Download and install the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) command from IBM Cloud.
-
-If testing with Windows, download both [curl and jq](wintools.zip) commands and unzip them in your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry).
-
-For other platforms download and install [curl](https://curl.haxx.se/download.html) and [jq](https://stedolan.github.io/jq/download/) commands.
-
-Open a Windows command prompt as administrator or a terminal on other platform.
-
-Check cf command is available:
-```
-ibmcloud -v
-```
-Check curl command is available:
-```
-curl -V
-```
-Check jq command is available:
-```
-jq
-```
-
-**!!! WARNING !!!**
 
 Every further variables - **including ${}** - like ${something} have to be substituted with your own environment variables:
 
