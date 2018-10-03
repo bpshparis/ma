@@ -2,6 +2,8 @@
 
 MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https://github.com/watson-developer-cloud/java-sdk) to demonstrate how to use the [Watson Developer Cloud services](https://www.ibm.com/watson/products-services/), a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
 
+<br>
+
 ## Table of Contents
 
 * [Overview of the application](#overview-of-the-application)
@@ -14,16 +16,20 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 * [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
 * [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 
+<br>
+
 ### Overview of the application
 
 A sample demo of the application with a mailbox analysis *may be* available [here](http://ma.bpshparis.eu-de.mybluemix.net).
 
+<br>
+
 ### Application Flow
 ![Flow](images/mailbox.analyzer.flow.jpg)
 
-### Setup Environment
+<br>
 
-**!!! WARNING !!!**
+### Setup Environment
 
 Before being able to work with IBM Cloud you should be aware of **2** things:
   1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
@@ -44,7 +50,7 @@ Now you should know both your organization and your space in one Region and your
   2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line. 
 -->
 
- <!-- 
+<!-- 
 ### GUI environment setup
 
 Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
@@ -128,6 +134,14 @@ cf s
 If everything work you are now ready to [setup the application](#setup-application)
 
 -->
+
+<br>
+
+### Install needed software
+
+Download and install the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use)
+
+<br>
 
 ### Login to IBM Cloud
 
