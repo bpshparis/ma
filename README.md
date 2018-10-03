@@ -137,27 +137,50 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 <br>
 
-### Install needed software
+### Install needed softwares
 
 > :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
 
+<!--
 ![](res/win.png)
 
 * Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
 * Download [curl and jq](wintools.zip) commands and unzip them in C:\windows\system32.
-* Download and install [git for windows](https://gitforwindows.org)
+-->
 
 ![](res/mac.png)
 
 * Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
+* Download and install [curl](https://curl.haxx.se/dlwiz/?type=bin&os=Mac+OS+X&flav=-&ver=-&cpu=i386)
+* Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64)
 
 ![](res/tux.png)
 
 * Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
-
+* Get **curl** from your distribution repository or download and install it from [here](https://curl.haxx.se/dlwiz/?type=bin&os=Linux).
+* Get **jq** from your distribution repository or download and install it from [here](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64).
 
 <br>
 
+### Check everything is installed properly
+
+![](res/mac.png) ![](res/tux.png)
+
+Open a terminal ![](res/term.png)
+
+Check cf command is available:
+```
+ibmcloud -v
+```
+Check curl command is available:
+```
+curl -V
+```
+Check jq command is available:
+```
+jq
+```
+<br>
 
 ### Login to IBM Cloud
 
