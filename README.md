@@ -145,6 +145,23 @@ Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibm
 
 <br>
 
+<script>
+
+(function() {
+  var links = document.links;
+  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+    if (links[i].hostname != window.location.hostname) {
+      links[i].target = "_blank";
+      links[i].setAttribute("rel", "noopener noreferrer");
+      links[i].className += " externalLink";
+    } else {
+      links[i].className += " localLink";    
+    }
+  }
+})();
+
+</script>
+
 ### Login to IBM Cloud
 
 Download and install the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) command from IBM Cloud.
