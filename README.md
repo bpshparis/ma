@@ -6,18 +6,19 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 ## Table of Contents
 
-* [Overview of the application](#overview-of-the-application)
-* [Application Flow](#application-flow)
-* [Prerequisite](#prerequisite)
-* [Login to IBM Cloud](#login-to-ibm-cloud)
-* [Setup environment](#setup-environment)
-* [Check environment is setup correctly](#check-environment-is-setup-correctly)
-* [Setup application](#setup-application)
-* [Deploy application](#deploy-application)
-* [Run application](#run-application)
-* [Send your own datas for analysis](#send-your-own-datas-for-analysis)
-* [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
-* [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
+- [Overview of the application](#overview-of-the-application)
+- [Application Flow](#application-flow)
+- [Prerequisite](#prerequisite)
+  * [Install needed softwares](#install-needed-softwares)
+- [Login to IBM Cloud](#login-to-ibm-cloud)
+- [Setup environment](#setup-environment)
+- [Check environment is setup correctly](#check-environment-is-setup-correctly)
+- [Setup application](#setup-application)
+- [Deploy application](#deploy-application)
+- [Run application](#run-application)
+- [Send your own datas for analysis](#send-your-own-datas-for-analysis)
+- [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
+- [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 
 <br>
 
