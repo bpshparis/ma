@@ -377,22 +377,25 @@ Change to code directory
 
 	ic app domains | awk 'NR==5{print $1}'
 
-Edit the **manifest.yml** and update it accordingly by substituting **mylastname-mycompagny**, **myapp0** and **eu-de.mybluemix.net**:
+Edit the **manifest.yml** and update it accordingly by substituting **mylastname-mycompagny**, **myapp0** and **eu-de.mybluemix.net** if needed:
 ```
 applications:
+# WARNING: Only hyphen (e.g. -) are supported in hostname. Don't add any dot.
+# host must be unique in domain
 - host: mylastname-mycompagny
   disk: 256M
+  #name must be unique in your space
   name: myapp0
   path: ./WebContent
+  #domain must be available in your space
   domain: eu-de.mybluemix.net
   mem: 256M
   instances: 1
   services:
-  - dsc0  
   - ta0
   - nlu0
-  - wvc0
-```
+  - dsc0
+  - wvc0```
 
 <br>
 
