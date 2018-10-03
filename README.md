@@ -8,6 +8,8 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 * [Overview of the application](#overview-of-the-application)
 * [Application Flow](#application-flow)
+* [Prerequisite](#prerequisite)
+* [Login to IBM Cloud](#login-to-ibm-cloud)
 * [Setup environment](#setup-environment)
 * [Setup application](#setup-application)
 * [Deploy application](#deploy-application)
@@ -29,16 +31,7 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 <br>
 
-### Setup Environment
-
-Before being able to work with IBM Cloud you should be aware of **2** things:
-  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
-  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom, US South and US East) in your organization.
-
-> At least one organization has been created automatically, and one space called **dev** is created for you.
-If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
-
-:checkered_flag: Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
+### Prerequisite
 
 <!--
 **2** choices here:
@@ -137,9 +130,9 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 <br>
 
-### Install needed softwares
+#### Install needed softwares
 
-> :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
+> :bulb: Ctrl + Click on links below to open them in new tab and keep the tutorial tab opened.
 
 <!--
 ![](res/win.png)
@@ -162,7 +155,7 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 <br>
 
-### Check everything is installed properly
+#### Check everything is installed properly
 
 ![](res/mac.png) ![](res/tux.png)
 
@@ -182,7 +175,20 @@ Check jq command is available:
 
 <br>
 
-### Add some environment variables and aliases
+#### Check your IBM Cloud account
+
+Before being able to work with IBM Cloud you should be aware of **2** things:
+  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
+  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom, US South and US East) in your organization.
+
+> At least one organization has been created automatically, and one space called **dev** is created for you.
+If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
+
+:checkered_flag: Now you should know both your organization and your space in one Region and your are ready to setup your environment in IBM Cloud.
+
+<br>
+
+#### Add some environment variables and aliases
 
 Inside a terminal &nbsp; ![](res/term.png) 
 
@@ -242,7 +248,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 > :no_entry: If **login failed** because of logging in with a federated ID, then browse one a the following url:
 
-> :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
+> :bulb: Ctrl + Click on links below to open them in new tab and keep the tutorial tab opened.
 
  * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
  * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
@@ -262,43 +268,52 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 <br>
 
-### Dump marketplace to get service name, plan and description
-> It may take a minute to display
+
+### Setup environment
+
+#### Dump marketplace to get service name, plan and description
+
+> It may take a minute to display :zzz: 
 
 	ibmcloud service offerings | tee marketplace
 
 <br>
 
-#### Get name and plan for Tone Analyzer service
+#### Setup Tone Analyzer service
+
+##### Get name and plan for Tone Analyzer service
 	grep -i tone marketplace
 
-#### Create Tone Analyzer service
+##### Create Tone Analyzer service
 	ibmcloud service create tone_analyzer lite ta0
 
-#### Create service key (credential) for Tone Analyzer service
+##### Create service key (credential) for Tone Analyzer service
 	ibmcloud service key-create ta0 user0
-
 
 <br>
 
-#### Get name and plan for Natural Language Understanding service
+#### Setup Natural Language Understanding
+
+##### Get name and plan for Natural Language Understanding service
 	grep -i language marketplace
 
-#### Create Natural Language Understanding service
+##### Create Natural Language Understanding service
 	ibmcloud service create natural-language-understanding free nlu0
 
-#### Create service key (credential) for Natural Language Understanding service
+##### Create service key (credential) for Natural Language Understanding service
 	ibmcloud service key-create nlu0 user0
 
 <br>
 
-#### Get name and plan for Natural Language Understanding service
+#### Setup Discovery service
+
+##### Get name and plan for Discovery service
 	grep -i discovery marketplace
 
-#### Create Discovery service
+##### Create Discovery service
 	ibmcloud service create discovery lite dsc0
 
-#### Create service key (credential) for Natural Language Understanding service
+##### Create service key (credential) for Discovery service
 	ibmcloud service key-create dsc0 user0
 
 
