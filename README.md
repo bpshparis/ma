@@ -186,55 +186,61 @@ Check jq command is available:
 
 Inside a terminal &nbsp; ![](res/term.png) 
 
-:bulb: Every further generic variables - **including ${}** - like ${something} have to be substituted with your own environment variables
+:bulb: **ORG**, **USERID** and **SPACE** have to be substituted with your own environment variables
 
 Set your IBM Cloud Organization
 
-	export ORG=${ORG}
+	export ORG=teatcher0@bpshparis.com
 
 Set your IBM Cloud userid
 	
-	export USERID=${USERID}
+	export USERID=teatcher0@bpshparis.com
 
 Set your IBM Cloud space
 	
-	export SPACE=${SPACE}
+	export SPACE=dev
 
 Add some aliases
 
 	cat >> aliases << EOF
-	export US_REGION=https://api.ng.bluemix.net
-	export GB_REGION=https://api.eu-gb.bluemix.net
-	export DE_REGION=https://api.eu-de.bluemix.net
-	alias iclus='/usr/local/bin/ibmcloud login -a ${US_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclgbsso='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${USERID} --sso -s ${SPACE} -o ${ORG}' 
+	alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
 	alias ic='/usr/local/bin/ibmcloud'
+	alias iclo='/usr/local/bin/ibmcloud logout'
 	alias l='ls -Alhtr' 
+	export US_ENDPOINT=https://api.ng.bluemix.net
+	export GB_ENDPOINT=https://api.eu-gb.bluemix.net
+	export DE_ENDPOINT=https://api.eu-de.bluemix.net
+	export US_REGION=us-south
+	export GB_REGION=eu-gb
+	export DE_REGION=eu-de
 	EOF
+
+Add aliases to your environment
+
+	. aliases
+	
+:bulb: To display what's hiding behind aliases use **command -v**
+
+	command -v iclde
+	
+will display
+
+	alias iclde='/usr/local/bin/ibmcloud login -a https://api.eu-de.bluemix.net -u teatcher0@bpshparis.com --skip-ssl-validation -s dev -o teatcher0@bpshparis.com'			
 
 <br>
 
 ### Login to IBM Cloud
 
+Let's connect to :de:
 
+Inside a terminal &nbsp; ![](res/term.png) 
 
-:
+	iclde	
 
-* e.g.
-  * ${userid} will become yourUserid
-
-Connect to IBM Cloud US South Region:
-```
-ibmcloud login -a https://api.ng.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
-```
-or connect to IBM Cloud United Kingdom Region:
-```
-ibmcloud login -a https://api.eu-gb.bluemix.net -u ${userid} -p ${password} --skip-ssl-validation -s ${space} -o ${organization}
-```
-
-> If **login failed** then get a one time code for target Region:
+> If **login failed** because of logging in with a federated ID, then get a one-time passcode:
  * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
  * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
 > and login with **--sso**
