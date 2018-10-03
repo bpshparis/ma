@@ -435,12 +435,12 @@ Edit a json file of this form :
 ```
 [
   {
-    "subject": ${paste some text between double quotation marks or set to null},
-    "content": ${paste some text between double quotation marks or set to null},
-    "attached": ${paste a doc|docx|pdf file name between double quotation marks or set to null},
-    "picture": ${paste a picture file name between double quotation marks or set to null},
-    "face": ${paste a picture file name between double quotation marks or set to null},
-    "tip": ${paste a picture file name between double quotation marks or set to null}
+    "subject": "paste some text between double quotation marks or set to null",
+    "content": "paste some text between double quotation marks or set to null",
+    "attached": "paste a doc|docx|pdf file name between double quotation marks or set to null",
+    "picture": "paste a picture file name between double quotation marks or set to null",
+    "face": "paste a picture file name between double quotation marks or set to null",
+    "tip": "paste a picture file name between double quotation marks or set to null"
   }
 ]
 ```
