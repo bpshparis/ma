@@ -368,7 +368,7 @@ Change to code directory
 
 >Before deploying the application you need to choose **3** things:
 
-> :skull: **Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
+> :warning: **Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
 > * A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
 > * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
 > * A **domain** available thanks to the following command
@@ -395,7 +395,7 @@ Edit the **manifest.yml** and update it accordingly by substituting **${host}**,
 
 ### Deploy application
 
-> :skull: For deployment to work you need to push your code from the same directory as **manifest.yml**.
+> :warning: For deployment to work you need to push your code from the same directory as **manifest.yml**.
 
 :checkered_flag: Now you are ready to deploy the application :
 
@@ -493,9 +493,7 @@ Once your mails are displayed, click ![](res/cogwheels.png) to send your mails f
 ### About Watson Developer Cloud services being used in the application
 ![](res/ta50x.png) **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
 
-[Documentation](https://console.bluemix.net/docs/services/tone-analyzer/getting-started.html)
-[Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/tone-analyzer-dashboard.html)
-[Github](https://github.com/watson-developer-cloud)
+[Documentation](https://console.bluemix.net/docs/services/tone-analyzer/getting-started.html) [Dashboard](https://www.ibm.com/watson/developercloud/dashboard/en/tone-analyzer-dashboard.html) [Github](https://github.com/watson-developer-cloud)
 
 
 ![](res/nlu50x.png)
