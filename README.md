@@ -369,20 +369,22 @@ Change to code directory
 >Before deploying the application you need to choose **3** things:
 
 > :warning: **Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
-> * A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
+> * A **host** (must be unique in domain) for your application (e.g.: **mylastname-mycompagny**)
 > * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
-> * A **domain** available thanks to the following command
+> * A **domain** (must be available in your space)  for your application (e.g.: **eu-de.mybluemix.net**)
+
+:bulb: find the first domain available in your space with the following command
 
 	ic app domains | awk 'NR==5{print $1}'
 
-Edit the **manifest.yml** and update it accordingly by substituting **${host}**, **${name}** and **${domain}**:
+Edit the **manifest.yml** and update it accordingly by substituting **mylastname-mycompagny**, **myapp0** and **eu-de.mybluemix.net**:
 ```
 applications:
-- host: ${host}
+- host: mylastname-mycompagny
   disk: 256M
-  name: ${name}
+  name: myapp0
   path: ./WebContent
-  domain: ${domain}
+  domain: eu-de.mybluemix.net
   mem: 256M
   instances: 1
   services:
