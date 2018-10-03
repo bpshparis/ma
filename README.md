@@ -418,7 +418,7 @@ Display your application state :
 
 	ic app list
 	
-Copy urls columns content. It should be **${host}.${domain}** (e.g.:**mylastname-mycompagny.eu-gb.mybluemix.net**).
+Copy urls columns content. It should be something like **mylastname-mycompagny.eu-de.mybluemix.net**.
 
 Paste it in a web browser and check application is running :
 
