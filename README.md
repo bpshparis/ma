@@ -203,14 +203,14 @@ Set your IBM Cloud space
 Add some aliases
 
 	cat >> aliases << EOF
-	alias iclus='/usr/local/bin/ibmcloud login -a ${US_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	export US_REGION=https://api.ng.bluemix.net
+	export GB_REGION=https://api.eu-gb.bluemix.net
+	export DE_REGION=https://api.eu-de.bluemix.net
+	alias iclus='/usr/local/bin/ibmcloud login -a ${US_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_REGION} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclgbsso='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${USERID} --sso -s ${SPACE} -o ${ORG}' 
 	alias ic='/usr/local/bin/ibmcloud'
-	export S2T_SVC=s2t0
-	export LT_SVC=lt0
-	export T2S_SVC=t2s0
-	export SVC_KEY=user0
 	alias l='ls -Alhtr' 
 	EOF
 
@@ -220,7 +220,7 @@ Add some aliases
 
 
 
-Every further variables - **including ${}** - like ${something} have to be substituted with your own environment variables:
+:
 
 * e.g.
   * ${userid} will become yourUserid
