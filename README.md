@@ -166,7 +166,7 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ![](res/mac.png) ![](res/tux.png)
 
-Open a terminal &nbsp; ![](res/term.png) 
+Inside a terminal &nbsp; ![](res/term.png) 
 
 Check ibmcloud command is available:
 
@@ -182,7 +182,42 @@ Check jq command is available:
 
 <br>
 
+### Add some environment variables and aliases
+
+Inside a terminal &nbsp; ![](res/term.png) 
+
+:bulb: Every further generic variables - **including ${}** - like ${something} have to be substituted with your own environment variables
+
+Set your IBM Cloud Organization
+
+	export ORG=${ORG}
+
+Set your IBM Cloud userid
+	
+	export USERID=${USERID}
+
+Set your IBM Cloud space
+	
+	export SPACE=${SPACE}
+
+Add some aliases
+
+	cat >> aliases << EOF
+	alias iclus='/usr/local/bin/ibmcloud login -a ${US_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_REGION} -u ${BM_USER} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+	alias ic='/usr/local/bin/ibmcloud'
+	export S2T_SVC=s2t0
+	export LT_SVC=lt0
+	export T2S_SVC=t2s0
+	export SVC_KEY=user0
+	alias l='ls -Alhtr' 
+	EOF
+
+<br>
+
 ### Login to IBM Cloud
+
 
 
 Every further variables - **including ${}** - like ${something} have to be substituted with your own environment variables:
