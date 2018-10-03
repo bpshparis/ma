@@ -369,10 +369,10 @@ Change to code directory
 >Before deploying the application you need to choose **3** things:
 
 > :skull: **Don't use special characters. Use [a-z],[A-Z],[0-9] and [-] only.**
-  * A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
-  * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
-  * A **domain** available thanks to the following command
-	
+> * A **host** (must be unique in a region or domain) for your application (e.g.: **mylastname-mycompagny**)
+> * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
+> * A **domain** available thanks to the following command
+
 	ic app domains | awk 'NR==5{print $1}'
 
 Edit the manifest.yml and update it accordingly by substituting **${host}**, **${name}** and **${domain}**:
