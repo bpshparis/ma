@@ -33,113 +33,11 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 ### Prerequisite
 
-<!--
-**2** choices here:
-  1. [GUI environment setup](#gui-environment-setup)
-  2. [Command line environment setup](#login-to-ibm-cloud)
--->
-  
-<!--    
-  2. [Windows automatic environment setup](#windows-automatic-environment-setup) - If testing with Windows and don't feel confortable with command line. 
--->
-
-<!-- 
-### GUI environment setup
-
-Richt click on [instructions](https://github.com/bpshparis/ma/blob/master/mailbox.analyzer.gui.environment.setup.pdf) and open link in new tab.
-
-If everything worked you are now ready to [setup the application](#setup-application)
--->
-
-<!--
-
-### Windows automatic environment setup
-
-Download and install the [cf](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) command from Cloud Foundry.
-
-Download both [curl and jq](wintools.zip) commands and unzip them in your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry).
-
-Open a Windows command prompt as Administrator.
-
-Check cf command is available:
-```
-cf -v
-```
-Check curl command is available:
-```
-curl -V
-```
-Check jq command is available:
-```
-jq
-```
-
-Browse your Cloud Foundry root path (e.g: C:\Programmes\Cloud Foundry or C:\Program Files (x86)\Cloud Foundry), edit envmgt.bat and set it accordingly:
-```
-set userid=
-set password=
-set space=
-set org=
-```
-
-Open a Windows command prompt as Administrator and change to your Cloud Foundry root path:
-
-```
-cd "\Programmes\Cloud Foundry"
-```
-or
-```
-cd "\Program Files (x86)\Cloud Foundry"
-```
-
-Display envmgt usage:
-
-```
-envmgt.bat /h
-```
-
-![](envmgt.bat.usage.jpg)
-
-Login to IBM Cloud US South Region:
-
-```
-envmgt.bat /lus
-```
-
-or login to IBM Cloud United Kingdom Region:
-
-```
-envmgt.bat /luk
-```
-
-Create all services and Discovery service Collection:
-
-```
-envmgt.bat /ca
-```
-
-> You are done with environment setup. Now at least four Watson services should be created (**ta0, nlu0, dsc0 and wvc0**) in your space.
-Check it with:
-
-```
-cf s
-```
-If everything work you are now ready to [setup the application](#setup-application)
-
--->
-
 <br>
 
 #### Install needed softwares
 
 > :bulb: Ctrl + Click on links below to open them in new tab and keep the tutorial tab opened.
-
-<!--
-![](res/win.png)
-
-* Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
-* Download [curl and jq](wintools.zip) commands and unzip them in C:\windows\system32.
--->
 
 ![](res/mac.png)
 
@@ -189,6 +87,8 @@ If not sure about organization name and if a space is available then log in [IBM
 <br>
 
 #### Add some environment variables and aliases
+
+![](res/mac.png) ![](res/tux.png)
 
 Inside a terminal &nbsp; ![](res/term.png) 
 
@@ -273,6 +173,8 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 #### Dump marketplace to get service name, plan and description
 
+![](res/mac.png) ![](res/tux.png)
+
 > It may take a minute to display :zzz: 
 
 	ibmcloud service offerings | tee marketplace
@@ -280,6 +182,8 @@ Inside a terminal &nbsp; ![](res/term.png)
 <br>
 
 #### Setup Tone Analyzer service
+
+![](res/ta50x.png) **Tone Analyzer** uses linguistic analysis to detect three types of tones from communications: emotion, social, and language.  This insight can then be used to drive high impact communications.
 
 ##### Get name and plan for Tone Analyzer service
 	grep -i tone marketplace
@@ -294,6 +198,8 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 #### Setup Natural Language Understanding
 
+![](res/nlu50x.png) **Natural Language Understanding** analyze text to extract meta-data from content such as concepts, entities, emotion, relations, sentiment and more.
+
 ##### Get name and plan for Natural Language Understanding service
 	grep -i language marketplace
 
@@ -307,6 +213,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 #### Setup Discovery service
 
+![](res/dsc50x.png) **Discovery** add a cognitive search and content analytics engine to applications.
 ##### Get name and plan for Discovery service
 	grep -i discovery marketplace
 
