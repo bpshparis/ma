@@ -147,6 +147,8 @@ Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibm
 
 ![](res/mac.png)
 
+![](res/tux.png)
+
 <br>
 
 
