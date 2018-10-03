@@ -395,7 +395,8 @@ applications:
   - ta0
   - nlu0
   - dsc0
-  - wvc0```
+  - wvc0
+```
 
 <br>
 
