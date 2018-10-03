@@ -141,7 +141,7 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html" target="_blank">IBM Cloud CLI</a>
 
-[IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use){:target="_blank"}? 
+[IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use" target="_blank) 
 
 <br>
 
