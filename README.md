@@ -262,7 +262,7 @@ To make life easier for further steps we will set some Discovery service variabl
 
 > Choose a language model among this list:
 
-> * en
+> * **en**
 > * es
 > * de
 > * ar
@@ -275,7 +275,7 @@ To make life easier for further steps we will set some Discovery service variabl
 
 ![](res/mac.png) ![](res/tux.png)
 
-	DSC_LANG=fr
+	DSC_LANG=en
 
 Before being able to create a collection **2** steps have to be completed:
 
