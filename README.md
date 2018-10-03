@@ -421,6 +421,33 @@ applications:
 
 Once staging has completed you should be able to run the application *on your own IBM Cloud environment*.
 
+```
+...
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App app0 was started using this command `.liberty/initial_startup.rb`
+
+Showing health and status for app app0 in org teatcher0@bpshparis.com / space dev as teatcher0@bpshparis.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 1G x 1 instances
+urls: ma-bpshparis.eu-de.mybluemix.net
+last uploaded: Wed Oct 3 23:05:17 UTC 2018
+stack: cflinuxfs2
+buildpack: Liberty for Java(TM) (WAR, liberty-18.0.0_3, buildpack-v3.25-20180918-1034, ibmjdk-1.8.0_20180830, env)
+
+     state     since                    cpu      memory        disk           details
+#0   running   2018-10-03 11:07:38 PM   112.4%   96.6M of 1G   223.5M of 1G
+```
+
 <br>
 
 ### Run application
