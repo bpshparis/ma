@@ -420,7 +420,7 @@ Display your application state :
 	
 Copy urls columns content. It should be something like **mylastname-mycompagny.eu-de.mybluemix.net**.
 
-Paste it in a web browser and check application is running :
+Paste it in a new tab of your web browser and check application is running
 
 Click on ![](res/envelope.png) to upload sample attached documents in Discovery Collection and get sample mails.
 
