@@ -240,18 +240,24 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 	iclde	
 
-> :no_entry: If **login failed** because of logging in with a federated ID, then browse one a the following url
+> :no_entry: If **login failed** because of logging in with a federated ID, then browse one a the following url:
+
 > :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
+
  * https://login.ng.bluemix.net/UAALoginServerWAR/passcode
  * https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode
  * https://login.eu-de.bluemix.net/UAALoginServerWAR/passcode
+ 
 > and get a one-time passcode.
+
 > Then back to your terminal &nbsp; ![](res/term.png), login with **--sso**,
 
 	iclsso
 	
 > paste the one-time passcode when prompt
+
 	One Time Code (Get one at https://login.eu-gb.bluemix.net/UAALoginServerWAR/passcode)>
+	
 > and hit enter.
 
 <br>
