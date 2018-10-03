@@ -139,13 +139,11 @@ If everything work you are now ready to [setup the application](#setup-applicati
 
 ### Install needed software
 
-> :bulb: Ctrl + Click on link below to open in new tabs and keep the tutorial tab opened
+> :bulb: Ctrl + Click on links below to open them in new tabs and keep the tutorial tab opened.
 
 Download and install <a href="https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html">IBM Cloud CLI</a>
 
-[IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use" target="_blank) 
-
-[IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use") [newtab]
+![](res/win.png)
 
 
 <br>
