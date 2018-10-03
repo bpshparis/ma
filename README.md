@@ -158,7 +158,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 	iclde	
 
-> :no_entry: If **login failed** because of logging in with a federated ID, then browse one a the following url:
+> :no_entry: If **login failed** because of logging in with a federated ID, then browse one of the following url:
 
 > :bulb: Ctrl + Click on links below to open them in new tab and keep the tutorial tab opened.
 
