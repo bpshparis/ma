@@ -120,21 +120,23 @@ Set your IBM Cloud space
 
 Add some aliases
 
-	cat >> aliases << EOF
-	alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
-	alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
-	alias ic='/usr/local/bin/ibmcloud'
-	alias iclo='/usr/local/bin/ibmcloud logout'
-	alias l='ls -Alhtr' 
-	export US_ENDPOINT=https://api.ng.bluemix.net
-	export GB_ENDPOINT=https://api.eu-gb.bluemix.net
-	export DE_ENDPOINT=https://api.eu-de.bluemix.net
-	export US_REGION=us-south
-	export GB_REGION=eu-gb
-	export DE_REGION=eu-de
-	EOF
+```
+cat >> aliases << EOF
+alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
+alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
+alias ic='/usr/local/bin/ibmcloud'
+alias iclo='/usr/local/bin/ibmcloud logout'
+alias l='ls -Alhtr' 
+export US_ENDPOINT=https://api.ng.bluemix.net
+export GB_ENDPOINT=https://api.eu-gb.bluemix.net
+export DE_ENDPOINT=https://api.eu-de.bluemix.net
+export US_REGION=us-south
+export GB_REGION=eu-gb
+export DE_REGION=eu-de
+EOF
+```
 
 Add aliases to your environment
 
