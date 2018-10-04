@@ -88,8 +88,8 @@ Check jq command is available:
 #### Check your IBM Cloud account
 
 Before being able to work with IBM Cloud you should be aware of **2** things:
-  1. the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
-  2. the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom, US South and US East) in your organization.
+  * the name of your **organization**, which is the same among all Regions (Germany, Sydney, United Kingdom, US South and US East).
+  * the name of one **space** - which is assigned to one Region only - in one Region (Germany, Sydney, United Kingdom, US South and US East) in your organization.
 
 > At least one organization has been created automatically, and one space called **dev** is created for you.
 If not sure about organization name and if a space is available then log in [IBM Cloud console](https://console.bluemix.net/account/manage-orgs), click 'Cloud Foundry Orgs' then view details, check that 'Cloud Foundry Spaces in Region' is not empty and if so then Add a Cloud Foundry Space.
