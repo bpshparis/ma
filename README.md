@@ -20,11 +20,14 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
     + [Get name and plan for Tone Analyzer service](#get-name-and-plan-for-tone-analyzer-service)
     + [Create Tone Analyzer service](#create-tone-analyzer-service)
     + [Create service key for Tone Analyzer service](#create-service-key-for-tone-analyzer-service)
-  * [Setup Natural Language Understanding](#setup-natural-language-understanding)
-    + [Get name and plan for Tone Analyzer service](#get-name-and-plan-for-natural-language-understanding-service)
-    + [Create Tone Analyzer service](#create-natural-language-understanding-service)
-    + [Create service key for Tone Analyzer service](#create-service-key-for-natural-language-understanding-service)
+  * [Setup Natural Language Understanding service](#setup-natural-language-understanding-service)
+    + [Get name and plan for Natural Language Understanding service](#get-name-and-plan-for-natural-language-understanding-service)
+    + [Create Natural Language Understanding service](#create-natural-language-understanding-service)
+    + [Create service key for Natural Language Understanding service](#create-service-key-for-natural-language-understanding-service)
   * [Setup Discovery service](#setup-discovery-service)
+    + [Get name and plan for Discovery service](#get-name-and-plan-for-discovery-service)
+    + [Create Discovery service](#create-discovery-service)
+    + [Create service key for Discovery service](#create-service-key-for-discovery-service)
   * [Create Discovery Collection](#create-discovery-collection)
   * [Create Visual Recognition service](#create-visual-recognition-service)
   * [Check environment is setup correctly](#check-environment-is-setup-correctly)
@@ -219,7 +222,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 ##### Create Tone Analyzer service
 	ibmcloud service create tone_analyzer lite ta0
 
-##### Create service key (credential) for Tone Analyzer service
+##### Create service key for Tone Analyzer service
 	ibmcloud service key-create ta0 user0
 
 <br>
@@ -237,7 +240,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 ##### Create Natural Language Understanding service
 	ibmcloud service create natural-language-understanding free nlu0
 
-##### Create service key (credential) for Natural Language Understanding service
+##### Create service key for Natural Language Understanding service
 	ibmcloud service key-create nlu0 user0
 
 <br>
@@ -256,7 +259,7 @@ Inside a terminal &nbsp; ![](res/term.png)
 
 	ibmcloud service create discovery lite dsc0
 
-##### Create service key (credential) for Discovery service
+##### Create service key for Discovery service
 
 	ibmcloud service key-create dsc0 user0
 
@@ -354,7 +357,7 @@ Get **configuration_id** for Discovery service
 	
 	ibmcloud  resource service-alias-create wvc0 --instance-name wvc0
 
-##### Create service key (credential) for Visual Recognition service
+##### Create service key for Visual Recognition service
 
 	ibmcloud service key-create wvc0 user0
 
