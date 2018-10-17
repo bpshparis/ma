@@ -47,6 +47,7 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 - [Deploy application](#deploy-application)
 - [Run application](#run-application)
 - [Send your own datas for analysis](#send-your-own-datas-for-analysis)
+- [Clean your room](#clean-your-room)
 - [About Watson Developer Cloud services being used in the application](#about-watson-developer-cloud-services-being-used-in-the-application)
 - [About other Watson Developer Cloud services](#about-other-watson-developer-cloud-services)
 
@@ -571,7 +572,11 @@ Once your mails are displayed, click ![](res/cogwheels.png) to send your mails f
 
 ### Clean your room
 
-	for svc in ta0 nlu0 dsc0 wvc0; do ibmcloud service unbind ; ibmcloud service key-delete -f $svc ${SVC_KEY}; ibmcloud service delete -f $svc; done
+	export APP_NAME=app0
+
+	for svc in ta0 nlu0 dsc0 wvc0; do ibmcloud service unbind ${APP_NAME} $svc; ibmcloud service key-delete -f $svc user0; ibmcloud service delete -f $svc; done
+	
+	ic app delete ${APP_NAME} -f
 
 <br>
 
