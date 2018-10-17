@@ -29,9 +29,21 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
     + [Create Discovery service](#create-discovery-service)
     + [Create service key for Discovery service](#create-service-key-for-discovery-service)
   * [Create Discovery Collection](#create-discovery-collection)
+    + [Store Discovery url in URL environment variable](#store-discovery-url-in-url-environment-variable)
+    + [Store Discovery credential in CRED environment variable](#store-discovery-credential-in-cred-environment-variable)
+    + [Store Discovery version in VERSION environment variable](#store-discovery-version-in-version-environment-variable)
+    + [Store Discovery language in LANG environment variable](#store-discovery-language-in-lang-environment-variable)
+    + [Create env0 environment for Discovery service and store its id in ENVID](#create-env0-environment-for-discovery-service-and-store-its-id-in-envid)
+    + [Create configuration for Discovery service and store its id in CONFID](#create-configuration-for-discovery-service-and-store-its-id-in-confid)
+    + [Create collection coll0 for Discovery service and and store its id in COLLID](#create-collection-coll0-for-discovery-service-and-and-store-its-id-in-collid)
   * [Create Visual Recognition service](#create-visual-recognition-service)
+    + [Get name and plan for Visual Recognition service](#get-name-and-plan-for-visual-recognition-service)
+    + [Create Visual Recognition service](#create-visual-recognition-service)
+    + [Create service key for Visual Recognition service](#create-service-key-for-visual-recognition-service)
   * [Check environment is setup correctly](#check-environment-is-setup-correctly)
 - [Setup application](#setup-application)
+  * [Get application code](#get-application-code)
+  * [Prepare for application deployment](#prepare-for-application-deployment)
 - [Deploy application](#deploy-application)
 - [Run application](#run-application)
 - [Send your own datas for analysis](#send-your-own-datas-for-analysis)
@@ -306,7 +318,7 @@ To make life easier for further steps we will set some Discovery service variabl
 
 Before being able to create a collection **2** steps have to be completed:
 
-##### Create **env0** environment for Discovery service and store its id in ENVID
+##### Create env0 environment for Discovery service and store its id in ENVID
 
 ![](res/mac.png) ![](res/tux.png)
 
@@ -318,7 +330,7 @@ Get **environment_id** for Discovery service
 	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/${ENVID}?version='${DSC_VERSION}
 -->
 
-##### Create **configuration** for Discovery service and store its id in CONFID
+##### Create configuration for Discovery service and store its id in CONFID
 
 ![](res/mac.png) ![](res/tux.png)
 
@@ -331,7 +343,7 @@ Get **configuration_id** for Discovery service
 
 :checkered_flag: Now, you should be ready to create the collection.
 
-##### Create collection **coll0** for Discovery service and and store its id in COLLID
+##### Create collection coll0 for Discovery service and and store its id in COLLID
 
 ![](res/mac.png) ![](res/tux.png)
 
