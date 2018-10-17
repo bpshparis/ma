@@ -6,7 +6,9 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 ## Table of Contents
 
+<!--
 - [Overview of the application](#overview-of-the-application)
+-->
 - [Application Flow](#application-flow)
 - [Prerequisite](#prerequisite)
   * [Install needed softwares](#install-needed-softwares)
@@ -53,11 +55,13 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 
 <br>
 
+<!--
 ### Overview of the application
 
 A sample demo of the application with a mailbox analysis *may be* available [here](http://ma.bpshparis.eu-de.mybluemix.net).
 
 <br>
+-->
 
 ### Application Flow
 ![Flow](images/mailbox.analyzer.flow.jpg)
