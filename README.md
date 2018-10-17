@@ -17,8 +17,13 @@ MailBox Analyzer is an application using [Watson Developer Cloud Java SDK](https
 - [Setup environment](#setup-environment)
   * [Dump marketplace to get service name plan and description](#dump-marketplace-to-get-service-name-plan-and-description)
   * [Setup Tone Analyzer service](#setup-tone-analyzer-service)
+    + [Get name and plan for Tone Analyzer service](#get-name-and-plan-for-tone-analyzer-service)
     + [Create Tone Analyzer service](#create-tone-analyzer-service)
+    + [Create service key for Tone Analyzer service](#create-service-key-for-tone-analyzer-service)
   * [Setup Natural Language Understanding](#setup-natural-language-understanding)
+    + [Get name and plan for Tone Analyzer service](#get-name-and-plan-for-natural-language-understanding-service)
+    + [Create Tone Analyzer service](#create-natural-language-understanding-service)
+    + [Create service key for Tone Analyzer service](#create-service-key-for-natural-language-understanding-service)
   * [Setup Discovery service](#setup-discovery-service)
   * [Create Discovery Collection](#create-discovery-collection)
   * [Create Visual Recognition service](#create-visual-recognition-service)
@@ -117,6 +122,18 @@ Set your IBM Cloud userid
 Set your IBM Cloud space
 	
 	export SPACE=dev
+	
+Set usefull region and api endpoint
+	
+```
+export US_ENDPOINT=https://api.ng.bluemix.net
+export GB_ENDPOINT=https://api.eu-gb.bluemix.net
+export DE_ENDPOINT=https://api.eu-de.bluemix.net
+export US_REGION=us-south
+export GB_REGION=eu-gb
+export DE_REGION=eu-de
+```
+
 
 Add some aliases
 
@@ -129,12 +146,6 @@ alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso'
 alias ic='/usr/local/bin/ibmcloud'
 alias iclo='/usr/local/bin/ibmcloud logout'
 alias l='ls -Alhtr' 
-export US_ENDPOINT=https://api.ng.bluemix.net
-export GB_ENDPOINT=https://api.eu-gb.bluemix.net
-export DE_ENDPOINT=https://api.eu-de.bluemix.net
-export US_REGION=us-south
-export GB_REGION=eu-gb
-export DE_REGION=eu-de
 EOF
 ```
 
@@ -540,6 +551,12 @@ Now go back to your application and click ![](res/compressed.png) to upload your
 Once your datas have been upload, click on ![](res/envelope.png) to upload your attached documents in Discovery Collection and get your mails.
 
 Once your mails are displayed, click ![](res/cogwheels.png) to send your mails for analysis.
+
+<br>
+
+### Clean your room
+
+	for svc in ta0 nlu0 dsc0 wvc0; do ibmcloud service unbind ; ibmcloud service key-delete -f $svc ${SVC_KEY}; ibmcloud service delete -f $svc; done
 
 <br>
 
