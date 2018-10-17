@@ -572,11 +572,9 @@ Once your mails are displayed, click ![](res/cogwheels.png) to send your mails f
 
 ### Clean your room
 
-	export APP_NAME=app0
+![](res/mac.png) ![](res/tux.png)
 
-	for svc in ta0 nlu0 dsc0 wvc0; do ibmcloud service unbind ${APP_NAME} $svc; ibmcloud service key-delete -f $svc user0; ibmcloud service delete -f $svc; done
-	
-	ic app delete ${APP_NAME} -f
+	export APP_NAME=app0 && for svc in ta0 nlu0 dsc0 wvc0; do ibmcloud service unbind ${APP_NAME} $svc; ibmcloud service key-delete -f $svc user0; ibmcloud service delete -f $svc; done && ic app delete ${APP_NAME} -f
 
 <br>
 
