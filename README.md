@@ -211,15 +211,15 @@ Inside a terminal &nbsp; ![](res/term.png)
 	
 > and hit enter.
 
-> Then create an API key called apikey0
+> Then create an API key called apikey0 and save it in apikey0 file in current directory
 	
 	ic iam api-key-create apikey0 -d 'apikey0' --file apikey0
 
-> Now login with your API key
+> Now login with your API key stored in apikey0 file in current directory
 
 	ic login target --apikey @apikey0
 	
-> And target :de: endpoint
+> and target :de: endpoint
 
 	ic target --cf-api ${DE_ENDPOINT} -o $ORG -s $SPACE
 
