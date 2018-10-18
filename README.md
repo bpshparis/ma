@@ -185,6 +185,11 @@ will display
 
 ### Login to IBM Cloud
 
+:bulb: To avoid being prompt when using ibmcloud command set the following config parameters
+
+	ic config --check-version false
+	ic config --usage-stats-collect false
+
 Let's connect to :de:
 
 Inside a terminal &nbsp; ![](res/term.png) 
