@@ -211,6 +211,20 @@ Inside a terminal &nbsp; ![](res/term.png)
 	
 > and hit enter.
 
+> Then create an API key called apikey0
+	
+	ic iam api-key-create apikey0 -d 'apikey0' --file apikey0
+
+> Now login with your API key
+
+	ic login target --apikey @apikey0
+	
+> And target :de: endpoint
+
+	ic target --cf-api ${DE_ENDPOINT} -o $ORG -s $SPACE
+
+:thumbsup: Now you should be logged and ready to setup environment.
+
 <br>
 
 
