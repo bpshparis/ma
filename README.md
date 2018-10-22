@@ -133,11 +133,34 @@ If not sure about organization name and if a space is available then log in [IBM
 
 #### Add some environment variables and aliases
 
-![](res/mac.png) ![](res/tux.png)
-
-Inside a terminal &nbsp; ![](res/term.png) 
-
 :warning: **ORG**, **USERID** and **SPACE** have to be substituted with your own environment variables
+
+![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png) 
+
+Set your IBM Cloud Organization
+
+	set "ORG=teatcher0@bpshparis.com"
+
+Set your IBM Cloud userid
+	
+	set "USERID=teatcher0@bpshparis.com"
+
+Set your IBM Cloud space
+
+	set "SPACE=dev"	
+	
+Set usefull region and api endpoint
+
+```
+set "US_ENDPOINT=https://api.ng.bluemix.net"
+set "GB_ENDPOINT=https://api.eu-gb.bluemix.net"
+set "DE_ENDPOINT=https://api.eu-de.bluemix.net"
+set "US_REGION=us-south"
+set "GB_REGION=eu-gb"
+set "DE_REGION=eu-de"
+```
+
+![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
 
 Set your IBM Cloud Organization
 
@@ -171,7 +194,7 @@ alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip
 alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
-alias ic='/usr/local/bin/ibmcloud'
+alias ic='/usr/local/bin/ibmcloud --check-version false'
 alias iclo='/usr/local/bin/ibmcloud logout'
 alias l='ls -Alhtr' 
 EOF
