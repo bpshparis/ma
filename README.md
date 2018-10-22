@@ -76,10 +76,17 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 > :bulb: Ctrl + Click on links below to open them in new tab and keep the tutorial tab opened.
 
+![](res/win.png)
+
+* Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
+* Download and install [curl](https://curl.haxx.se/windows/)
+* Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64)
+
+
 ![](res/mac.png)
 
 * Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
-* Download and install [curl](https://curl.haxx.se/dlwiz/?type=bin&os=Mac+OS+X&flav=-&ver=-&cpu=i386)
+* **curl** should already be installed. If not, get it from [here](https://curl.haxx.se/dlwiz/?type=bin&os=Mac+OS+X&flav=-&ver=-&cpu=i386)
 * Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64)
 
 ![](res/tux.png)
