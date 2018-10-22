@@ -160,6 +160,26 @@ set "GB_REGION=eu-gb"
 set "DE_REGION=eu-de"
 ```
 
+Add some aliases
+
+```
+set "iclus=C:\Progra~1\IBM\Cloud\bin\ibmcloud login -a %US_ENDPOINT% -u %USERID% --skip-ssl-validation -s %SPACE% -o %ORG%"
+set "iclgb=C:\Progra~1\IBM\Cloud\bin\ibmcloud login -a %GB_ENDPOINT% -u %USERID% --skip-ssl-validation -s %SPACE% -o %ORG%" 
+set "iclde=C:\Progra~1\IBM\Cloud\bin\ibmcloud login -a %DE_ENDPOINT% -u %USERID% --skip-ssl-validation -s %SPACE% -o %ORG%"
+set "iclsso=C:\Progra~1\IBM\Cloud\bin\ibmcloud login -u %USERID% --sso" 
+set "ic=C:\Progra~1\IBM\Cloud\bin\ibmcloud"
+set "iclo=C:\Progra~1\IBM\Cloud\bin\ibmcloud logout"
+```
+
+:bulb: To display what's hiding behind aliases use **echo**
+
+	echo %iclde%
+	
+will display
+
+	C:\Progra~1\IBM\Cloud\bin\ibmcloud login -a https://api.eu-de.bluemix.net -u teatcher0@bpshparis.com --skip-ssl-validation -s dev -o teatcher0@bpshparis.com			
+
+
 ![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
 
 Set your IBM Cloud Organization
@@ -189,7 +209,6 @@ export DE_REGION=eu-de
 Add some aliases
 
 ```
-cat >> aliases << EOF
 alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
@@ -197,13 +216,8 @@ alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso'
 alias ic='/usr/local/bin/ibmcloud --check-version false'
 alias iclo='/usr/local/bin/ibmcloud logout'
 alias l='ls -Alhtr' 
-EOF
 ```
 
-Add aliases to your environment
-
-	. aliases
-	
 :bulb: To display what's hiding behind aliases use **command -v**
 
 	command -v iclde
@@ -218,14 +232,18 @@ will display
 
 :bulb: To avoid being prompt when using ibmcloud command set the following config parameters
 
-	ic config --check-version false
-	ic config --usage-stats-collect false
+	ibmcloud config --check-version false
+	ibmcloud config --usage-stats-collect false
 
 Let's connect to :de:
 
-Inside a terminal &nbsp; ![](res/term.png) 
+![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
 
 	iclde	
+	
+![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png)
+
+	%iclde%	
 
 > :no_entry: If **login failed** because of logging in with a federated ID, then browse one of the following url:
 
