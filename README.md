@@ -80,8 +80,7 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 * Download and install [IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html)  
 * Download and install [curl](https://curl.haxx.se/windows/)
-* Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64)
-
+* Download and install [jq](https://github.com/stedolan/jq/releases/download/jq-1.5/jq-win64.exe)
 
 ![](res/mac.png)
 
@@ -98,6 +97,10 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 <br>
 
 #### Check everything is installed properly
+
+![](res/win.png)
+
+Inside a command prompt &nbsp; ![](res/cmd.png) 
 
 ![](res/mac.png) ![](res/tux.png)
 
