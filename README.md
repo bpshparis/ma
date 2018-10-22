@@ -98,13 +98,11 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 #### Check everything is installed properly
 
-![](res/win.png)
+![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png) 
 
-Inside a command prompt &nbsp; ![](res/cmd.png) 
 
-![](res/mac.png) ![](res/tux.png)
 
-Inside a terminal &nbsp; ![](res/term.png) 
+![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
 
 Check ibmcloud command is available:
 
@@ -139,7 +137,7 @@ If not sure about organization name and if a space is available then log in [IBM
 
 Inside a terminal &nbsp; ![](res/term.png) 
 
-:bulb: **ORG**, **USERID** and **SPACE** have to be substituted with your own environment variables
+:warning: **ORG**, **USERID** and **SPACE** have to be substituted with your own environment variables
 
 Set your IBM Cloud Organization
 
@@ -173,7 +171,7 @@ alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip
 alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
-alias ic='/usr/local/bin/ibmcloud --check-version false'
+alias ic='/usr/local/bin/ibmcloud'
 alias iclo='/usr/local/bin/ibmcloud logout'
 alias l='ls -Alhtr' 
 EOF
