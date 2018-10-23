@@ -211,7 +211,7 @@ alias iclus='/usr/local/bin/ibmcloud login -a ${US_ENDPOINT} -u ${USERID} --skip
 alias iclgb='/usr/local/bin/ibmcloud login -a ${GB_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclde='/usr/local/bin/ibmcloud login -a ${DE_ENDPOINT} -u ${USERID} --skip-ssl-validation -s ${SPACE} -o ${ORG}' 
 alias iclsso='/usr/local/bin/ibmcloud login -u ${USERID} --sso' 
-alias ic='/usr/local/bin/ibmcloud --check-version false'
+alias ic='/usr/local/bin/ibmcloud'
 alias iclo='/usr/local/bin/ibmcloud logout'
 alias l='ls -Alhtr' 
 ```
