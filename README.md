@@ -98,11 +98,9 @@ A sample demo of the application with a mailbox analysis *may be* available [her
 
 #### Check everything is installed properly
 
-![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png) 
+![](res/win.png) ![](res/cmd.png) 
 
-
-
-![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 Check ibmcloud command is available:
 
@@ -135,7 +133,7 @@ If not sure about organization name and if a space is available then log in [IBM
 
 :warning: **ORG**, **USERID** and **SPACE** have to be substituted with your own environment variables
 
-![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png) 
+![](res/win.png) ![](res/cmd.png) 
 
 Set your IBM Cloud Organization
 
@@ -180,7 +178,7 @@ will display
 	C:\Progra~1\IBM\Cloud\bin\ibmcloud login -a https://api.eu-de.bluemix.net -u teatcher0@bpshparis.com --skip-ssl-validation -s dev -o teatcher0@bpshparis.com			
 
 
-![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 Set your IBM Cloud Organization
 
@@ -237,11 +235,11 @@ will display
 
 Let's connect to :de:
 
-![](res/mac.png) ![](res/tux.png) Inside a terminal &nbsp; ![](res/term.png) 
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	iclde	
 	
-![](res/win.png) Inside a command prompt &nbsp; ![](res/cmd.png)
+![](res/win.png) ![](res/cmd.png)
 
 	%iclde%	
 
@@ -255,9 +253,15 @@ Let's connect to :de:
  
 > and get a one-time passcode.
 
-> Then back to your terminal &nbsp; ![](res/term.png), login with **--sso**,
+> Then login with **--sso**,
+
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	iclsso
+	
+![](res/win.png) ![](res/cmd.png)
+
+	%iclsso%	
 	
 > paste the one-time passcode when prompt
 
@@ -267,15 +271,21 @@ Let's connect to :de:
 
 > Then create an API key called apikey0 and save it in apikey0 file in current directory
 	
-	ic iam api-key-create apikey0 -d 'apikey0' --file apikey0
+	ibmcloud iam api-key-create apikey0 -d "apikey0" --file apikey0
 
 > Now login with your API key stored in apikey0 file in current directory
 
-	ic login target --apikey @apikey0
+	ibmcloud login target --apikey @apikey0
 	
 > and target :de: endpoint
 
-	ic target --cf-api ${DE_ENDPOINT} -o $ORG -s $SPACE
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
+
+	ibmcloud target --cf-api ${DE_ENDPOINT} -o $ORG -s $SPACE
+	
+![](res/win.png) ![](res/cmd.png)	
+
+	ibmcloud target --cf-api %DE_ENDPOINT% -o %ORG% -s %SPACE%
 
 :thumbsup: Now you should be logged and ready to setup environment.
 
@@ -286,11 +296,15 @@ Let's connect to :de:
 
 #### Dump marketplace to get service name, plan and description
 
-![](res/mac.png) ![](res/tux.png)
+:zzz: It may take a minute to display 
 
-> It may take a minute to display :zzz: 
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	ibmcloud service offerings | tee marketplace
+
+![](res/win.png) ![](res/cmd.png)	
+
+	ibmcloud service offerings > marketplace
 
 <br>
 
@@ -300,9 +314,13 @@ Let's connect to :de:
 
 ##### Get name and plan for Tone Analyzer service
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	grep -i tone marketplace
+	
+![](res/win.png) ![](res/cmd.png)
+
+	find /I "tone" marketplace
 
 ##### Create Tone Analyzer service
 	ibmcloud service create tone_analyzer lite ta0
@@ -318,9 +336,13 @@ Let's connect to :de:
 
 ##### Get name and plan for Natural Language Understanding service
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	grep -i language marketplace
+
+![](res/win.png) ![](res/cmd.png)
+
+	find /I "language" marketplace
 
 ##### Create Natural Language Understanding service
 	ibmcloud service create natural-language-understanding free nlu0
@@ -336,9 +358,13 @@ Let's connect to :de:
 
 ##### Get name and plan for Discovery service
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png) 
 
 	grep -i discovery marketplace
+
+![](res/win.png) ![](res/cmd.png)
+
+	find /I "discovery" marketplace
 
 ##### Create Discovery service
 
