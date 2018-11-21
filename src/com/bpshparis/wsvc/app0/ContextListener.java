@@ -151,6 +151,8 @@ public class ContextListener implements ServletContextListener {
 			System.out.println("VCAP_SERVICES read from System ENV.");
     	}
 
+		System.out.println("vcap_services=" + vcap_services);
+
     }
     
     @SuppressWarnings("unchecked")
@@ -165,6 +167,7 @@ public class ContextListener implements ServletContextListener {
 		String password = "";
 		String version = props.getProperty("NLU_VERSION").split("=")[1];
 		
+		
 		Map<String, Object> input = mapper.readValue(vcap_services, new TypeReference<Map<String, Object>>(){});
 		
 		List<Map<String, Object>> l0s = (List<Map<String, Object>>) input.get(serviceName);
@@ -175,8 +178,11 @@ public class ContextListener implements ServletContextListener {
 					System.out.println(e.getKey() + "=" + e.getValue());
 					Map<String, Object> credential = (Map<String, Object>) e.getValue();
 					url = (String) credential.get("url");
-					username = (String) credential.get("username");
-					password = (String) credential.get("password");
+//					username = (String) credential.get("username");
+//					password = (String) credential.get("password");
+					username = "apikey";
+					password = (String) credential.get("apikey");
+					
 				}
 			}
 		}
@@ -248,8 +254,10 @@ public class ContextListener implements ServletContextListener {
 					System.out.println(e.getKey() + "=" + e.getValue());
 					Map<String, Object> credential = (Map<String, Object>) e.getValue();
 					url = (String) credential.get("url");
-					username = (String) credential.get("username");
-					password = (String) credential.get("password");
+//					username = (String) credential.get("username");
+//					password = (String) credential.get("password");
+					username = "apikey";
+					password = (String) credential.get("apikey");
 				}
 			}
 		}

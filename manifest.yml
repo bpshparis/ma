@@ -1,10 +1,10 @@
 applications:
 # WARNING: Only hyphen (e.g. -) are supported in hostname. Don't add any dot.
 # host must be unique in domain
-- host: mylastname-mycompagny
+- host: ma-bpshparis
   disk: 256M
   #name must be unique in your space
-  name: myapp0
+  name: app0
   path: ./WebContent
   #domain must be available in your space
   domain: eu-de.mybluemix.net
