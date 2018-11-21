@@ -388,7 +388,7 @@ To make life easier for further steps we will set some Discovery service variabl
 
 ![](res/mac.png) ![](res/tux.png)
 
-	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.username + ":" + .password')
+	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '"apikey:" + .apikey')
 
 ##### Store Discovery version in VERSION environment variable
 
