@@ -378,7 +378,17 @@ Let's connect to :de:
 
 #### Create Discovery Collection
 
-##### Store Discovery language in LANG environment variable
+##### Store Discovery Collection Name in DSC_COLL_NAME environment variable
+
+![](res/mac.png) ![](res/tux.png) ![](res/term.png)
+
+	DSC_COLL_NAME=coll0
+
+![](res/win.png) ![](res/cmd.png)
+
+	set "DSC_COLL_NAME=coll0"
+
+##### Store Discovery Collection Language in DSC_COLL_LANG environment variable
 
 > Choose a language model among this list:
 
@@ -395,11 +405,22 @@ Let's connect to :de:
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
-	DSC_LANG=en
+	DSC_COLL_LANG=en_us
 
 ![](res/win.png) ![](res/cmd.png)
 
-	set DSC_LANG=en_us
+	set "DSC_COLL_LANG=en_us"
+
+##### Store Discovery version in DSC_VERSION environment variable
+
+![](res/mac.png) ![](res/tux.png)
+
+	DSC_VERSION=2018-03-05
+
+![](res/win.png) ![](res/tux.png)
+
+	set "DSC_VERSION=2018-03-05"
+
 
 To make life easier for further steps we will set some Discovery service variable
 
@@ -420,15 +441,6 @@ To make life easier for further steps we will set some Discovery service variabl
 
 	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '"apikey:" + .apikey')
 
-##### Store Discovery version in VERSION environment variable
-
-![](res/mac.png) ![](res/tux.png)
-
-	DSC_VERSION=2018-03-05
-
-![](res/win.png) ![](res/tux.png)
-
-	set DSC_VERSION=2018-03-05
 
 Before being able to create a collection **2** steps have to be completed:
 
@@ -477,7 +489,7 @@ set "SVC_NAME=dsc0"
 set "KEY_NAME=user0"
 set "ENV_NAME=env0"
 
-@echo DSC_LANG=%DSC_LANG%
+@echo DSC_COLL_LANG=%DSC_COLL_LANG%
 @echo DSC_VERSION=%DSC_VERSION%
 @echo DSC_COLL_NAME=%DSC_COLL_NAME%
 
@@ -511,7 +523,7 @@ for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .configurations[0].confi
 @echo CONFID=%CONFID%
 
 ::Create collection for Discovery service and store its id in COLLID
-set "PARMS={"name": "%DSC_COLL_NAME%", "configuration_id":"%CONFID%" , "language": "%DSC_LANG%"}"
+set "PARMS={"name": "%DSC_COLL_NAME%", "configuration_id":"%CONFID%" , "language": "%DSC_COLL_LANG%"}"
 echo %PARMS% > parms.json
 set "URL=%BASE_URL%/v1/environments/%ENVID%/collections^?version^=%DSC_VERSION%"
 set "CMD=curl -X POST -H "Content-Type: application/json" -u %CRED% -d @parms.json %URL%"
