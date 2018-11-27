@@ -463,6 +463,12 @@ Get **configuration_id** for Discovery service
 
 	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
 
+
+![](res/win.png) ![](res/notepad.png)
+
+Paste content below in a bat file e.g. run.bat
+
+
 ```
 @echo off
 
@@ -484,7 +490,7 @@ for /f "tokens=* skip=4" %%a in ('%CMD%') do (set LINE=%%a & set KEY=!KEY!!LINE!
 for /f "delims=" %%a in ('cmd /c "echo %KEY% | jq -r .url"') do set BASE_URL=%%a
 @echo URL=%URL%
 
-::Store Discovery credential in CRED environment variable
+::Store Discovery APIKEY in CRED environment variable
 for /f "delims=" %%a in ('cmd /c "echo %KEY% | jq -r .apikey"') do set APIKEY=%%a
 set "CRED=apikey:%APIKEY%"
 @echo %CRED%
