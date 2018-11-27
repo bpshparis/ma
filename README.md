@@ -464,10 +464,9 @@ Get **configuration_id** for Discovery service
 	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
 
 
-![](res/win.png) ![](res/notepad.png)
+![](res/win.png) ![](res/notepad.jpg)
 
 Paste content below in a bat file e.g. run.bat
-
 
 ```
 @echo off
@@ -521,8 +520,13 @@ for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .collection_id"') do set
 @echo COLLID=%COLLID%
 ```
 
+![](res/win.png) ![](res/cmd.png)
 
-> :bulb: You won't need neither environment_id nor configuration_id for further use but keep **env0** and **coll0** in mind.
+and execute it to create Discovery collection
+
+	run.bat
+
+> :bulb: You won't need neither environment_id nor configuration_id for further use but keep ENV_NAME and DSC_COLL_NAME in mind if you choose something else than **env0** and **coll0**.
 
 <br>
 
