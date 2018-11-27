@@ -417,6 +417,9 @@ Let's connect to :de:
 ![](res/win.png) ![](res/cmd.png)
 
 	set "DSC_VERSION=2018-03-05"
+	
+	
+##### Create collection coll0	
 
 :checkered_flag: Now, you should be ready to create the collection.
 
