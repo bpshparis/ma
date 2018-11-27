@@ -440,8 +440,8 @@ Before being able to create a collection **2** steps have to be completed:
 
 <!--
 Get **environment_id** for Discovery service
-	curl -u ${CRED} '${url}/v1/environments?version=${DSC_VERSION}' | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
-	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/${ENVID}?version='${DSC_VERSION}
+	curl -u ${CRED} ${URL}'/v1/environments?version='${DSC_VERSION} | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
+	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/'${ENVID}'?version='${DSC_VERSION}
 -->
 
 ##### Create configuration for Discovery service and store its id in CONFID
