@@ -395,7 +395,7 @@ Let's connect to :de:
 
 	DSC_LANG=en
 
-![](res/mac.png)
+![](res/win.png)
 
 	set DSC_LANG=en_us
 
@@ -418,6 +418,10 @@ To make life easier for further steps we will set some Discovery service variabl
 ![](res/mac.png) ![](res/tux.png)
 
 	DSC_VERSION=2018-03-05
+
+![](res/win.png) ![](res/tux.png)
+
+	set DSC_VERSION=2018-03-05
 
 Before being able to create a collection **2** steps have to be completed:
 
