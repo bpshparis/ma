@@ -376,6 +376,29 @@ Let's connect to :de:
 
 #### Create Discovery Collection
 
+##### Store Discovery language in LANG environment variable
+
+> Choose a language model among this list:
+
+> * **en**
+> * es
+> * de
+> * ar
+> * **fr**
+> * it
+> * ja
+> * ko
+> * pt
+> * nl
+
+![](res/mac.png) ![](res/tux.png)
+
+	DSC_LANG=en
+
+![](res/win.png)
+
+	set DSC_LANG=en_us
+
 To make life easier for further steps we will set some Discovery service variable
 
 ##### Store Discovery url in URL environment variable
@@ -396,24 +419,9 @@ To make life easier for further steps we will set some Discovery service variabl
 
 	DSC_VERSION=2018-03-05
 
-##### Store Discovery language in LANG environment variable
+![](res/win.png) ![](res/tux.png)
 
-> Choose a language model among this list:
-
-> * **en**
-> * es
-> * de
-> * ar
-> * **fr**
-> * it
-> * ja
-> * ko
-> * pt
-> * nl
-
-![](res/mac.png) ![](res/tux.png)
-
-	DSC_LANG=en
+	set DSC_VERSION=2018-03-05
 
 Before being able to create a collection **2** steps have to be completed:
 
