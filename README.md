@@ -463,6 +463,59 @@ Get **configuration_id** for Discovery service
 
 	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
 
+```
+@echo off
+
+setlocal ENABLEDELAYEDEXPANSION
+
+set "SVC_NAME=dsc0"
+set "KEY_NAME=user0"
+set "ENV_NAME=env0"
+
+@echo DSC_LANG=%DSC_LANG%
+@echo DSC_VERSION=%DSC_VERSION%
+@echo DSC_COLL_NAME=%DSC_COLL_NAME%
+
+::Store credential in KEY environment variable
+set "CMD=ibmcloud service key-show %SVC_NAME% %KEY_NAME%"
+for /f "tokens=* skip=4" %%a in ('%CMD%') do (set LINE=%%a & set KEY=!KEY!!LINE!)
+
+::Store Discovery url in URL environment variable
+for /f "delims=" %%a in ('cmd /c "echo %KEY% | jq -r .url"') do set BASE_URL=%%a
+@echo URL=%URL%
+
+::Store Discovery credential in CRED environment variable
+for /f "delims=" %%a in ('cmd /c "echo %KEY% | jq -r .apikey"') do set APIKEY=%%a
+set "CRED=apikey:%APIKEY%"
+@echo %CRED%
+
+::Create env0 environment for Discovery service and store its id in ENVID
+set "URL=%BASE_URL%/v1/environments^?version^=%DSC_VERSION%"
+set "PARMS={"name": "%ENV_NAME%"}"
+echo %PARMS% > parms.json
+set "CMD=curl  -X POST -u %CRED% -H "Content-Type: application/json" -d @parms.json %URL%"
+for /f "tokens=*" %%a in ('cmd /c "%CMD%"') do (set LINE=%%a & set OUTPUT=!OUTPUT!!LINE!)
+for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .environment_id"') do set ENVID=%%a
+@echo ENVID=%ENVID%
+
+::Create configuration for Discovery service and store its id in CONFID
+set "URL=%BASE_URL%/v1/environments/%ENVID%/configurations^?version^=%DSC_VERSION%"
+set "CMD=curl -u %CRED% %URL%"
+for /f "tokens=*" %%a in ('cmd /c "%CMD%"') do (set LINE=%%a & set OUTPUT=!OUTPUT!!LINE!)
+for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .configurations[0].configuration_id"') do set CONFID=%%a
+@echo CONFID=%CONFID%
+
+::Create collection for Discovery service and store its id in COLLID
+set "PARMS={"name": "%DSC_COLL_NAME%", "configuration_id":"%CONFID%" , "language": "%DSC_LANG%"}"
+echo %PARMS% > parms.json
+set "URL=%BASE_URL%/v1/environments/%ENVID%/collections^?version^=%DSC_VERSION%"
+set "CMD=curl -X POST -H "Content-Type: application/json" -u %CRED% -d @parms.json %URL%"
+for /f "tokens=*" %%a in ('cmd /c "%CMD%"') do (set LINE=%%a & set OUTPUT=!OUTPUT!!LINE!)
+for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .collection_id"') do set COLLID=%%a
+@echo COLLID=%COLLID%
+```
+
+
 > :bulb: You won't need neither environment_id nor configuration_id for further use but keep **env0** and **coll0** in mind.
 
 <br>
