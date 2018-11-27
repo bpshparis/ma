@@ -372,6 +372,8 @@ Let's connect to :de:
 
 ##### Create service key for Discovery service
 
+:warning: You may have to wait for service to display **create succeded** in last opeartion column before being able to create the key.
+
 	ibmcloud service key-create dsc0 user0
 
 #### Create Discovery Collection
@@ -391,11 +393,11 @@ Let's connect to :de:
 > * pt
 > * nl
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
 	DSC_LANG=en
 
-![](res/win.png)
+![](res/win.png) ![](res/cmd.png)
 
 	set DSC_LANG=en_us
 
@@ -403,9 +405,14 @@ To make life easier for further steps we will set some Discovery service variabl
 
 ##### Store Discovery url in URL environment variable
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
 	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
+
+![](res/win.png) ![](res/notepad.jpg) ![](res/cmd.png)
+
+	REM edit a run.bat with line below an run it
+	
 
 ##### Store Discovery credential in CRED environment variable
 
