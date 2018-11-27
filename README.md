@@ -378,7 +378,7 @@ Let's connect to :de:
 
 #### Create Discovery Collection
 
-##### Store Discovery Collection Name in DSC_COLL_NAME environment variable
+##### Store Discovery Collection name in DSC_COLL_NAME environment variable
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
@@ -388,7 +388,7 @@ Let's connect to :de:
 
 	set "DSC_COLL_NAME=coll0"
 
-##### Store Discovery Collection Language in DSC_COLL_LANG environment variable
+##### Store Discovery Collection language in DSC_COLL_LANG environment variable
 
 > Choose a language model among this list:
 
@@ -411,7 +411,7 @@ Let's connect to :de:
 
 	set "DSC_COLL_LANG=en_us"
 
-##### Store Discovery version in DSC_VERSION environment variable
+##### Store Discovery Version in DSC_VERSION environment variable
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
@@ -458,51 +458,16 @@ COLLID=$(curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name"
 echo COLLID=$COLLID
 ```
 
-## Store Discovery url in URL environment variable
-
-![](res/mac.png) ![](res/tux.png) ![](res/term.png)
-
-	URL=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '.url')
-
-##### Store Discovery credential in CRED environment variable
-
-![](res/mac.png) ![](res/tux.png)
-
-	CRED=$(ic service key-show dsc0 user0 | awk 'NR >= 4 {print}' | jq -r '"apikey:" + .apikey')
-
-
-Before being able to create a collection **2** steps have to be completed:
-
-##### Create env0 environment for Discovery service and store its id in ENVID
-
-![](res/mac.png) ![](res/tux.png)
-
-	ENVID=$(curl  -X POST -u ${CRED} -H 'Content-Type: application/json' -d '{"name": "env0"}' ${URL}'/v1/environments?version='${DSC_VERSION} | jq -r '.environment_id')
-
 <!--
 Get **environment_id** for Discovery service
 	curl -u ${CRED} ${URL}'/v1/environments?version='${DSC_VERSION} | jq -r --arg ENV env0 '.environments[] | select(.name == $ENV) | .environment_id'
 	curl -X POST -u ${CRED} -H 'Content-Type: application/json' -X DELETE ${URL}'/v1/environments/'${ENVID}'?version='${DSC_VERSION}
 -->
 
-##### Create configuration for Discovery service and store its id in CONFID
-
-![](res/mac.png) ![](res/tux.png)
-
-	CONFID=$(curl -u ${CRED} ${URL}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION} | jq -r '.configurations[].configuration_id')
-
 <!--
 Get **configuration_id** for Discovery service
 	curl -u ${username}:${password} '${url}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION}' | jq -r '.configurations[] | .configuration_id'
 -->
-
-
-##### Create collection coll0 for Discovery service and and store its id in COLLID
-
-![](res/mac.png) ![](res/tux.png)
-
-	curl -X POST -H 'Content-Type: application/json' -u ${CRED} -d '{"name": "coll0", "configuration_id":"'${CONFID}'" , "language": "'${DSC_LANG}'"}' ${URL}/v1/environments/${ENVID}/collections?version=${DSC_VERSION}
-
 
 ![](res/win.png) ![](res/notepad.jpg)
 
@@ -560,9 +525,13 @@ for /f "delims=" %%a in ('cmd /c "echo %OUTPUT% | jq -r .collection_id"') do set
 @echo COLLID=%COLLID%
 ```
 
-![](res/win.png) ![](res/cmd.png)
-
 and execute it to create Discovery collection
+
+![](res/mac.png) ![](res/tux.png) ![](res/term.png)
+
+	chmod +x run.sh && ./run.sh
+
+![](res/win.png) ![](res/cmd.png)
 
 	run.bat
 
