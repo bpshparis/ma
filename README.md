@@ -373,7 +373,7 @@ Let's connect to :de:
 
 Check Discovery service have been created with 
 
-	ibmcloud service list dsc0
+	ibmcloud service list
 	
 When **last operation** column displays **create succeded** then create Discovery key 	
 
