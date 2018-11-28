@@ -369,7 +369,13 @@ Let's connect to :de:
 
 ##### Create service key for Discovery service
 
-:warning: You may have to wait for service to display **create succeded** in last opeartion column before being able to create the key.
+:warning: You may have to wait for service to display **create succeded** in **last operation** column before being able to create the key.
+
+Check Discovery service have been created with 
+
+	ibmcloud service list dsc0
+	
+When **last operation** column displays **create succeded** then create Discovery key 	
 
 	ibmcloud service key-create dsc0 user0
 
