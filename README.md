@@ -690,6 +690,8 @@ Once mails are displayed, click ![](res/cogwheels.png) to send sample mails for 
 
 When Watson returned, **4 new tabs** (one per service) should appear and are ready to browse. 
 
+![](res/watsontabs.png)
+
 <br>
 
 ### Send your own datas for analysis
