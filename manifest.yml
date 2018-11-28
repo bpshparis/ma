@@ -1,7 +1,7 @@
 applications:
 # WARNING: Only hyphen (e.g. -) are supported in hostname. Don't add any dot.
 # host must be unique in domain
-- host: ma-bpshparis
+- host: mylastname-mycompagny
   disk: 256M
   #name must be unique in your space
   name: app0
