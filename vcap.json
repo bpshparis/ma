@@ -1,1 +1,51 @@
-{"watson_vision_combined":[{ "credentials": { "apikey": "dL40HAXeVbe3AIzU_00jErKRLES_gutynbrrbm0uMZfi", "iam_apikey_description": "Auto generated apikey during resource-bind operation for Instance - crn:v1:bluemix:public:watson-vision-combined:us-south:a/bfea0cf828a54a2193f8b3520b500ec3:80f96c20-f970-481d-84d1-4bfaf21a3090::", "iam_apikey_name": "auto-generated-apikey-dbb3fc5a-4935-4601-b8a1-fc953bf1e65a", "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager", "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/bfea0cf828a54a2193f8b3520b500ec3::serviceid:ServiceId-d7cca5fd-2c58-42f3-bb13-cce91b58a66e", "url": "https://gateway.watsonplatform.net/visual-recognition/api" }, "syslog_drain_url": null, "volume_mounts": [ ], "label": "watson_vision_combined", "provider": null, "plan": "lite", "name": "wvc0", "tags": [ "watson", "ibm_created", "lite", "ibmcloud-alias" ] }],"discovery":[{ "credentials": { "url": "https://gateway.watsonplatform.net/discovery/api", "username": "3f2c0781-84a6-4a6c-a0e2-932b5c3e97a1", "password": "UKOlYhJjHd8F" }, "syslog_drain_url": null, "volume_mounts": [ ], "label": "discovery", "provider": null, "plan": "lite", "name": "dsc0", "tags": [ "watson", "ibm_created", "ibm_dedicated_public", "lite" ] }],"tone_analyzer":[{ "credentials": { "url": "https://gateway.watsonplatform.net/tone-analyzer/api", "username": "19dbe7b2-7765-459f-9319-0ea2960e4d67", "password": "MGMg7Pi4Lko1" }, "syslog_drain_url": null, "volume_mounts": [ ], "label": "tone_analyzer", "provider": null, "plan": "lite", "name": "ta0", "tags": [ "watson", "ibm_created", "ibm_dedicated_public", "lite" ] }],"natural-language-understanding":[{ "credentials": { "url": "https://gateway.watsonplatform.net/natural-language-understanding/api", "username": "1d570aa8-71cc-4580-9303-b3990d674d56", "password": "7YKtO5OJZFyB" }, "syslog_drain_url": null, "volume_mounts": [ ], "label": "natural-language-understanding", "provider": null, "plan": "free", "name": "nlu0", "tags": [ "watson", "ibm_created", "ibm_dedicated_public", "lite" ] }]}
+{
+  "discovery": [
+    {
+      "credentials": {
+        "apikey": "diVd-CPIVvbswmwz3m7gzWli-sLfFn0EPNgo5IC8BfPe",
+        "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:discovery:eu-de:a/bfea0cf828a54a2193f8b3520b500ec3:a30ffe70-755e-489a-a799-f358ef274088::",
+        "iam_apikey_name": "auto-generated-apikey-eb419317-3715-4fa7-9c39-19526057c93e",
+        "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+        "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/bfea0cf828a54a2193f8b3520b500ec3::serviceid:ServiceId-74262aaf-a639-4a79-abbe-0e04b60fe7f4",
+        "url": "https://gateway-fra.watsonplatform.net/discovery/api"
+      },
+      "name": "dsc0"
+    }
+  ],
+  "natural-language-understanding": [
+    {
+      "credentials": {
+        "apikey": "vOsH0tU8bh__YPJixN0PXwr4BEfXbe497zJGoTdbQcql",
+        "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:natural-language-understanding:eu-de:a/bfea0cf828a54a2193f8b3520b500ec3:53ee172d-f977-4ffb-bad8-b3dea096fef9::",
+        "iam_apikey_name": "auto-generated-apikey-3488ffc3-c3f8-4bf8-add6-b674b833ff09",
+        "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+        "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/bfea0cf828a54a2193f8b3520b500ec3::serviceid:ServiceId-30f90274-b654-427b-9ff6-8a8386cf376f",
+        "url": "https://gateway-fra.watsonplatform.net/natural-language-understanding/api"
+      },
+      "name": "nlu0"
+    }
+  ],
+  "tone_analyzer": [
+    {
+      "credentials": {
+        "password": "QKNr6PNu0GwL",
+        "url": "https://gateway-fra.watsonplatform.net/tone-analyzer/api",
+        "username": "a3560a6a-f0b7-4fd7-b70e-d53179a1f75c"
+      },
+      "name": "ta0"
+    }
+  ],
+  "watson_vision_combined": [
+    {
+      "credentials": {
+        "apikey": "djGY8D6KBd4dZ_L8fJl8Ey12itoNMorDpO7g27WbALLi",
+        "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:watson-vision-combined:us-south:a/bfea0cf828a54a2193f8b3520b500ec3:5cbf1f1e-f13f-44a5-9f1d-7f6a5dc79007::",
+        "iam_apikey_name": "auto-generated-apikey-d4047ce1-976f-451c-9c4d-5140c5043bc1",
+        "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+        "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/bfea0cf828a54a2193f8b3520b500ec3::serviceid:ServiceId-4ebe3b54-a215-4d4f-ad59-7e5a28f45ac2",
+        "url": "https://gateway.watsonplatform.net/visual-recognition/api"
+      },
+      "name": "wvc0"
+    }
+  ]
+}

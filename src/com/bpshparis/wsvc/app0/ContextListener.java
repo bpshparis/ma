@@ -224,10 +224,22 @@ public class ContextListener implements ServletContextListener {
 			}
 		}
 		
-		ta = new ToneAnalyzer(version, username, password);
-		ta.setEndPoint(url);
+		System.out.println("ta0 url=" + url);
+		System.out.println("ta0 username=" + username);
+		System.out.println("ta0 password=" + password);
+		System.out.println("ta0 version=" + version);
 		
-		System.out.println(ta.getName() + " " + ta.getEndPoint());
+		try {
+		
+			ta = new ToneAnalyzer(version, username, password);
+			ta.setEndPoint(url);
+			
+			System.out.println(ta.getName() + " " + ta.getEndPoint());
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace(System.err);
+		}
 		
 		return;
     }    
