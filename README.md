@@ -379,7 +379,7 @@ Let's connect to :de:
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
-	DSC_COLL_NAME=coll0
+	export DSC_COLL_NAME=coll0
 
 ![](res/win.png) ![](res/cmd.png)
 
@@ -402,7 +402,7 @@ Let's connect to :de:
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
-	DSC_COLL_LANG=en_us
+	export DSC_COLL_LANG=en_us
 
 ![](res/win.png) ![](res/cmd.png)
 
@@ -412,18 +412,17 @@ Let's connect to :de:
 
 ![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
-	DSC_VERSION=2018-03-05
+	export DSC_VERSION=2018-03-05
 
 ![](res/win.png) ![](res/cmd.png)
 
 	set "DSC_VERSION=2018-03-05"
 	
-	
 ##### Create collection coll0	
 
 :checkered_flag: Now, you should be ready to create the collection.
 
-![](res/mac.png) ![](res/tux.png) ![](res/notepad.jpg)
+![](res/mac.png) ![](res/tux.png) ![](res/notepad.png)
 
 Paste content below in a bat file e.g. run.sh
 ```
@@ -469,7 +468,7 @@ Get **configuration_id** for Discovery service
 	curl -u ${username}:${password} '${url}/v1/environments/${ENVID}/configurations?version=${DSC_VERSION}' | jq -r '.configurations[] | .configuration_id'
 -->
 
-![](res/win.png) ![](res/notepad.jpg)
+![](res/win.png) ![](res/notepad.png)
 
 Paste content below in a bat file e.g. run.bat
 
@@ -545,9 +544,14 @@ and execute it to create Discovery collection
 
 ##### Get name and plan for Visual Recognition service
 
-![](res/mac.png) ![](res/tux.png)
+![](res/mac.png) ![](res/tux.png) ![](res/term.png)
 
 	grep -i visual marketplace
+	
+![](res/win.png) ![](res/cmd.png)
+
+	find /I "visual" marketplace
+	
 
 ##### Create Visual Recognition service
 
@@ -581,8 +585,6 @@ Download code
 
 Unzip it
 
-	unzip master.zip
-
 #### Prepare for application deployment
 
 Change to code directory
@@ -598,9 +600,11 @@ Change to code directory
 > * A **name** (must be unique in your space) for your application (e.g.: **myapp0**)
 > * A **domain** (must be available in your space)  for your application (e.g.: **eu-de.mybluemix.net**)
 
-:bulb: find the first domain available in your space with the following command
+:bulb: find domains available in your space with the following command
 
-	ic app domains | awk 'NR==5{print $1}'
+	ibmcloud app domains
+
+![](res/notepad.png)
 
 Edit the **manifest.yml** and update it accordingly by substituting **mylastname-mycompagny**, **myapp0** and **eu-de.mybluemix.net** if needed:
 ```
@@ -631,7 +635,7 @@ applications:
 
 :checkered_flag: Now you are ready to deploy the application :
 
-	ic app push
+	ibmcloud app push
 
 Once staging has completed you should be able to run the application *on your own IBM Cloud environment*.
 
@@ -668,7 +672,7 @@ buildpack: Liberty for Java(TM) (WAR, liberty-18.0.0_3, buildpack-v3.25-20180918
 
 Display your application state :
 
-	ic app list
+	ibmcloud app list
 	
 Copy urls columns content. It should be something like **mylastname-mycompagny.eu-de.mybluemix.net**.
 
@@ -683,6 +687,8 @@ When Watson returned, **4 new tabs** (one per service) should appear and are rea
 <br>
 
 ### Send your own datas for analysis
+
+![](res/notepad.png)
 
 Edit a json file of this form :
 
@@ -732,9 +738,7 @@ The command should display pretty json without error.
 
 Now **zip mails.json with all files set in attached, picture, face and tip fields from mails.json**.
 
-:bulb: Test you archive
-
-	unzip -t mails0.zip
+:bulb: your archive should be this form
 
 ```
 Archive:  mails0.zip
